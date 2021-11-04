@@ -458,6 +458,33 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""MainMenu"",
+            ""id"": ""d3430efd-f869-45d4-a12c-db48dee996bb"",
+            ""actions"": [
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""d1974e93-61d6-47e3-8a39-22f7c75e96f0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""2a9d173b-4c68-4828-9e2b-e158c1503d32"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -504,6 +531,9 @@ public class @PlayerController : IInputActionCollection, IDisposable
         m_Gameplay_Attack = m_Gameplay.FindAction("Attack", throwIfNotFound: true);
         m_Gameplay_Skill = m_Gameplay.FindAction("Skill", throwIfNotFound: true);
         m_Gameplay_RopeTurn = m_Gameplay.FindAction("RopeTurn", throwIfNotFound: true);
+        // MainMenu
+        m_MainMenu = asset.FindActionMap("MainMenu", throwIfNotFound: true);
+        m_MainMenu_Interact = m_MainMenu.FindAction("Interact", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -670,6 +700,39 @@ public class @PlayerController : IInputActionCollection, IDisposable
         }
     }
     public GameplayActions @Gameplay => new GameplayActions(this);
+
+    // MainMenu
+    private readonly InputActionMap m_MainMenu;
+    private IMainMenuActions m_MainMenuActionsCallbackInterface;
+    private readonly InputAction m_MainMenu_Interact;
+    public struct MainMenuActions
+    {
+        private @PlayerController m_Wrapper;
+        public MainMenuActions(@PlayerController wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Interact => m_Wrapper.m_MainMenu_Interact;
+        public InputActionMap Get() { return m_Wrapper.m_MainMenu; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MainMenuActions set) { return set.Get(); }
+        public void SetCallbacks(IMainMenuActions instance)
+        {
+            if (m_Wrapper.m_MainMenuActionsCallbackInterface != null)
+            {
+                @Interact.started -= m_Wrapper.m_MainMenuActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_MainMenuActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_MainMenuActionsCallbackInterface.OnInteract;
+            }
+            m_Wrapper.m_MainMenuActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
+            }
+        }
+    }
+    public MainMenuActions @MainMenu => new MainMenuActions(this);
     private int m_KeyboardSchemeIndex = -1;
     public InputControlScheme KeyboardScheme
     {
@@ -702,5 +765,9 @@ public class @PlayerController : IInputActionCollection, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnSkill(InputAction.CallbackContext context);
         void OnRopeTurn(InputAction.CallbackContext context);
+    }
+    public interface IMainMenuActions
+    {
+        void OnInteract(InputAction.CallbackContext context);
     }
 }

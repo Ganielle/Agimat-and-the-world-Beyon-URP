@@ -12,6 +12,9 @@ public class GameManager : MonoBehaviour
 
     //  =======================================
 
+    public GameplayStates gameplayStates = new GameplayStates();
+    public MainMenuStates mainMenu = new MainMenuStates();
+
     //  PLAYER SCRIPS
     public PlayerStats PlayerStats = new PlayerStats();
     public PlayerInventory PlayerInventory = new PlayerInventory();
@@ -23,11 +26,15 @@ public class GameManager : MonoBehaviour
 
     public bool debugMode;
     [ConditionalField("debugMode")] public bool isLukas;
+    [ConditionalField("debugMode")] public bool isOnGameplay;
+    [ConditionalField("debugMode")] public bool isOnMainMenu;
+    [ConditionalField("isOnMainMenu")] public MainMenuStates.SSMMState mainMenuState;
     [ConditionalField("debugMode")] public bool debugScenes;
     [ConditionalField("debugMode")] [SerializeField] private string firstScene;
 
     [Header("ScriptReferences")]
-    public GameplayController gameplayController;
+    public GameplayInputController gameplayController;
+    public MainMenuInputController mainMenuController;
     public SceneDataLoadingController sceneDataLoading;
     public EffectManager effectManager;
     public SoundManager soundManager;
@@ -43,22 +50,7 @@ public class GameManager : MonoBehaviour
 
         SetReferenceScripts();
 
-        if (debugMode)
-        {
-            StartCoroutine(LoadData());
-
-            //  Debug stamina
-            PlayerStats.GetSetLukasStamina = 100f;
-            PlayerStats.GetSetLilyStamina = 100f;
-
-            //  Debug Health
-            PlayerStats.GetSetLukasHealth = 100f;
-            PlayerStats.GetSetLilyHealth = 100f;
-
-            //  Debug Mana
-            PlayerStats.GetSetLukasMana = 100f;
-            PlayerStats.GetSetLilyMana = 100f;
-        }
+        DebugMode();
     }
 
     private void SetReferenceScripts()
@@ -84,4 +76,38 @@ public class GameManager : MonoBehaviour
     #endregion
 
     public void CoroutineRunner(IEnumerator coroutine) => StartCoroutine(coroutine);
+
+    public bool IntToBool(int value)
+    {
+        if (value == 1) return true;
+        else return false;
+    }
+
+    private void DebugMode()
+    {
+        if (debugMode)
+        {
+            if (isOnGameplay)
+            {
+                StartCoroutine(LoadData());
+
+                //  Debug stamina
+                PlayerStats.GetSetLukasStamina = 100f;
+                PlayerStats.GetSetLilyStamina = 100f;
+
+                //  Debug Health
+                PlayerStats.GetSetLukasHealth = 100f;
+                PlayerStats.GetSetLilyHealth = 100f;
+
+                //  Debug Mana
+                PlayerStats.GetSetLukasMana = 100f;
+                PlayerStats.GetSetLilyMana = 100f;
+            }
+
+            if (isOnMainMenu)
+            {
+                mainMenu.CurrentSSMMState = mainMenuState;
+            }
+        }
+    }
 }

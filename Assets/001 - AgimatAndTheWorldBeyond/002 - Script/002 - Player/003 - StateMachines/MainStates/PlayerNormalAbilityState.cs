@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerNormalAbilityState : PlayerStatesController
+public class PlayerNormalAbilityState : PlayerStatemachine
 {
     protected bool isAbilityDone;
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerRopeState : PlayerStatesController
+public class PlayerRopeState : PlayerStatemachine
 {
     public Vector3 parentPlayerOldRot;
     public Vector3 childPlayerOldRot;

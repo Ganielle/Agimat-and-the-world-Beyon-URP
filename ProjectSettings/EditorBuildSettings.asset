@@ -15,6 +15,6 @@ EditorBuildSettings:
     path: Assets/001 - AgimatAndTheWorldBeyond/007 - Scenes/CharactersScene.unity
     guid: 79203b70606fb634d96103da53985e6b
   - enabled: 1
-    path: Assets/001 - AgimatAndTheWorldBeyond/007 - Scenes/Tutorial/AtyciaEntry.unity
+    path: Assets/001 - AgimatAndTheWorldBeyond/007 - Scenes/AtyciaEntry.unity
     guid: 40e1ee5ffee58d142b32910204538e45
   m_configObjects: {}

@@ -445,6 +445,33 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "MainMenu",
+            "id": "d3430efd-f869-45d4-a12c-db48dee996bb",
+            "actions": [
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "d1974e93-61d6-47e3-8a39-22f7c75e96f0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "2a9d173b-4c68-4828-9e2b-e158c1503d32",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

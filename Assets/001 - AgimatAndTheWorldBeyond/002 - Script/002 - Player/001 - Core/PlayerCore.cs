@@ -46,7 +46,12 @@ public class PlayerCore : MonoBehaviour
     [ReadOnly] public Vector2 GetCurrentVelocity;
     [ReadOnly] public Vector2 GetWorkspace;
     [ReadOnly] public Vector2 lastAfterImagePosition;
-    [ReadOnly] public int GetFacingDirection;
+    [ReadOnly] public int facingDirection;
+    public int GetFacingDirection
+    {
+        get => facingDirection;
+        set => facingDirection = value;
+    }
 
     //  PRIVATE VARIABLES
     private RaycastHit2D hitInfo;
@@ -173,13 +178,10 @@ public class PlayerCore : MonoBehaviour
     private void PlayerFlip()
     {
         GetFacingDirection *= -1;
-        //childPlayer.Rotate(0f, 180f, 0f);
+        envCheckerXRot.Rotate(0f, 180f, 0f);
 
         if (GetFacingDirection == 1) GameManager.instance.PlayerStats.GetSetPlayerSR.flipX = false;
         else GameManager.instance.PlayerStats.GetSetPlayerSR.flipX = true;
-
-        envCheckerXRot.Rotate(0f, 180f, 0f);
-        //staminaPanel.Rotate(0f, 180f, 0f);
     }
 
 

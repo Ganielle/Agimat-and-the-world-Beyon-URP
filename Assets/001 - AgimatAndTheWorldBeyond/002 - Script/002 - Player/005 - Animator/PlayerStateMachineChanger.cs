@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class PlayerStateMachineChanger
 {
-    public PlayerStatesController CurrentState { get; private set; }
+    public PlayerStatemachine CurrentState { get; private set; }
 
-    public void Initialize(PlayerStatesController startingState)
+    public void Initialize(PlayerStatemachine startingState)
     {
         CurrentState = startingState;
         CurrentState.Enter();
     }
 
-    public void ChangeState(PlayerStatesController newState)
+    public void ChangeState(PlayerStatemachine newState)
     {
         CurrentState.Exit();
         CurrentState = newState;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerTouchingWallState : PlayerStatesController
+public class PlayerTouchingWallState : PlayerStatemachine
 {
 
     public PlayerTouchingWallState(PlayerStateMachinesController movementController,

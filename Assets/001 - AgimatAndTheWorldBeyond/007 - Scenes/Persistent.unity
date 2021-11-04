@@ -20,11 +20,11 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.15966538, g: 0.36080855, b: 0.8679245, a: 1}
-  m_AmbientEquatorColor: {r: 0.07164471, g: 0.19830845, b: 0.4339623, a: 1}
-  m_AmbientGroundColor: {r: 0.22361162, g: 0.22447263, b: 0.23584908, a: 1}
+  m_AmbientSkyColor: {r: 0, g: 0, b: 0, a: 1}
+  m_AmbientEquatorColor: {r: 0.018022425, g: 0.094102874, b: 0.254717, a: 1}
+  m_AmbientGroundColor: {r: 0, g: 0.030931028, b: 0.09433961, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 1
+  m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
@@ -267,7 +267,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 125617695}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -27.900002, y: -36.55, z: -17}
+  m_LocalPosition: {x: -42.43, y: -35.06, z: -15.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 560142899}
@@ -460,7 +460,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &187145916
 GameObject:
@@ -576,7 +576,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 187145916}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
   m_Name: 
@@ -632,7 +632,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &519967976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -845,7 +845,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &574003010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -891,7 +891,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &614935818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -919,7 +919,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &704855577
 GameObject:
@@ -931,6 +931,7 @@ GameObject:
   m_Component:
   - component: {fileID: 704855579}
   - component: {fileID: 704855578}
+  - component: {fileID: 704855584}
   - component: {fileID: 704855580}
   - component: {fileID: 704855582}
   - component: {fileID: 704855583}
@@ -956,9 +957,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugMode: 1
   isLukas: 1
+  isOnGameplay: 0
+  isOnMainMenu: 1
+  mainMenuState: 1
   debugScenes: 0
   firstScene: AtyciaEntry
   gameplayController: {fileID: 704855580}
+  mainMenuController: {fileID: 704855584}
   sceneDataLoading: {fileID: 704855582}
   effectManager: {fileID: 704855583}
   soundManager: {fileID: 1014949782}
@@ -988,12 +993,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 704855577}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f219d5e243d3d6f48ab5d34092fe4087, type: 3}
+  m_Script: {fileID: 11500000, guid: 02c0c0119447b5b439c6647444f9a5ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 704855581}
   inputHoldTime: 0.2
-  sprintDoubleTapTime: 0.2
-  mainCamera: {fileID: 125617699}
+  sprintDoubleTapTime: 0.15
+  mainCamera: {fileID: 1252404161}
   rawMovementVector: {x: 0, y: 0}
   movementNormalizeX: 0
   movementNormalizeY: 0
@@ -1184,8 +1190,8 @@ MonoBehaviour:
     m_ActionName: Gameplay/Attack[/XInputControllerWindows/buttonWest]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 704855580}
-        m_MethodName: OnSkill
+      - m_Target: {fileID: 704855577}
+        m_MethodName: 
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1214,7 +1220,7 @@ MonoBehaviour:
     m_ActionName: Gameplay/SwitchPlayerRight[/XInputControllerWindows/rightShoulder]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 704855580}
+      - m_Target: {fileID: 0}
         m_MethodName: OnRopeTurn
         m_Mode: 0
         m_Arguments:
@@ -1227,9 +1233,24 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: a9d5eb29-c441-4dc9-ae58-c4bab66fd498
     m_ActionName: Gameplay/RopeTurn[/XInputControllerWindows/rightStick,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
-  m_NeverAutoSwitchControlSchemes: 0
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 704855584}
+        m_MethodName: Interact
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: d1974e93-61d6-47e3-8a39-22f7c75e96f0
+    m_ActionName: MainMenu/New action
+  m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Gameplay
+  m_DefaultActionMap: MainMenu
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 125617699}
 --- !u!114 &704855582
@@ -1270,6 +1291,20 @@ MonoBehaviour:
   switchEffectPooler: {fileID: 519967976}
   jumpSmokePooler: {fileID: 4292682994197995691}
   lowLandSmokePooler: {fileID: 574003010}
+--- !u!114 &704855584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 704855577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3eb70152100f02e459fc110cdd4a9a43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInput: {fileID: 704855581}
+  interactInput: 0
 --- !u!1 &755735193
 GameObject:
   m_ObjectHideFlags: 0
@@ -1439,7 +1474,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1150909553
 GameObject:
@@ -1566,7 +1601,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1252404157
 GameObject:
@@ -1732,7 +1767,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4292682994197995691
 MonoBehaviour:
@@ -1779,4 +1814,4 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0

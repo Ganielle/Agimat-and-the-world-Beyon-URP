@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInAirState : PlayerStatesController
+public class PlayerInAirState : PlayerStatemachine
 {
     private bool reachMaxJumpHeight;
     private bool isJumping;
@@ -62,12 +62,14 @@ public class PlayerInAirState : PlayerStatesController
     private void CheckAnimationState()
     {
         if (GameManager.instance.PlayerStats.GetSetAnimatorStateInfo !=
-            PlayerStats.AnimatorStateInfo.WALLJUMP)
+            PlayerStats.AnimatorStateInfo.WALLJUMP || GameManager.instance.PlayerStats.GetSetAnimatorStateInfo != 
+            PlayerStats.AnimatorStateInfo.LEDGECLIMB || GameManager.instance.PlayerStats.GetSetAnimatorStateInfo !=
+            PlayerStats.AnimatorStateInfo.LEDGEHOLD)
         {
-            if (!statemachineController.isGrounded && statemachineController.core.GetCurrentVelocity.y >= 0.01f)
-                GameManager.instance.PlayerStats.GetSetAnimatorStateInfo = PlayerStats.AnimatorStateInfo.JUMPING;
-            else if (!statemachineController.isGrounded && statemachineController.core.GetCurrentVelocity.y < 0.01f)
-                GameManager.instance.PlayerStats.GetSetAnimatorStateInfo = PlayerStats.AnimatorStateInfo.FALLING;
+            //if (!statemachineController.isGrounded && statemachineController.core.GetCurrentVelocity.y >= 0.01f)
+            //    GameManager.instance.PlayerStats.GetSetAnimatorStateInfo = PlayerStats.AnimatorStateInfo.JUMPING;
+            //else if (!statemachineController.isGrounded && statemachineController.core.GetCurrentVelocity.y < 0.01f)
+            //    GameManager.instance.PlayerStats.GetSetAnimatorStateInfo = PlayerStats.AnimatorStateInfo.FALLING;
         }
     }
 
@@ -123,7 +125,6 @@ public class PlayerInAirState : PlayerStatesController
         else if (GameManager.instance.gameplayController.dashInput &&
             statemachineController.playerDashState.CheckIfCanDash())
             statemachineChanger.ChangeState(statemachineController.playerDashState);
-
         else
             statemachineController.core.CheckIfShouldFlip(GameManager.instance.gameplayController.GetSetMovementNormalizeX);
     }

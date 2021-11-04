@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerTouchingMonkeyBarState : PlayerStatesController
+public class PlayerTouchingMonkeyBarState : PlayerStatemachine
 {
     protected bool isTouchingMonkeyBar;
     protected bool isTouchingMonkeyBarFront;

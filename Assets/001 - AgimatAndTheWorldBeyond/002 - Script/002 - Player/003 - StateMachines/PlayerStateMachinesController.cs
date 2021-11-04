@@ -9,6 +9,8 @@ public class PlayerStateMachinesController : MonoBehaviour
     public PlayerCore core;
 
     //  StateMachines
+    #region STATEMACHINES
+
     public PlayerStateMachineChanger statemachineChanger;
     public PlayerIdleState idleState;
     public PlayerLookUpState lookingUpState;
@@ -44,6 +46,8 @@ public class PlayerStateMachinesController : MonoBehaviour
     public PlayerDodgeState playerDodgeState;
     public PlayerWeaponSwitchState weaponSwitchState;
     public NormalAttackCombo normalAttackState;
+
+    #endregion
 
     [Header("DEBUGGER")]
     [ReadOnly] public bool isGrounded;

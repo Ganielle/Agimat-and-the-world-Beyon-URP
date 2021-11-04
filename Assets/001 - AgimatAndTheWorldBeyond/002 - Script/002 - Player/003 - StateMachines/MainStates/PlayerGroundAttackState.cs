@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerGroundAttackState : PlayerStatesController
+public class PlayerGroundAttackState : PlayerStatemachine
 {
     public PlayerGroundAttackState(PlayerStateMachinesController movementController, 
         PlayerStateMachineChanger stateMachine, PlayerRawData movementData,

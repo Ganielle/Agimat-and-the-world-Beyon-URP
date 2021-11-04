@@ -32,11 +32,8 @@ MonoBehaviour:
   groundCheckRadius: 0.15
   raycastGroundDistance: 5
   floatShadowHeightOffset: 1.5
-  feetOffset: {x: 0, y: 0}
   floorCheckOffsetHeight: 0.2
   floorCheckOffsetWidth: 2
-  maxFloorCheckDist: 168.66
-  pushForceNearLedge: 30
   slopeCheckDistance: 1.9
   slopeForce: 2.5
   wallCheckRadius: {x: 0.1, y: 2}
@@ -49,8 +46,8 @@ MonoBehaviour:
   delayToCheckForGround: 0.15
   delayToCheckForLedge: 0.2
   wallJumpAngle: {x: 5, y: 10}
-  startOffset: {x: 0, y: 1.8}
-  stopOffset: {x: 1, y: 1.5}
+  startOffset: {x: 0, y: 1.7}
+  stopOffset: {x: 1, y: 1.8}
   monkeyBarRarCheckRadius: 0.15
   monkeyBarVelocity: 2.5
   mbStartOffset: {x: 0, y: 1.75}
@@ -86,14 +83,3 @@ MonoBehaviour:
   firstSkillUsePercentage: 33.33
   secondSkillUsePercentage: 66.66
   thirdSkillUsePercentage: 100
-  staminaRecoveryDelay: 0.6
-  staminaRecoverWhenActive: 15
-  staminaRecoverWhenNotActive: 2
-  sprintStamina: 25
-  ledgeStamina: 5
-  wallGrabHoldStamina: 10
-  wallClimbingStamina: 15
-  dodgePercentage: 0.2
-  dashPercentage: 0.3
-  wallJumpPercentage: 0.2
-  axeAttackMovementSpeed: 8.5

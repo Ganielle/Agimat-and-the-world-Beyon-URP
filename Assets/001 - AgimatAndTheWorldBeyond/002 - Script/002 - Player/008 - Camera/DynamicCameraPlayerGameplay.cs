@@ -80,6 +80,13 @@ public class DynamicCameraPlayerGameplay : MonoBehaviour
     [SerializeField] private float fallingYOffset;
     [SerializeField] private float fallingZOffset;
 
+    [Header("Ledge Hold Settings")]
+    [SerializeField] private float ledgeHoldXSpeed;
+    [SerializeField] private float ledgeHoldYZSpeed;
+    [SerializeField] private float ledgeHoldXOffset;
+    [SerializeField] private float ledgeHoldYOffset;
+    [SerializeField] private float ledgeHoldZOffset;
+
     [Header("Debugger")]
     [ReadOnly] [SerializeField] bool canResume;
     [ReadOnly] [SerializeField] private float speedYZOffset;
@@ -91,6 +98,8 @@ public class DynamicCameraPlayerGameplay : MonoBehaviour
     [ReadOnly] [SerializeField] float endYOffset;
     [ReadOnly] [SerializeField] float endZOffset;
     [ReadOnly] [SerializeField] CinemachineTransposer compVirtualCamera;
+
+    int direction;
 
     private void OnEnable()
     {
@@ -141,6 +150,11 @@ public class DynamicCameraPlayerGameplay : MonoBehaviour
         xTime = 0.01f;
         yTime = 0.01f;
         zTime = 0.01f;
+
+        if (GameManager.instance.PlayerStats.GetSetAnimatorStateInfo == PlayerStats.AnimatorStateInfo.LEDGEHOLD)
+        {
+            endXOffset = ledgeHoldXOffset * (playerCore.GetFacingDirection * -1);
+        }
     }
 
     private void ChangeOffsetsCamera()
@@ -229,6 +243,13 @@ public class DynamicCameraPlayerGameplay : MonoBehaviour
 
                 speedXOffset = landXSpeed;
                 speedYZOffset = landYZSpeed;
+                break;
+            case PlayerStats.AnimatorStateInfo.LEDGEHOLD:
+                endYOffset = ledgeHoldYOffset;
+                endZOffset = ledgeHoldZOffset;
+
+                speedXOffset = ledgeHoldXSpeed;
+                speedYZOffset = ledgeHoldYZSpeed;
                 break;
         }
     }

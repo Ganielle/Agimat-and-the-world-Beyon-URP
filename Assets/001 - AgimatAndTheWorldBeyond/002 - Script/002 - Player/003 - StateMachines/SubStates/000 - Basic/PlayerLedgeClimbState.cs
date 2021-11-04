@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerLedgeClimbState : PlayerStatesController
+public class PlayerLedgeClimbState : PlayerStatemachine
 {
     private Vector2 detectedPos;
     private Vector2 cornerPos;
@@ -37,7 +37,9 @@ public class PlayerLedgeClimbState : PlayerStatesController
     {
         base.Enter();
 
-        GameManager.instance.PlayerStats.GetSetAnimatorStateInfo = PlayerStats.AnimatorStateInfo.LEDGECLIMB;
+        Debug.Log(statemachineController.core.GetFacingDirection);
+
+        GameManager.instance.PlayerStats.GetSetAnimatorStateInfo = PlayerStats.AnimatorStateInfo.LEDGEHOLD;
         
         statemachineController.core.SetVelocityZero();
 
@@ -52,6 +54,7 @@ public class PlayerLedgeClimbState : PlayerStatesController
         stopPosition.Set(cornerPos.x + (statemachineController.core.GetFacingDirection *
             movementData.stopOffset.x), cornerPos.y + movementData.stopOffset.y);
         statemachineController.transform.position = startPostion;
+
     }
 
     public override void Exit()
@@ -95,6 +98,7 @@ public class PlayerLedgeClimbState : PlayerStatesController
                 0f)
             {
                 isClimbing = true;
+                GameManager.instance.PlayerStats.GetSetAnimatorStateInfo = PlayerStats.AnimatorStateInfo.LEDGECLIMB;
                 GameManager.instance.PlayerStats.GetSetPlayerAnimator.SetBool("ledgeClimb", true);
             }
 
