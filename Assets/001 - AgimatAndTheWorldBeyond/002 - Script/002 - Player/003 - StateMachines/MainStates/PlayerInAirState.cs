@@ -75,7 +75,12 @@ public class PlayerInAirState : PlayerStatemachine
 
     private void AnimationChanger()
     {
-        if (statemachineController.isGrounded && statemachineController.core.GetCurrentVelocity.y < 1f)
+        if (statemachineController.ledgeClimbState.CheckIfCanLedgeClimb()
+            && statemachineController.isSameHeightToPlatform && statemachineController.isTouchingClimbWall
+            && !statemachineController.isTouchingLedge)
+            statemachineChanger.ChangeState(statemachineController.ledgeClimbState);
+
+        else if (statemachineController.isGrounded && statemachineController.core.GetCurrentVelocity.y < 1f)
         {
             if (!reachMaxJumpHeight)
                 statemachineChanger.ChangeState(statemachineController.lowLandState);
@@ -94,11 +99,6 @@ public class PlayerInAirState : PlayerStatemachine
         //}
 
         //  Wall Climb && Ledge
-
-        else if (statemachineController.ledgeClimbState.CheckIfCanLedgeClimb()
-            && statemachineController.isSameHeightToPlatform && statemachineController.isTouchingClimbWall
-            && !statemachineController.isTouchingLedge)
-            statemachineChanger.ChangeState(statemachineController.ledgeClimbState);
 
         else if (statemachineController.isTouchingClimbWall && statemachineController.isSameHeightToPlatform &&
             GameManager.instance.gameplayController.GetSetMovementNormalizeX ==

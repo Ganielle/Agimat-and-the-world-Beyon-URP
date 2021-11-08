@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
@@ -43,14 +44,22 @@ public class GameManager : MonoBehaviour
     public Camera mainCamera;
     public Camera uiCamera;
     public Camera mouseCamera;
+    public CinemachineBrain mainCameraCMBrain;
+    [ReadOnly] public CinemachineConfiner gameplayConfiner;
 
     private void Awake()
     {
+        Time.timeScale = 0.2f;
         instance = this;
 
         SetReferenceScripts();
 
         DebugMode();
+    }
+
+    private void Update()
+    {
+        Debug.Log(PlayerStats.GetSetAnimatorStateInfo);
     }
 
     private void SetReferenceScripts()
@@ -89,6 +98,8 @@ public class GameManager : MonoBehaviour
         {
             if (isOnGameplay)
             {
+                gameplayStates.CurrentGameplayState = GameplayStates.GameplayState.GAMEPLAY;
+
                 StartCoroutine(LoadData());
 
                 //  Debug stamina

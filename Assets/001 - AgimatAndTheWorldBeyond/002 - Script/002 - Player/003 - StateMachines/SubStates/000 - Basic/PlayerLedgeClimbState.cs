@@ -37,7 +37,7 @@ public class PlayerLedgeClimbState : PlayerStatemachine
     {
         base.Enter();
 
-        Debug.Log(statemachineController.core.GetFacingDirection);
+        cornerPos = statemachineController.core.groundPlayerController.DetermineCornerPosition();
 
         GameManager.instance.PlayerStats.GetSetAnimatorStateInfo = PlayerStats.AnimatorStateInfo.LEDGEHOLD;
         
@@ -48,13 +48,18 @@ public class PlayerLedgeClimbState : PlayerStatemachine
 
         //  Ledge Climb
         statemachineController.transform.position = detectedPos;
-        cornerPos = statemachineController.core.groundPlayerController.DetermineCornerPosition();
+
+
         startPostion.Set(cornerPos.x - (statemachineController.core.GetFacingDirection * 
             movementData.startOffset.x), cornerPos.y - movementData.startOffset.y);
-        stopPosition.Set(cornerPos.x + (statemachineController.core.GetFacingDirection *
-            movementData.stopOffset.x), cornerPos.y + movementData.stopOffset.y);
+
+
         statemachineController.transform.position = startPostion;
 
+        stopPosition.Set(statemachineController.core.GetFacingDirection *
+            movementData.stopOffset.x + cornerPos.x, cornerPos.y + movementData.stopOffset.y);
+
+        Debug.Log(startPostion);
     }
 
     public override void Exit()
@@ -120,9 +125,9 @@ public class PlayerLedgeClimbState : PlayerStatemachine
                 !isClimbing)
             {
                 statemachineController.core.CheckIfShouldFlip(GameManager.instance.gameplayController.GetSetMovementNormalizeX);
-                statemachineChanger.ChangeState(statemachineController.inAirState);
                 statemachineController.core.SetVelocityX(10f,
                     statemachineController.core.GetCurrentVelocity.y);
+                statemachineChanger.ChangeState(statemachineController.inAirState);
             }
 
             //  To Cancel ledge climb with y input

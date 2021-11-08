@@ -14,6 +14,7 @@ public class PlayerCore : MonoBehaviour
     public Transform parentPlayer;
     public Transform childPlayer;
     public Transform envCheckerXRot;
+    public Vector2 xyFlipPos;
 
     [Header("SCRIPT REFERENCES")]
     public WeaponChangerController weaponChangerController;
@@ -180,8 +181,16 @@ public class PlayerCore : MonoBehaviour
         GetFacingDirection *= -1;
         envCheckerXRot.Rotate(0f, 180f, 0f);
 
-        if (GetFacingDirection == 1) GameManager.instance.PlayerStats.GetSetPlayerSR.flipX = false;
-        else GameManager.instance.PlayerStats.GetSetPlayerSR.flipX = true;
+        if (GetFacingDirection == 1)
+        {
+            GameManager.instance.PlayerStats.GetSetPlayerSR.gameObject.transform.localPosition = new Vector2(xyFlipPos.x, xyFlipPos.y);
+            GameManager.instance.PlayerStats.GetSetPlayerSR.flipX = false;
+        }
+        else
+        {
+            GameManager.instance.PlayerStats.GetSetPlayerSR.gameObject.transform.localPosition = new Vector2(-xyFlipPos.x, xyFlipPos.y);
+            GameManager.instance.PlayerStats.GetSetPlayerSR.flipX = true;
+        }
     }
 
 
@@ -190,9 +199,15 @@ public class PlayerCore : MonoBehaviour
     public void FlipCheckerOnStart()
     {
         if (!GameManager.instance.PlayerStats.GetSetPlayerSR.flipX)
+        {
+            GameManager.instance.PlayerStats.GetSetPlayerSR.gameObject.transform.localPosition = new Vector2(xyFlipPos.x, xyFlipPos.y);
             GetFacingDirection = 1;
+        }
         else
+        {
+            GameManager.instance.PlayerStats.GetSetPlayerSR.gameObject.transform.localPosition = new Vector2(-xyFlipPos.x, xyFlipPos.y);
             GetFacingDirection = -1;
+        }
     }
 
     public void FlipSpritePlayer()

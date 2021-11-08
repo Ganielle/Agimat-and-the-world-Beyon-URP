@@ -34,6 +34,9 @@ public class GroundPlayerController : MonoBehaviour
     [ReadOnly] public float groundAngle;
     [ReadOnly] public bool isOnSlope;
     [ReadOnly] public bool canWalkOnSlope;
+    [ReadOnly] [SerializeField] float yDist;
+    [ReadOnly] [SerializeField] float xDist;
+    RaycastHit2D xHit, yHit;
 
     #region PHYSICS
 
@@ -111,16 +114,16 @@ public class GroundPlayerController : MonoBehaviour
 
     public Vector2 DetermineCornerPosition()
     {
-        RaycastHit2D xHit = Physics2D.Raycast(wallClimbCheck.position, Vector2.right * core.GetFacingDirection,
+        xHit = Physics2D.Raycast(wallClimbCheck.position, Vector2.right * core.GetFacingDirection,
             playerRawData.wallClimbCheckRadius, whatIsGround);
-        float xDist = xHit.distance;
-        core.GetWorkspace.Set(xDist * core.GetFacingDirection, 0f);
-        RaycastHit2D yHit = Physics2D.Raycast(ledgeCheck.position + (Vector3)(core.GetWorkspace),
+        xDist = xHit.distance;
+        yHit = Physics2D.Raycast((Vector2)ledgeCheck.position + (core.GetWorkspace),
             Vector2.down, ledgeCheck.position.y - wallClimbCheck.position.y, whatIsGround);
-        float yDist = yHit.distance;
+        yDist = yHit.distance;
 
         core.GetWorkspace.Set(wallClimbCheck.position.x + (xDist * core.GetFacingDirection),
             ledgeCheck.position.y - yDist);
+
         return core.GetWorkspace;
     }
 

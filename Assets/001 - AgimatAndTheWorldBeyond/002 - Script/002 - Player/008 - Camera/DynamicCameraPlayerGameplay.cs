@@ -8,6 +8,7 @@ public class DynamicCameraPlayerGameplay : MonoBehaviour
 {
     [SerializeField] private CinemachineCameraOffset cinemachineOffsetter;
     [SerializeField] private CinemachineVirtualCamera VirtualCamera;
+    [SerializeField] private CinemachineConfiner gameplayConfiner;
     [SerializeField] private PlayerCore playerCore;
 
 
@@ -104,6 +105,8 @@ public class DynamicCameraPlayerGameplay : MonoBehaviour
     private void OnEnable()
     {
         compVirtualCamera = VirtualCamera.GetCinemachineComponent<CinemachineTransposer>();
+        GameManager.instance.gameplayConfiner = gameplayConfiner;
+
         ChangeOffsetsCamera();
 
         GameManager.instance.PlayerStats.onAnimatorStateInfoChange += MovementDirectionChange;

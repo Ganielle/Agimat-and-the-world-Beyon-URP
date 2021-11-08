@@ -10,6 +10,7 @@ TagManager:
   - GroundPavement
   - GroundGrass
   - GroundWood
+  - CinematicCameraChange
   layers:
   - Default
   - TransparentFX

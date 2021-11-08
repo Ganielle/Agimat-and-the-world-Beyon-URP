@@ -61,12 +61,7 @@ public class PlayerMoveState : PlayerGroundState
     {
         if (!isExitingState)
         {
-            //  Slope slide
-            if (!statemachineController.core.groundPlayerController.canWalkOnSlope &&
-                statemachineController.isFrontFootTouchSlope)
-                statemachineChanger.ChangeState(statemachineController.steepSlopeSlide);
-
-            else if (statemachineController.core.groundPlayerController.canWalkOnSlope)
+            if (statemachineController.core.groundPlayerController.canWalkOnSlope)
             {
                 //  Running break
                 if (GameManager.instance.gameplayController.GetSetMovementNormalizeX != 0f)
@@ -112,6 +107,14 @@ public class PlayerMoveState : PlayerGroundState
                 else if (GameManager.instance.gameplayController.dodgeInput
                     && statemachineController.playerDodgeState.CheckIfCanDodge())
                     statemachineChanger.ChangeState(statemachineController.playerDodgeState);
+            }
+
+            //  Slope slide
+            else if (statemachineController.isFrontFootTouchSlope && 
+                !statemachineController.core.groundPlayerController.canWalkOnSlope)
+            {
+                Debug.Log(statemachineController.isFrontFootTouchSlope + "    " + statemachineController.core.groundPlayerController.canWalkOnSlope);
+                statemachineChanger.ChangeState(statemachineController.steepSlopeSlide);
             }
         }
     }
