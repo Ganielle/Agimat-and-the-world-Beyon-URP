@@ -32,7 +32,7 @@ public class GroundPlayerController : MonoBehaviour
     [ReadOnly] public Vector2 forceOnSlope;
     [ReadOnly] public Vector3 slopeForward;
     [ReadOnly] public float groundAngle;
-    [ReadOnly] public bool isOnSlope;
+    //[ReadOnly] public bool isOnSlope;
     [ReadOnly] public bool canWalkOnSlope;
     [ReadOnly] [SerializeField] float yDist;
     [ReadOnly] [SerializeField] float xDist;
@@ -90,7 +90,7 @@ public class GroundPlayerController : MonoBehaviour
 
     public bool CheckIfFrontTouchingSlope
     {
-        get => Physics2D.Raycast(groundFrontFootCheck.position, Vector2.down, playerRawData.slopeCheckDistance,
+        get => Physics2D.Raycast(groundFrontFootCheck.position, Vector2.down, playerRawData.slopeFrontFootCheckDistance,
             whatIsGround);
     }
 
@@ -226,8 +226,8 @@ public class GroundPlayerController : MonoBehaviour
         Debug.DrawLine(transform.position, (Vector2) transform.position + Vector2.down * 
             playerRawData.slopeCheckDistance, Color.yellow);
 
-        Debug.DrawLine(groundFrontFootCheck.position, new Vector2(groundFrontFootCheck.position.x, 0f) +
-            Vector2.down * playerRawData.slopeCheckDistance);
+        Debug.DrawLine(groundFrontFootCheck.position, (Vector2)groundFrontFootCheck.position + 
+            Vector2.down * playerRawData.slopeFrontFootCheckDistance, Color.red);
 
         //  Wall Climbing
         Gizmos.color = Color.red;

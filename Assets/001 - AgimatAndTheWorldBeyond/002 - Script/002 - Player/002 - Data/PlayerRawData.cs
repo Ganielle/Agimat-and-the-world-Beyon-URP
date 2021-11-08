@@ -40,6 +40,7 @@ public class PlayerRawData : ScriptableObject
     [Header("SLOPE MOVEMENT")]
     public float slopeCheckDistance = 1.9f;
     public float slopeForce = 2.5f;
+    public float slopeFrontFootCheckDistance = 0f;
 
     [Header("WALL CHECKER")]
     public Vector2 wallCheckRadius = new Vector2(0.1f, 2f);

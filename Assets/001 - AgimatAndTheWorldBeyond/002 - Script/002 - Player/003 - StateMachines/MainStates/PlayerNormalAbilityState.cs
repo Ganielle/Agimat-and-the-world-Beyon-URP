@@ -42,15 +42,4 @@ public class PlayerNormalAbilityState : PlayerStatemachine
             }
         }
     }
-
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
-
-        //  Slope Calculation
-        statemachineController.core.groundPlayerController.CalculateSlopeForward();
-        statemachineController.core.groundPlayerController.CalculateGroundAngle();
-
-        statemachineController.core.groundPlayerController.SlopeChecker();
-    }
 }

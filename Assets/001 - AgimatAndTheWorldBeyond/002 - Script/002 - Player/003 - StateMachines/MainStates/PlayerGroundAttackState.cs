@@ -43,6 +43,8 @@ public class PlayerGroundAttackState : PlayerStatemachine
 
             else if (GameManager.instance.gameplayController.GetSetMovementNormalizeX != 0)
                 statemachineChanger.ChangeState(statemachineController.moveState);
+
+            GameManager.instance.PlayerStats.GetSetPlayerAnimator.SetBool("canAttackTransition", false);
         }
 
         //  ANIMATION CANCEL

@@ -110,7 +110,7 @@ public class PlayerMoveState : PlayerGroundState
             }
 
             //  Slope slide
-            else if (statemachineController.isFrontFootTouchSlope && 
+            else if (statemachineController.isGrounded && statemachineController.isFrontFootTouchSlope && 
                 !statemachineController.core.groundPlayerController.canWalkOnSlope)
             {
                 Debug.Log(statemachineController.isFrontFootTouchSlope + "    " + statemachineController.core.groundPlayerController.canWalkOnSlope);

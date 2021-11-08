@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        Time.timeScale = 0.2f;
+        //Time.timeScale = 0.2f;
         instance = this;
 
         SetReferenceScripts();
@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(PlayerStats.GetSetAnimatorStateInfo);
+        //Debug.Log(PlayerStats.GetSetAnimatorStateInfo);
     }
 
     private void SetReferenceScripts()

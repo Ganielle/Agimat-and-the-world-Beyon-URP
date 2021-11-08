@@ -20,28 +20,40 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: d1c32d4be3ba4c64a9f99d06ccd815f2, type: 3}
-    - time: 0.033333335
-      value: {fileID: 21300000, guid: 035ddf024f137d448a0511d3dd5880f4, type: 3}
-    - time: 0.06666667
-      value: {fileID: 21300000, guid: e13f6e3ca4d51fd4e8332b7cc4b692bb, type: 3}
+      value: {fileID: 21300000, guid: 96627b7a4d546304ab75e3399877c573, type: 3}
+    - time: 0.05
+      value: {fileID: 21300000, guid: a0af6198b09fae14883ec139b5253531, type: 3}
     - time: 0.1
-      value: {fileID: 21300000, guid: e4f1c0f9d474d6548ae9c44b65323511, type: 3}
-    - time: 0.13333334
-      value: {fileID: 21300000, guid: ff54ec9abc1843246b15e48b7600c419, type: 3}
-    - time: 0.16666667
-      value: {fileID: 21300000, guid: 0fa17e7c75d398948b50e79554d33354, type: 3}
+      value: {fileID: 21300000, guid: 92f6b5466728dc9429853d5c94d3ee54, type: 3}
+    - time: 0.15
+      value: {fileID: 21300000, guid: 344d6e0e313e6174f99db8758ff62361, type: 3}
     - time: 0.2
-      value: {fileID: 21300000, guid: 0874983a2e175504e9c01b1b563ac5f1, type: 3}
-    - time: 0.23333333
-      value: {fileID: 21300000, guid: 8080d61d6bae0ac419abe404b9519e54, type: 3}
-    - time: 0.26666668
-      value: {fileID: 21300000, guid: b84604c4453a8f24083412f710d3b24d, type: 3}
+      value: {fileID: 21300000, guid: 2aa56bfabdf71be4fb6ed0e81454a380, type: 3}
+    - time: 0.25
+      value: {fileID: 21300000, guid: d65b87d50a0f7564592a8473d2f466ab, type: 3}
+    - time: 0.3
+      value: {fileID: 21300000, guid: ad60514646d463e47a8ed42f79830f2c, type: 3}
+    - time: 0.35
+      value: {fileID: 21300000, guid: 8a384ca870192a348a38027ea4d1c11e, type: 3}
+    - time: 0.4
+      value: {fileID: 21300000, guid: 5df6fd3a2196e794786123dbb83d2356, type: 3}
+    - time: 0.45
+      value: {fileID: 21300000, guid: 530b2eec8b6a58c4d8f20fd1ef5aa887, type: 3}
+    - time: 0.5
+      value: {fileID: 21300000, guid: 9f766706a4e3b974185ad5f82f78ea87, type: 3}
+    - time: 0.55
+      value: {fileID: 21300000, guid: f9e7c83affb609e4889f606ee9f324d4, type: 3}
+    - time: 0.6
+      value: {fileID: 21300000, guid: f37e849c784de51458854a53607d1a4a, type: 3}
+    - time: 0.65
+      value: {fileID: 21300000, guid: 1dbaf8595eb5a1f4ab0b1006e5dd0b29, type: 3}
+    - time: 0.7
+      value: {fileID: 21300000, guid: 9cf7b7640ae2016489638b6b71003540, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 30
+  m_SampleRate: 20
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -56,21 +68,27 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: d1c32d4be3ba4c64a9f99d06ccd815f2, type: 3}
-    - {fileID: 21300000, guid: 035ddf024f137d448a0511d3dd5880f4, type: 3}
-    - {fileID: 21300000, guid: e13f6e3ca4d51fd4e8332b7cc4b692bb, type: 3}
-    - {fileID: 21300000, guid: e4f1c0f9d474d6548ae9c44b65323511, type: 3}
-    - {fileID: 21300000, guid: ff54ec9abc1843246b15e48b7600c419, type: 3}
-    - {fileID: 21300000, guid: 0fa17e7c75d398948b50e79554d33354, type: 3}
-    - {fileID: 21300000, guid: 0874983a2e175504e9c01b1b563ac5f1, type: 3}
-    - {fileID: 21300000, guid: 8080d61d6bae0ac419abe404b9519e54, type: 3}
-    - {fileID: 21300000, guid: b84604c4453a8f24083412f710d3b24d, type: 3}
+    - {fileID: 21300000, guid: 96627b7a4d546304ab75e3399877c573, type: 3}
+    - {fileID: 21300000, guid: a0af6198b09fae14883ec139b5253531, type: 3}
+    - {fileID: 21300000, guid: 92f6b5466728dc9429853d5c94d3ee54, type: 3}
+    - {fileID: 21300000, guid: 344d6e0e313e6174f99db8758ff62361, type: 3}
+    - {fileID: 21300000, guid: 2aa56bfabdf71be4fb6ed0e81454a380, type: 3}
+    - {fileID: 21300000, guid: d65b87d50a0f7564592a8473d2f466ab, type: 3}
+    - {fileID: 21300000, guid: ad60514646d463e47a8ed42f79830f2c, type: 3}
+    - {fileID: 21300000, guid: 8a384ca870192a348a38027ea4d1c11e, type: 3}
+    - {fileID: 21300000, guid: 5df6fd3a2196e794786123dbb83d2356, type: 3}
+    - {fileID: 21300000, guid: 530b2eec8b6a58c4d8f20fd1ef5aa887, type: 3}
+    - {fileID: 21300000, guid: 9f766706a4e3b974185ad5f82f78ea87, type: 3}
+    - {fileID: 21300000, guid: f9e7c83affb609e4889f606ee9f324d4, type: 3}
+    - {fileID: 21300000, guid: f37e849c784de51458854a53607d1a4a, type: 3}
+    - {fileID: 21300000, guid: 1dbaf8595eb5a1f4ab0b1006e5dd0b29, type: 3}
+    - {fileID: 21300000, guid: 9cf7b7640ae2016489638b6b71003540, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.3
+    m_StopTime: 0.75
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -97,35 +115,49 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.13333334
+  - time: 0.4
+    functionName: GroundAttackMovementVelocity
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 30
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.4
     functionName: AnimationTrigger
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.16666667
+  - time: 0.5
     functionName: CanAnimationCancel
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.23333333
-    functionName: CannotNextAttack
+  - time: 0.55
+    functionName: ResetVelocity
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.23333333
+  - time: 0.6
     functionName: CannotAnimationCancel
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.26666668
+  - time: 0.65
+    functionName: CannotNextAttack
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.7
     functionName: AnimationFinishTrigger
     data: 
     objectReferenceParameter: {fileID: 0}

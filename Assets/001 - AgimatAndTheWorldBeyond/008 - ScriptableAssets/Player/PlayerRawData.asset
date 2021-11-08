@@ -34,8 +34,9 @@ MonoBehaviour:
   floatShadowHeightOffset: 1.5
   floorCheckOffsetHeight: 0.2
   floorCheckOffsetWidth: 2
-  slopeCheckDistance: 1.9
+  slopeCheckDistance: 1.8
   slopeForce: 2.5
+  slopeFrontFootCheckDistance: 1.2
   wallCheckRadius: {x: 0.1, y: 2}
   wallClimbCheckRadius: 0.15
   wallSlideVelocity: 3

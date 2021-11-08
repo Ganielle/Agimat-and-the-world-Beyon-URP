@@ -46,6 +46,7 @@ public class PlayerStateMachinesController : MonoBehaviour
     public PlayerDodgeState playerDodgeState;
     public PlayerWeaponSwitchState weaponSwitchState;
     public NormalAttackCombo normalAttackState;
+    public AttackTransition normalAttackTransition;
 
     #endregion
 
@@ -102,6 +103,7 @@ public class PlayerStateMachinesController : MonoBehaviour
         weaponSwitchState = new PlayerWeaponSwitchState(this, statemachineChanger, core.playerRawData,
             GameManager.instance.PlayerStats.GetSetWeaponEquipBoolInPlayerAnim, true);
         normalAttackState = new NormalAttackCombo(this, statemachineChanger, core.playerRawData, "Attack", false);
+        normalAttackTransition = new AttackTransition(this, statemachineChanger, core.playerRawData, "Attack", false);
 
         switchPlayerState.ResetSwitch();
         weaponSwitchState.ResetWeaponSwitch();
@@ -118,7 +120,6 @@ public class PlayerStateMachinesController : MonoBehaviour
     private void Update()
     {
         core.CurrentVelocitySetter();
-        core.groundPlayerController.SlopeChecker();
 
         statemachineChanger.CurrentState.LogicUpdate();
     }
@@ -129,6 +130,7 @@ public class PlayerStateMachinesController : MonoBehaviour
 
         core.groundPlayerController.CalculateSlopeForward();
         core.groundPlayerController.CalculateGroundAngle();
+        core.groundPlayerController.SlopeChecker();
 
         statemachineChanger.CurrentState.PhysicsUpdate();
 

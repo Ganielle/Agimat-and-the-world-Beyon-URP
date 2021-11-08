@@ -210,6 +210,9 @@ public class PlayerDashState : PlayerAbilityState
 
     private void DashBurst()
     {
+        Debug.Log(statemachineController.isGrounded + "    " + statemachineController.isFrontFootTouchSlope + "   "
+            + statemachineController.core.groundPlayerController.canWalkOnSlope);
+
         //  ANIMATION STATE INFO
         GameManager.instance.PlayerStats.GetSetAnimatorStateInfo =
             PlayerStats.AnimatorStateInfo.DASHBURST;
@@ -230,17 +233,17 @@ public class PlayerDashState : PlayerAbilityState
                 statemachineChanger.ChangeState(statemachineController.ledgeClimbState);
         }
         //  SLOPE SLIDE
-        //else if (isGrounded && isFrontFootTouchSlope &&
-        //    !statemachineController.core.groundPlayerController.canWalkOnSlope)
-        //{
-        //    statemachineController.core.SetVelocityZero();
+        else if (statemachineController.isGrounded && statemachineController.isFrontFootTouchSlope &&
+            !statemachineController.core.groundPlayerController.canWalkOnSlope)
+        {
+            DoneDashingState();
 
-        //    Debug.Log("can steep slope slide");
+            statemachineController.core.SetVelocityZero();
 
-        //    DoneDashingState();
+            Debug.Log("can steep slope slide");
 
-        //    statemachineChanger.ChangeState(statemachineController.steepSlopeSlide);
-        //}
+            statemachineChanger.ChangeState(statemachineController.steepSlopeSlide);
+        }
     }
 
     private void DoneDashingState()

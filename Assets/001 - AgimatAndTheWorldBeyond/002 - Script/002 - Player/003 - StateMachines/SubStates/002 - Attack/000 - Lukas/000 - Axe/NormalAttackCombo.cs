@@ -17,39 +17,42 @@ public class NormalAttackCombo : PlayerGroundAttackState
 
         statemachineController.core.attackController.canChangeDirectionWhenAttacking = false;
 
-        if (statemachineController.core.attackController.canTransitionToNextAttack)
+        statemachineController.core.attackController.currentAttacking = false;
+
+        statemachineController.core.attackController.canNextAttack = false;
+
+        if (statemachineController.core.attackController.canTransitionToNextAttack && 
+            !statemachineController.core.attackController.onLastAttackIndex)
         {
             statemachineController.core.attackController.canTransitionToNextAttack = false;
-
-            statemachineController.core.attackController.canNextAttack = false;
 
             GameManager.instance.PlayerStats.GetSetPlayerAnimator.SetInteger(statemachineController.core.attackController.parameter,
                 statemachineController.core.attackController.attackIndex);
         }
-        else
+
+        else if (!statemachineController.core.attackController.canTransitionToNextAttack && 
+            !statemachineController.core.attackController.onLastAttackIndex)
         {
-            statemachineController.core.attackController.canExit = true;
+            statemachineController.core.attackController.LastAttackEnterTime();
 
-            statemachineController.core.attackController.currentAttacking = false;
+            GameManager.instance.PlayerStats.GetSetPlayerAnimator.SetInteger(statemachineController.core.attackController.parameter,
+            0);
 
-            statemachineController.core.attackController.canNextAttack = false;
+            GameManager.instance.PlayerStats.GetSetPlayerAnimator.SetBool("canAttackTransition", true);
 
-            if (statemachineController.core.attackController.onLastAttackIndex)
-            {
-                statemachineController.core.attackController.onLastAttackIndex = false;
+            statemachineChanger.ChangeState(statemachineController.normalAttackTransition);
+        }
+        else if (statemachineController.core.attackController.onLastAttackIndex)
+        {
 
-                statemachineController.core.attackController.attackIndex = 0;
+            statemachineController.core.attackController.attackIndex = 0;
 
-                GameManager.instance.PlayerStats.GetSetPlayerAnimator.SetInteger(statemachineController.core.attackController.parameter,
-                0);
-            }
-            else
-            {
-                statemachineController.core.attackController.LastAttackEnterTime();
+            GameManager.instance.PlayerStats.GetSetPlayerAnimator.SetInteger(statemachineController.core.attackController.parameter,
+            0);
 
-                GameManager.instance.PlayerStats.GetSetPlayerAnimator.SetInteger(statemachineController.core.attackController.parameter,
-                0);
-            }
+            GameManager.instance.PlayerStats.GetSetPlayerAnimator.SetBool("canAttackTransition", true);
+
+            statemachineChanger.ChangeState(statemachineController.normalAttackTransition);
         }
     }
 
