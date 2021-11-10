@@ -21,15 +21,18 @@ public class SoundFootstepPlayer : MonoBehaviour
 
     public void PlayFootstep()
     {
-        if (GameManager.instance.gameplayController.sprintTapCount == 0)
+        if (playerCore.groundPlayerController.groundCheck)
         {
-            if (playerCore.groundPlayerController.GetGroundTag == groundTag)
-                footstepSource.PlayOneShot(GetClip(runningStoneClips));
-        }
-        //  Sprinting
-        else if (GameManager.instance.gameplayController.sprintTapCount == 2)
-        {
-            //  TODO: SPRINTING
+            if (GameManager.instance.gameplayController.sprintTapCount == 0)
+            {
+                if (playerCore.groundPlayerController.GetGroundTag == groundTag)
+                    footstepSource.PlayOneShot(GetClip(runningStoneClips));
+            }
+            //  Sprinting
+            else if (GameManager.instance.gameplayController.sprintTapCount == 2)
+            {
+                //  TODO: SPRINTING
+            }
         }
     }
 

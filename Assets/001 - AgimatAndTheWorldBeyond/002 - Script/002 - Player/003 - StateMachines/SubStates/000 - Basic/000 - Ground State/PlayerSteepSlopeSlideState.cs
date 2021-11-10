@@ -53,7 +53,6 @@ public class PlayerSteepSlopeSlideState : PlayerGroundState
         //   asuming the facing direction is -1 and slopeForward -1 also then
         // we will flip it to right but what if facing direction is 1 and
         // slopeForward is 1 also then should we flip it ?
-
         if (statemachineController.isFrontFootTouchGround)
         {
             if (statemachineController.core.groundPlayerController.slopeForward.x <

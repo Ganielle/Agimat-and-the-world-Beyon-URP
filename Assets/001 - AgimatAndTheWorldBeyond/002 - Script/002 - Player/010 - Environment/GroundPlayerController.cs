@@ -20,6 +20,7 @@ public class GroundPlayerController : MonoBehaviour
     public Transform groundCheck;
     public Transform groundUnwalkableCheck;
     public Transform groundFrontFootCheck;
+    public Transform groundFronFootSlopCheck;
     public Transform groundBackFootCheck;
     public Transform slopeCheck;
 
@@ -31,7 +32,8 @@ public class GroundPlayerController : MonoBehaviour
     [Header("ReadOnly")]
     [ReadOnly] public Vector2 forceOnSlope;
     [ReadOnly] public Vector3 slopeForward;
-    [ReadOnly] public float groundAngle;
+    [ReadOnly] public float groundMiddleAngle;
+    [ReadOnly] public float groundFrontFootAngle;
     //[ReadOnly] public bool isOnSlope;
     [ReadOnly] public bool canWalkOnSlope;
     [ReadOnly] [SerializeField] float yDist;
@@ -90,7 +92,7 @@ public class GroundPlayerController : MonoBehaviour
 
     public bool CheckIfFrontTouchingSlope
     {
-        get => Physics2D.Raycast(groundFrontFootCheck.position, Vector2.down, playerRawData.slopeFrontFootCheckDistance,
+        get => Physics2D.Raycast(groundFronFootSlopCheck.position, Vector2.down, playerRawData.slopeFrontFootCheckDistance,
             whatIsGround);
     }
 
@@ -143,32 +145,37 @@ public class GroundPlayerController : MonoBehaviour
     {
         if (!CheckIfTouchGround)
         {
-            groundAngle = 90f;
+            groundMiddleAngle = 90f;
+            groundFrontFootAngle = 90f;
             return;
         }
 
-        groundAngle = Vector2.Angle(Physics2D.Raycast(transform.position, Vector2.down, playerRawData.slopeCheckDistance,
+        groundMiddleAngle = Vector2.Angle(Physics2D.Raycast(transform.position, Vector2.down, playerRawData.slopeCheckDistance,
             whatIsGround).normal, -transform.up);
 
+        groundFrontFootAngle = Vector2.Angle(Physics2D.Raycast(groundFrontFootCheck.position, Vector2.down, playerRawData.slopeFrontFootCheckDistance,
+            whatIsGround).normal, -transform.up);
+
+
         //  Higher slope, no friction for sliding effect
-        if (groundAngle <= maxSlopeAngle)
+        if (groundMiddleAngle <= maxSlopeAngle)
             core.playerRB.sharedMaterial = playerRawData.noFriction;
 
         //  On flat surface or walkable, less friction for sticking on ground effect
-        else if (groundAngle > maxSlopeAngle)
+        else if (groundMiddleAngle > maxSlopeAngle)
             core.playerRB.sharedMaterial = playerRawData.lessFriction;
     }
 
     public void SlopeChecker()
     {
         //  To prevent slope animation on in air while ground
-        if (groundAngle == 90f)
+        if (groundMiddleAngle == 90f && groundFrontFootAngle == 90f)
             canWalkOnSlope = false;
         //  On flat surface or walkable slope, on slope but can move
-        else if (groundAngle < minimumSlopeAngle && groundAngle >= maxSlopeAngle)
+        else if (groundMiddleAngle < minimumSlopeAngle && groundMiddleAngle >= maxSlopeAngle)
             canWalkOnSlope = true;
         //  Higher slope, on slope but cannot move
-        else if (groundAngle < maxSlopeAngle)
+        else if (groundMiddleAngle < maxSlopeAngle)
             canWalkOnSlope = false;
         else 
             canWalkOnSlope = false;
@@ -179,7 +186,7 @@ public class GroundPlayerController : MonoBehaviour
         if (CheckIfTouchGround && canWalkOnSlope &&
             CheckIfFrontTouchingSlope)
         {
-            if (groundAngle <= minimumSlopeAngle)
+            if (groundMiddleAngle <= minimumSlopeAngle)
             {
                 if (GameManager.instance.gameplayController.GetSetMovementNormalizeX != 0f)
                     core.playerRB.sharedMaterial = playerRawData.noFriction;
@@ -187,8 +194,8 @@ public class GroundPlayerController : MonoBehaviour
                     core.playerRB.sharedMaterial = playerRawData.lessFriction;
 
                 float moveDistance = Mathf.Abs(core.GetCurrentVelocity.x);
-                float horizontalOnSlope = Mathf.Cos(groundAngle * Mathf.Deg2Rad) * moveDistance * Mathf.Sign(core.GetCurrentVelocity.x);
-                float verticalOnSlope = Mathf.Sin(groundAngle * Mathf.Deg2Rad) * moveDistance;
+                float horizontalOnSlope = Mathf.Cos(groundMiddleAngle * Mathf.Deg2Rad) * moveDistance * Mathf.Sign(core.GetCurrentVelocity.x);
+                float verticalOnSlope = Mathf.Sin(groundMiddleAngle * Mathf.Deg2Rad) * moveDistance;
 
                 if (horizontalOnSlope != 0)
                     core.SetVelocityX(-horizontalOnSlope + (1 + core.GetFacingDirection * 1f) , core.GetCurrentVelocity.y);
@@ -226,7 +233,7 @@ public class GroundPlayerController : MonoBehaviour
         Debug.DrawLine(transform.position, (Vector2) transform.position + Vector2.down * 
             playerRawData.slopeCheckDistance, Color.yellow);
 
-        Debug.DrawLine(groundFrontFootCheck.position, (Vector2)groundFrontFootCheck.position + 
+        Debug.DrawLine(groundFronFootSlopCheck.position, (Vector2)groundFronFootSlopCheck.position + 
             Vector2.down * playerRawData.slopeFrontFootCheckDistance, Color.red);
 
         //  Wall Climbing

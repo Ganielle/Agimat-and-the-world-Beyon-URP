@@ -63,6 +63,7 @@ public class PlayerMoveState : PlayerGroundState
         {
             if (statemachineController.core.groundPlayerController.canWalkOnSlope)
             {
+                Debug.Log("can walk on slope move");
                 //  Running break
                 if (GameManager.instance.gameplayController.GetSetMovementNormalizeX != 0f)
                     canReduceSpeed = false;
@@ -79,11 +80,15 @@ public class PlayerMoveState : PlayerGroundState
                     }
 
                     else if (statemachineController.core.GetCurrentVelocity.x == 0 && !canBreakRun)
+                    {
+                        Debug.Log("to idle move");
                         statemachineChanger.ChangeState(statemachineController.idleState);
+                    }
                 }
 
                 else if (GameManager.instance.gameplayController.attackInput)
                 {
+                    Debug.Log("to attack move");
                     GameManager.instance.gameplayController.UseAttackInput();
                     AttackInitiate();
                 }
@@ -106,16 +111,17 @@ public class PlayerMoveState : PlayerGroundState
 
                 else if (GameManager.instance.gameplayController.dodgeInput
                     && statemachineController.playerDodgeState.CheckIfCanDodge())
+                {
+                    Debug.Log("to idle move");
                     statemachineChanger.ChangeState(statemachineController.playerDodgeState);
+                }
             }
 
             //  Slope slide
             else if (statemachineController.isGrounded && statemachineController.isFrontFootTouchSlope && 
-                !statemachineController.core.groundPlayerController.canWalkOnSlope)
-            {
-                Debug.Log(statemachineController.isFrontFootTouchSlope + "    " + statemachineController.core.groundPlayerController.canWalkOnSlope);
+                !statemachineController.core.groundPlayerController.canWalkOnSlope && 
+                statemachineController.core.groundPlayerController.groundFrontFootAngle > statemachineController.core.groundPlayerController.maxSlopeAngle)
                 statemachineChanger.ChangeState(statemachineController.steepSlopeSlide);
-            }
         }
     }
 

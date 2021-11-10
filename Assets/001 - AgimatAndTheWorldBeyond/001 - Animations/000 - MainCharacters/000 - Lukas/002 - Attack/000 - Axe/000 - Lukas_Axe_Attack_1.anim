@@ -21,39 +21,35 @@ AnimationClip:
   - curve:
     - time: 0
       value: {fileID: 21300000, guid: 96627b7a4d546304ab75e3399877c573, type: 3}
-    - time: 0.05
+    - time: 0.0625
       value: {fileID: 21300000, guid: a0af6198b09fae14883ec139b5253531, type: 3}
-    - time: 0.1
+    - time: 0.125
       value: {fileID: 21300000, guid: 92f6b5466728dc9429853d5c94d3ee54, type: 3}
-    - time: 0.15
+    - time: 0.1875
       value: {fileID: 21300000, guid: 344d6e0e313e6174f99db8758ff62361, type: 3}
-    - time: 0.2
-      value: {fileID: 21300000, guid: 2aa56bfabdf71be4fb6ed0e81454a380, type: 3}
     - time: 0.25
-      value: {fileID: 21300000, guid: d65b87d50a0f7564592a8473d2f466ab, type: 3}
-    - time: 0.3
-      value: {fileID: 21300000, guid: ad60514646d463e47a8ed42f79830f2c, type: 3}
-    - time: 0.35
+      value: {fileID: 21300000, guid: 2aa56bfabdf71be4fb6ed0e81454a380, type: 3}
+    - time: 0.3125
       value: {fileID: 21300000, guid: 8a384ca870192a348a38027ea4d1c11e, type: 3}
-    - time: 0.4
+    - time: 0.375
       value: {fileID: 21300000, guid: 5df6fd3a2196e794786123dbb83d2356, type: 3}
-    - time: 0.45
+    - time: 0.4375
       value: {fileID: 21300000, guid: 530b2eec8b6a58c4d8f20fd1ef5aa887, type: 3}
     - time: 0.5
       value: {fileID: 21300000, guid: 9f766706a4e3b974185ad5f82f78ea87, type: 3}
-    - time: 0.55
+    - time: 0.5625
       value: {fileID: 21300000, guid: f9e7c83affb609e4889f606ee9f324d4, type: 3}
-    - time: 0.6
+    - time: 0.625
       value: {fileID: 21300000, guid: f37e849c784de51458854a53607d1a4a, type: 3}
-    - time: 0.65
+    - time: 0.6875
       value: {fileID: 21300000, guid: 1dbaf8595eb5a1f4ab0b1006e5dd0b29, type: 3}
-    - time: 0.7
+    - time: 0.75
       value: {fileID: 21300000, guid: 9cf7b7640ae2016489638b6b71003540, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 20
+  m_SampleRate: 16
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -73,8 +69,6 @@ AnimationClip:
     - {fileID: 21300000, guid: 92f6b5466728dc9429853d5c94d3ee54, type: 3}
     - {fileID: 21300000, guid: 344d6e0e313e6174f99db8758ff62361, type: 3}
     - {fileID: 21300000, guid: 2aa56bfabdf71be4fb6ed0e81454a380, type: 3}
-    - {fileID: 21300000, guid: d65b87d50a0f7564592a8473d2f466ab, type: 3}
-    - {fileID: 21300000, guid: ad60514646d463e47a8ed42f79830f2c, type: 3}
     - {fileID: 21300000, guid: 8a384ca870192a348a38027ea4d1c11e, type: 3}
     - {fileID: 21300000, guid: 5df6fd3a2196e794786123dbb83d2356, type: 3}
     - {fileID: 21300000, guid: 530b2eec8b6a58c4d8f20fd1ef5aa887, type: 3}
@@ -88,7 +82,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.75
+    m_StopTime: 0.8125
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -115,14 +109,14 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.4
+  - time: 0.375
     functionName: GroundAttackMovementVelocity
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 30
     intParameter: 0
     messageOptions: 0
-  - time: 0.4
+  - time: 0.375
     functionName: AnimationTrigger
     data: 
     objectReferenceParameter: {fileID: 0}
@@ -136,28 +130,28 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.55
+  - time: 0.5625
     functionName: ResetVelocity
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.6
+  - time: 0.625
     functionName: CannotAnimationCancel
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.65
+  - time: 0.6875
     functionName: CannotNextAttack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.7
+  - time: 0.75
     functionName: AnimationFinishTrigger
     data: 
     objectReferenceParameter: {fileID: 0}

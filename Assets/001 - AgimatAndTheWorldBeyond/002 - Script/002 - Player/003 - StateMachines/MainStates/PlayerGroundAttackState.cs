@@ -33,16 +33,37 @@ public class PlayerGroundAttackState : PlayerStatemachine
         if ((!statemachineController.core.attackController.canTransitionToNextAttack || statemachineController.core.attackController.onLastAttackIndex) 
             && statemachineController.core.attackController.canExit)
         {
+
             statemachineController.core.attackController.canExit = false;
 
             //  RESET THE PARAMETER
             statemachineController.core.attackController.SetComboIndexParameter("");
 
             if (GameManager.instance.gameplayController.GetSetMovementNormalizeX == 0)
+            {
+                Debug.Log("to idle attack");
                 statemachineChanger.ChangeState(statemachineController.idleState);
+            }
 
             else if (GameManager.instance.gameplayController.GetSetMovementNormalizeX != 0)
+            {
+                Debug.Log("to move attack");
                 statemachineChanger.ChangeState(statemachineController.moveState);
+            }
+
+            else if (!isAnimationFinished &&
+                GameManager.instance.gameplayController.movementNormalizeY == 1f)
+            {
+                Debug.Log("to looking up attack");
+                statemachineChanger.ChangeState(statemachineController.lookingUpState);
+            }
+
+            else if (!isAnimationFinished &&
+                GameManager.instance.gameplayController.movementNormalizeY == -1)
+            {
+                Debug.Log("to looking down attack");
+                statemachineChanger.ChangeState(statemachineController.lookingDownState);
+            }
 
             GameManager.instance.PlayerStats.GetSetPlayerAnimator.SetBool("canAttackTransition", false);
         }
@@ -67,6 +88,8 @@ public class PlayerGroundAttackState : PlayerStatemachine
 
                 statemachineController.core.attackController.lastAttackEnterTime = 0f;
 
+                GameManager.instance.PlayerStats.GetSetPlayerAnimator.SetBool("canAttackTransition", false);
+
                 statemachineChanger.ChangeState(statemachineController.jumpState);
                 GameManager.instance.gameplayController.UseJumpInput();
             }
@@ -74,6 +97,8 @@ public class PlayerGroundAttackState : PlayerStatemachine
             else if (GameManager.instance.gameplayController.dodgeInput
                 && statemachineController.playerDodgeState.CheckIfCanDodge())
             {
+                Debug.Log("to dodge attack");
+
                 statemachineController.core.attackController.attackIndex = 0;
 
                 GameManager.instance.PlayerStats.GetSetPlayerAnimator.SetInteger(statemachineController.core.attackController.parameter,
@@ -87,6 +112,8 @@ public class PlayerGroundAttackState : PlayerStatemachine
                 statemachineController.core.attackController.canNextAttack = false;
 
                 statemachineController.core.attackController.lastAttackEnterTime = 0f;
+
+                GameManager.instance.PlayerStats.GetSetPlayerAnimator.SetBool("canAttackTransition", false);
 
                 statemachineChanger.ChangeState(statemachineController.playerDodgeState);
             }
@@ -109,6 +136,8 @@ public class PlayerGroundAttackState : PlayerStatemachine
                 statemachineController.core.attackController.canNextAttack = false;
 
                 statemachineController.core.attackController.lastAttackEnterTime = 0f;
+
+                GameManager.instance.PlayerStats.GetSetPlayerAnimator.SetBool("canAttackTransition", false);
 
                 statemachineChanger.ChangeState(statemachineController.playerDashState);
             }
