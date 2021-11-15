@@ -44,7 +44,7 @@ public class PlayerTouchingWallState : PlayerStatemachine
             statemachineChanger.ChangeState(statemachineController.idleState);
 
         else if (!statemachineController.isTouchingWall || (GameManager.instance.gameplayController.GetSetMovementNormalizeX !=
-            statemachineController.core.GetFacingDirection &&
+            statemachineController.core.CurrentDirection &&
             !GameManager.instance.gameplayController.grabWallInput))
             statemachineChanger.ChangeState(statemachineController.inAirState);
     }

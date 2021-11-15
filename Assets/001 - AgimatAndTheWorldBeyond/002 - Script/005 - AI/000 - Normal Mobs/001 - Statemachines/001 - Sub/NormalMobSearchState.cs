@@ -10,20 +10,20 @@ public class NormalMobSearchState : NormalMobGroundState
     {
     }
 
-    /// <summary>
-    /// Steps in patrol mode
-    /// 1.) only move when its on patrol, the game will generate random numbers
-    /// for min and max patrol time and move on two direction 
-    /// 2.) the enemy will stop when on search mode and at the same time it will
-    /// generate random number for min and max search time
-    /// 3.) directions would be random on start but after that it will alternate
-    /// 4.) create a detector for wall and near ledge for the enemy to stop when
-    /// its on patrol mode
-    /// </summary>
-
     public override void Enter()
     {
         base.Enter();
+
+        if (statemachineController.core.enterTimeStates == 0)
+            statemachineController.core.ChangeEnterTimePatrolState(statemachineController.core.mobRawData.minSearchTime,
+                statemachineController.core.mobRawData.maxSearchTime);
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+
+        statemachineController.core.LastPatrolState = NormalMobCore.PatrolState.SEARCH;
     }
 
     public override void LogicUpdate()
@@ -32,14 +32,19 @@ public class NormalMobSearchState : NormalMobGroundState
 
         if (!isExitingState)
         {
-            if (statemachineController.core.CurrentPatrolState == NormalMobCore.PatrolState.PATROL)
+            if (!statemachineController.core.fovDetection.isInFOV)
             {
-                statemachineController.core.ChangeDirection();
-                statemachineChanger.ChangeState(statemachineController.patrolState);
+                if (Time.time >= statemachineController.core.enterTimeStates)
+                {
+                    statemachineController.core.ChangeEnterTimePatrolState(rawData.minPatrolTime,
+                        rawData.maxPatrolTime);
+                    statemachineController.core.ChangeDirection();
+                    statemachineChanger.ChangeState(statemachineController.patrolState);
+                }
             }
-            else if (statemachineController.core.CurrentPatrolState == NormalMobCore.PatrolState.BATTLE)
+            else
             {
-
+                statemachineChanger.ChangeState(statemachineController.alertState);
             }
         }
     }

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 114455963e7536a4b9ec0f728334494c, type: 3}
   m_Name: PrototypeEnemy1
   m_EditorClassIdentifier: 
-  lessFriction: {fileID: 0}
-  fullFriction: {fileID: 0}
-  noFriction: {fileID: 0}
+  lessFriction: {fileID: 6200000, guid: dc89b3e7853392f458734c85b353d2a4, type: 2}
+  fullFriction: {fileID: 6200000, guid: df33940fcfb2f3047a4c940c73b745c9, type: 2}
+  noFriction: {fileID: 6200000, guid: ec1fe1715fc94a54182f31dd82092f8c, type: 2}
   colliderNormalOffsetY: 0
   colliderRopeOffsetY: 0
   minSearchTime: 2.5
@@ -22,3 +22,10 @@ MonoBehaviour:
   minPatrolTime: 4
   maxPatrolTime: 8
   moveSpeed: 5
+  alertTimeToChase: 0.8
+  chaseSpeed: 10
+  checkDistanceToPlayer: 2
+  groundCheckRadius: 0.2
+  slopeCheckDistance: 2
+  slopeForce: 2.5
+  slopeFrontFootCheckDistance: 3

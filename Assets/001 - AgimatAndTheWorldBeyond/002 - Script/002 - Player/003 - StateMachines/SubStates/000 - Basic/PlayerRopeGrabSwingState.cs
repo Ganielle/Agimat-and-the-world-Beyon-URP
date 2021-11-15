@@ -38,7 +38,7 @@ public class PlayerRopeGrabSwingState : PlayerRopeState
         base.DoChecks();
 
         GameManager.instance.PlayerStats.GetSetPlayerAnimator.SetFloat("xVelocity",
-            statemachineController.core.GetCurrentVelocity.x * statemachineController.core.GetFacingDirection);
+            statemachineController.core.GetCurrentVelocity.x * statemachineController.core.CurrentDirection);
     }
 
     public override void LogicUpdate()

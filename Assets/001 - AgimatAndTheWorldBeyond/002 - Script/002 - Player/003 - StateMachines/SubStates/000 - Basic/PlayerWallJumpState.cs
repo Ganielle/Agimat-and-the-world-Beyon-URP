@@ -25,8 +25,8 @@ public class PlayerWallJumpState : PlayerNormalAbilityState
         GameManager.instance.PlayerStats.GetSetAnimatorStateInfo = PlayerStats.AnimatorStateInfo.WALLJUMP;
         
         statemachineController.core.SetVelocityWallJump(movementData.wallJumpVelocity, movementData.wallJumpAngle,
-            -statemachineController.core.GetFacingDirection);
-        statemachineController.core.CheckIfShouldFlip(-statemachineController.core.GetFacingDirection);
+            -statemachineController.core.CurrentDirection);
+        statemachineController.core.CheckIfShouldFlip(-statemachineController.core.CurrentDirection);
 
         statemachineController.core.playerSFXController.PlaySFX(statemachineController.core.playerSFXController.footAS,
             statemachineController.core.playerSFXController.wallJumpClip);

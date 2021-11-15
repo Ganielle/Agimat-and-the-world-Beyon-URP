@@ -71,7 +71,7 @@ public class PlayerStatemachine
             {
                 statemachineController.core.attackController.attackIndex++;
                 statemachineController.core.attackController.SetComboIndexParameter("axeAttackCombo");
-                statemachineController.core.attackController.SetLastFacingDirection(statemachineController.core.GetFacingDirection);
+                statemachineController.core.attackController.SetLastFacingDirection(statemachineController.core.CurrentDirection);
                 statemachineChanger.ChangeState(statemachineController.normalAttackState);
             }
         }
@@ -83,7 +83,7 @@ public class PlayerStatemachine
             {
                 statemachineController.core.attackController.attackIndex++;
                 statemachineController.core.attackController.SetComboIndexParameter("whipAttackCombo");
-                statemachineController.core.attackController.SetLastFacingDirection(statemachineController.core.GetFacingDirection);
+                statemachineController.core.attackController.SetLastFacingDirection(statemachineController.core.CurrentDirection);
                 statemachineChanger.ChangeState(statemachineController.normalAttackState);
             }
         }

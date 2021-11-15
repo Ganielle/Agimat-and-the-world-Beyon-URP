@@ -10,5 +10,14 @@ public class NormalMobGroundState : NormalMobStatemachine
     {
     }
 
+    public override void LogicUpdate()
+    {
+        base.LogicUpdate();
 
+        if (!isExitingState)
+        {
+            if (!statemachineController.isGrounded)
+                statemachineChanger.ChangeState(statemachineController.airState);
+        }
+    }
 }

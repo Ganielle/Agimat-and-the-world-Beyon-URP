@@ -21,6 +21,9 @@ public class FOVDetection : MonoBehaviour
     [Header("DEBUGGER")]
     [ReadOnly] public Vector3 fovLine1, fovLine2;
     [ReadOnly] public bool isInFOV = false;
+    [ReadOnly] public GameObject targetTF;
+    [ReadOnly] public int countFOV;
+    [ReadOnly] public int countDetector;
 
     private void OnDrawGizmos()
     {
@@ -57,27 +60,51 @@ public class FOVDetection : MonoBehaviour
     private bool inFOV()
     {
         Collider2D[] overlaps = new Collider2D[10];
-        int count = Physics2D.OverlapCircleNonAlloc(transform.position, maxRadius, overlaps, targetMask);
+        countFOV = Physics2D.OverlapCircleNonAlloc(transform.position, maxRadius, overlaps, targetMask);
 
-        for (int index = 0; index < count; index++)
+        for (int index = 0; index < countFOV; index++)
         {
             if(overlaps[index].transform != null)
             {
                 if (overlaps[index].transform.CompareTag("Player"))
                 {
-                    Vector2 directionBetween = (overlaps[index].transform.position - transform.position).normalized;
+                    targetTF = overlaps[index].gameObject;
+
+                    Vector2 directionBetween = (targetTF.transform.position - transform.position).normalized;
 
                     float angle = Vector2.Angle(transform.right, directionBetween * normalAICore.currentDirection);
 
                     if (angle < maxAngle)
                     {
                         if (!Physics2D.Raycast(transform.position, directionBetween, 
-                            Vector2.Distance(transform.position, overlaps[index].transform.position), obstacleMask))
+                            Vector2.Distance(transform.position, targetTF.transform.position), obstacleMask))
                             return true;
                     }
                 }
             }
         }
+
+        targetTF = null;
+
         return false;
+    }
+
+    public void PresenceDetector()
+    {
+        Collider2D[] overlaps = new Collider2D[10];
+        countDetector = Physics2D.OverlapCircleNonAlloc(transform.position, maxRadius, overlaps, targetMask);
+
+        for (int index = 0; index < countDetector; index++)
+        {
+            if (overlaps[index].transform != null)
+            {
+                if (overlaps[index].transform.CompareTag("Player"))
+                {
+                    targetTF = overlaps[index].gameObject;
+
+                    return;
+                }
+            }
+        }
     }
 }

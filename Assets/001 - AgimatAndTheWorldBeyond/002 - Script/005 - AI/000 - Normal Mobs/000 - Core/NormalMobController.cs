@@ -11,10 +11,6 @@ public class NormalMobController : MonoBehaviour
     {
         core.FlipCheckOnEnable();
 
-        core.CurrentPatrolState = NormalMobCore.PatrolState.SEARCH;
-
-        core.ChangeEnterTimePatrolState(core.mobRawData.minSearchTime, core.mobRawData.maxSearchTime);
-
         core.onPatrolModeChange += PatrolModeChange;
     }
 

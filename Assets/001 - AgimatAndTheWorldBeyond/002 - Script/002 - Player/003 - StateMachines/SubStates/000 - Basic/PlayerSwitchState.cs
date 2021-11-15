@@ -90,7 +90,7 @@ public class PlayerSwitchState : PlayerAbilityState
         GameManager.instance.effectManager.switchEffectPooler.GetFromPool();
         switchEffect = GameManager.instance.effectManager.switchEffectPooler.currentObjSelectedOnPool.transform;
 
-        if (statemachineController.core.GetFacingDirection == 1)
+        if (statemachineController.core.CurrentDirection == 1)
             GameManager.instance.effectManager.switchEffectPooler.currentObjSelectedOnPool.transform.position =
                 new Vector2(statemachineController.transform.position.x,
                 statemachineController.transform.position.y);

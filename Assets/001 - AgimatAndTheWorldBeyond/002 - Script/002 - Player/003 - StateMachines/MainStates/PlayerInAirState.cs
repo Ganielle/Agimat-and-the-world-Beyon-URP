@@ -102,7 +102,7 @@ public class PlayerInAirState : PlayerStatemachine
 
         else if (statemachineController.isTouchingClimbWall && statemachineController.isSameHeightToPlatform &&
             GameManager.instance.gameplayController.GetSetMovementNormalizeX ==
-                statemachineController.core.GetFacingDirection &&
+                statemachineController.core.CurrentDirection &&
                 !GameManager.instance.gameplayController.jumpInput &&
                 statemachineController.core.GetCurrentVelocity.y < 0.01f)
             statemachineChanger.ChangeState(statemachineController.wallSlideState);

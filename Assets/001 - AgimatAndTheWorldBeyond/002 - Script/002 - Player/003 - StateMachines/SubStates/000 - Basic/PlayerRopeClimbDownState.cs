@@ -79,7 +79,7 @@ public class PlayerRopeClimbDownState : PlayerRopeState
         statemachineController.transform.localRotation = Quaternion.AngleAxis(direction * 90f, Vector3.forward);
 
         statemachineController.core.playerRB.MovePosition(new Vector2(statemachineController.core.ropePlayerController.RopePosition().GetComponent<Rigidbody2D>().position.x + (-0.25f *
-            statemachineController.core.GetFacingDirection), statemachineController.core.playerRB.position.y));
+            statemachineController.core.CurrentDirection), statemachineController.core.playerRB.position.y));
 
         statemachineController.transform.Translate(-Vector2.up * movementData.ropeClimDownVelocity * Time.fixedDeltaTime);
     }

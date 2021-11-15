@@ -9116,7 +9116,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1129014557}
-  - component: {fileID: 1129014569}
   - component: {fileID: 1129014556}
   - component: {fileID: 1129014566}
   - component: {fileID: 1129014552}
@@ -9259,7 +9258,7 @@ MonoBehaviour:
   GetCurrentVelocity: {x: 0, y: 0}
   GetWorkspace: {x: 0, y: 0}
   lastAfterImagePosition: {x: 0, y: 0}
-  facingDirection: 0
+  currentDirection: 0
 --- !u!4 &1129014557
 Transform:
   m_ObjectHideFlags: 0
@@ -9268,7 +9267,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1129014551}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 36.32, y: -46.46, z: 0}
+  m_LocalPosition: {x: 3.79, y: -39.79, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1616810334}
@@ -9395,8 +9394,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   core: {fileID: 1129014556}
-  playerRawData: {fileID: 11400000, guid: b61596a2012f74b488f6a4b87c9c37df, type: 2}
-  playerRB: {fileID: 1129014554}
   maxSlopeAngle: 135
   minimumSlopeAngle: 180
   whatIsGround:
@@ -9420,6 +9417,9 @@ MonoBehaviour:
   groundMiddleAngle: 0
   groundFrontFootAngle: 0
   canWalkOnSlope: 0
+  moveDistance: 0
+  horizontalOnSlope: 0
+  verticalOnSlope: 0
   yDist: 0
   xDist: 0
 --- !u!114 &1129014564
@@ -9504,18 +9504,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tagMask: CinematicCameraChange
   transitionSpeed: 1
---- !u!114 &1129014569
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1129014551}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edd854e8cf2237449980a8612126aa25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1139759534
 GameObject:
   m_ObjectHideFlags: 0
@@ -18062,7 +18050,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2133449062}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 43.32, y: -43.46, z: -15}
+  m_LocalPosition: {x: 10.79, y: -36.79, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1693515100}

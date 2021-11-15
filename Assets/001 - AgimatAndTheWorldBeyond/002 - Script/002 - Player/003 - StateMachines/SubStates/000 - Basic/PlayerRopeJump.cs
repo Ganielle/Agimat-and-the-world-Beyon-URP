@@ -27,7 +27,7 @@ public class PlayerRopeJump : PlayerNormalAbilityState
         GameManager.instance.PlayerStats.GetSetAnimatorStateInfo = PlayerStats.AnimatorStateInfo.ROPEJUMP;
 
         statemachineController.core.SetVelocityWallJump(movementData.ropeJumpVelocity, movementData.ropeJumpAngle,
-            statemachineController.core.GetFacingDirection);
+            statemachineController.core.CurrentDirection);
     }
 
     public override void LogicUpdate()

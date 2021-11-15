@@ -47,11 +47,11 @@ public class PlayerCore : MonoBehaviour
     [ReadOnly] public Vector2 GetCurrentVelocity;
     [ReadOnly] public Vector2 GetWorkspace;
     [ReadOnly] public Vector2 lastAfterImagePosition;
-    [ReadOnly] public int facingDirection;
-    public int GetFacingDirection
+    [ReadOnly] public int currentDirection;
+    public int CurrentDirection
     {
-        get => facingDirection;
-        set => facingDirection = value;
+        get => currentDirection;
+        set => currentDirection = value;
     }
 
     //  PRIVATE VARIABLES
@@ -172,16 +172,16 @@ public class PlayerCore : MonoBehaviour
 
     public void CheckIfShouldFlip(int direction)
     {
-        if (direction != 0 && direction != GetFacingDirection)
+        if (direction != 0 && direction != CurrentDirection)
             PlayerFlip();
     }
 
     private void PlayerFlip()
     {
-        GetFacingDirection *= -1;
+        CurrentDirection *= -1;
         envCheckerXRot.Rotate(0f, 180f, 0f);
 
-        if (GetFacingDirection == 1)
+        if (CurrentDirection == 1)
         {
             GameManager.instance.PlayerStats.GetSetPlayerSR.gameObject.transform.localPosition = new Vector2(xyFlipPos.x, xyFlipPos.y);
             GameManager.instance.PlayerStats.GetSetPlayerSR.flipX = false;
@@ -201,18 +201,18 @@ public class PlayerCore : MonoBehaviour
         if (!GameManager.instance.PlayerStats.GetSetPlayerSR.flipX)
         {
             GameManager.instance.PlayerStats.GetSetPlayerSR.gameObject.transform.localPosition = new Vector2(xyFlipPos.x, xyFlipPos.y);
-            GetFacingDirection = 1;
+            CurrentDirection = 1;
         }
         else
         {
             GameManager.instance.PlayerStats.GetSetPlayerSR.gameObject.transform.localPosition = new Vector2(-xyFlipPos.x, xyFlipPos.y);
-            GetFacingDirection = -1;
+            CurrentDirection = -1;
         }
     }
 
     public void FlipSpritePlayer()
     {
-        if (GetFacingDirection == 1) GameManager.instance.PlayerStats.GetSetPlayerSR.flipX = false;
+        if (CurrentDirection == 1) GameManager.instance.PlayerStats.GetSetPlayerSR.flipX = false;
         else GameManager.instance.PlayerStats.GetSetPlayerSR.flipX = true;
     }
 

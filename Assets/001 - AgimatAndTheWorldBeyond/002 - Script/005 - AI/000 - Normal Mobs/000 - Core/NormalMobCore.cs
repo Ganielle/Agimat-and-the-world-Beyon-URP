@@ -12,7 +12,8 @@ public class NormalMobCore : MonoBehaviour
         NONE,
         SEARCH,
         PATROL,
-        BATTLE
+        BATTLE,
+        ALERT
     }
     private event EventHandler patrolModeChange;
     public event EventHandler onPatrolModeChange
@@ -24,12 +25,12 @@ public class NormalMobCore : MonoBehaviour
         }
         remove { patrolModeChange -= value; }
     }
-    public PatrolState CurrentPatrolState
+    public PatrolState LastPatrolState
     {
-        get => currentPatrolState;
+        get => lastPatrolState;
         set
         {
-            currentPatrolState = value;
+            lastPatrolState = value;
             patrolModeChange?.Invoke(this, EventArgs.Empty);
         }
     }
@@ -42,18 +43,22 @@ public class NormalMobCore : MonoBehaviour
     public GameObject envCheckerXRotGO;
     public NormalMobRawData mobRawData;
     public FOVDetection fovDetection;
+    public Vector2 enemySRTF;
+
+    [Header("Script References")]
+    public NormalMobGroundController groundController;
 
     [Header("SPRITE")]
     public SpriteRenderer enemySR;
 
     [Header("DEBUGGER")]
-    [ReadOnly] public PatrolState currentPatrolState;
+    [ReadOnly] public PatrolState lastPatrolState;
     [ReadOnly] public int currentDirection;
     [ReadOnly] public Vector2 GetCurrentVelocity;
     [ReadOnly] public Vector2 GetWorkspace;
 
     //  PATROL MODE
-    [ReadOnly] public float enterTimePatrolState;
+    [ReadOnly] public float enterTimeStates;
     [ReadOnly] public float chosenTimePatrolState;
 
     //  DO THE PATROL MODE
@@ -86,31 +91,6 @@ public class NormalMobCore : MonoBehaviour
 
     #region PATROL STATES
 
-    public void PatrolStateChanger()
-    {
-        if (!fovDetection.isInFOV)
-        {
-            if (Time.time >= enterTimePatrolState)
-            {
-                switch (CurrentPatrolState)
-                {
-                    case PatrolState.SEARCH:
-                        CurrentPatrolState = PatrolState.PATROL;
-                        ChangeEnterTimePatrolState(mobRawData.minPatrolTime, mobRawData.maxPatrolTime);
-                        return;
-                    case PatrolState.PATROL: 
-                        CurrentPatrolState = PatrolState.SEARCH;
-                        ChangeEnterTimePatrolState(mobRawData.minSearchTime, mobRawData.maxSearchTime);
-                        return;
-                }
-            }
-        }
-        else
-        {
-            //  DO ATTACK STATE HERE
-        }
-    }
-
     public void ChangeDirection()
     {
         switch (currentDirection)
@@ -124,7 +104,7 @@ public class NormalMobCore : MonoBehaviour
     {
         chosenTimePatrolState = UnityEngine.Random.Range(min, max);
 
-        enterTimePatrolState = Time.time + chosenTimePatrolState;
+        enterTimeStates = Time.time + chosenTimePatrolState;
     }
 
     #endregion
@@ -143,15 +123,26 @@ public class NormalMobCore : MonoBehaviour
 
         envCheckerXRotGO.transform.Rotate(0f, 180f, 0f);
 
-        if (currentDirection == 1) enemySR.flipX = false;
-        else enemySR.flipX = true;
+        if (currentDirection == 1)
+        {
+            enemySR.transform.localPosition = new Vector2(enemySRTF.x, enemySRTF.y);
+            enemySR.flipX = false;
+        }
+        else
+        {
+            enemySR.transform.localPosition = new Vector2(-enemySRTF.x, enemySRTF.y);
+            enemySR.flipX = true;
+        }
     }
 
     public void FlipCheckOnEnable()
     {
         switch (enemySR.flipX)
         {
-            case true: currentDirection = -1; return;
+            case true: 
+                currentDirection = -1;
+                envCheckerXRotGO.transform.Rotate(0f, 180f, 0f);
+                break;
             case false: currentDirection = 1; return;
         }
     }

@@ -33,7 +33,7 @@ public class PlayerAnimatorEventController : MonoBehaviour
 
     #region ATTACK STATES
 
-    public void GroundAttackMovementVelocity(float value) => playerCore.playerRB.AddForce(Vector2.right * value * playerCore.GetFacingDirection, ForceMode2D.Impulse);
+    public void GroundAttackMovementVelocity(float value) => playerCore.playerRB.AddForce(Vector2.right * value * playerCore.CurrentDirection, ForceMode2D.Impulse);
 
     public void OnLastComboAttackIndex() => playerCore.attackController.onLastAttackIndex = true;
 

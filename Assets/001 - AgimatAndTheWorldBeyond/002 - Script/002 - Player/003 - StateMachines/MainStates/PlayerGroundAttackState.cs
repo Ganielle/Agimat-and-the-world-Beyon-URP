@@ -22,7 +22,7 @@ public class PlayerGroundAttackState : PlayerStatemachine
         //  CHANGE DIRECTION WHEN ATTACKING
         if (statemachineController.core.attackController.canChangeDirectionWhenAttacking && 
             GameManager.instance.gameplayController.GetSetMovementNormalizeX != 0 &&
-            GameManager.instance.gameplayController.GetSetMovementNormalizeX != statemachineController.core.GetFacingDirection)
+            GameManager.instance.gameplayController.GetSetMovementNormalizeX != statemachineController.core.CurrentDirection)
         {
             statemachineController.core.attackController.canChangeDirectionWhenAttacking = false;
             statemachineController.core.CheckIfShouldFlip(GameManager.instance.gameplayController.GetSetMovementNormalizeX);

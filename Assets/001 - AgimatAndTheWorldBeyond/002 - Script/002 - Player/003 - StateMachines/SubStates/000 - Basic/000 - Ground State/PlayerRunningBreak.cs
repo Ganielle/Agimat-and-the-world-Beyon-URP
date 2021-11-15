@@ -47,7 +47,7 @@ public class PlayerRunningBreak : PlayerGroundState
         base.PhysicsUpdate();
 
         if (statemachineController.core.GetCurrentVelocity.x != 0)
-            statemachineController.core.SetVelocityX(1f * statemachineController.core.GetFacingDirection,
+            statemachineController.core.SetVelocityX(1f * statemachineController.core.CurrentDirection,
             statemachineController.core.GetCurrentVelocity.y);
 
         else

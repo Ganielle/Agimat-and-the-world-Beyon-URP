@@ -64,7 +64,7 @@ public class PlayerIdleState : PlayerGroundState
             if (GameManager.instance.gameplayController.GetSetMovementNormalizeX != 0f)
             {
                 if (GameManager.instance.gameplayController.GetSetMovementNormalizeX !=
-                    statemachineController.core.GetFacingDirection)
+                    statemachineController.core.CurrentDirection)
                 {
                     statemachineController.changeIdleDirectionState.SpriteDirectionAfterAnimation(
                         GameManager.instance.gameplayController.GetSetMovementNormalizeX);

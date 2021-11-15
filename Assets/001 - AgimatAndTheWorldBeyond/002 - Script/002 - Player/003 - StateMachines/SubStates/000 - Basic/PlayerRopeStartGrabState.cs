@@ -68,7 +68,7 @@ public class PlayerRopeStartGrabState : PlayerRopeState
 
         JointAngleLimits2D limits = statemachineController.core.ropePlayerController.ropeHingeJoint.limits;
 
-        if (statemachineController.core.GetFacingDirection == 1)
+        if (statemachineController.core.CurrentDirection == 1)
         {
             limits.min = movementData.rightAngle;
             limits.max = movementData.rightAngle;
@@ -79,7 +79,7 @@ public class PlayerRopeStartGrabState : PlayerRopeState
             limits.max = movementData.leftAngle;
         }
 
-        statemachineController.core.ropePlayerController.playerHingeJoint.anchor = new Vector2(movementData.anchorX * statemachineController.core.GetFacingDirection,
+        statemachineController.core.ropePlayerController.playerHingeJoint.anchor = new Vector2(movementData.anchorX * statemachineController.core.CurrentDirection,
             statemachineController.core.ropePlayerController.playerHingeJoint.anchor.y);
 
         statemachineController.core.ropePlayerController.ropeHingeJoint.limits = limits;

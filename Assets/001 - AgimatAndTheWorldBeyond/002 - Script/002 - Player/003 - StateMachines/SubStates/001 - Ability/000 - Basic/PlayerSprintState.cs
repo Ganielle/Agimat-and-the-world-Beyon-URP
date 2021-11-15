@@ -52,7 +52,7 @@ public class PlayerSprintState : PlayerNormalAbilityState
         GameManager.instance.PlayerStats.GetSetAnimatorStateInfo = PlayerStats.AnimatorStateInfo.SPRINT;
 
         isAbilityDone = false;
-        facingDirection = statemachineController.core.GetFacingDirection;
+        facingDirection = statemachineController.core.CurrentDirection;
     }
 
     private void AnimationChanger()
@@ -92,7 +92,7 @@ public class PlayerSprintState : PlayerNormalAbilityState
 
     private void SprintingMove()
     {
-        if (statemachineController.core.GetFacingDirection == GameManager.instance.gameplayController.GetSetMovementNormalizeX &&
+        if (statemachineController.core.CurrentDirection == GameManager.instance.gameplayController.GetSetMovementNormalizeX &&
             statemachineController.isFrontFootTouchDefaultGround)
             return;
 

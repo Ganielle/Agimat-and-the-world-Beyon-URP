@@ -156,7 +156,7 @@ public class DynamicCameraPlayerGameplay : MonoBehaviour
 
         if (GameManager.instance.PlayerStats.GetSetAnimatorStateInfo == PlayerStats.AnimatorStateInfo.LEDGEHOLD)
         {
-            endXOffset = ledgeHoldXOffset * (playerCore.GetFacingDirection * -1);
+            endXOffset = ledgeHoldXOffset * (playerCore.CurrentDirection * -1);
         }
     }
 
@@ -170,13 +170,13 @@ public class DynamicCameraPlayerGameplay : MonoBehaviour
 
                 if (GameManager.instance.PlayerStats.GetSetLastAnimatorStateInfo !=
                     PlayerStats.AnimatorStateInfo.CHANGEIDLEDIRECTION)
-                    endXOffset = idleXOffset * playerCore.GetFacingDirection;
+                    endXOffset = idleXOffset * playerCore.CurrentDirection;
 
                 speedXOffset = idleXSpeed;
                 speedYZOffset = idleYZSpeed;
                 break;
             case PlayerStats.AnimatorStateInfo.LOOKINGUP:
-                endXOffset = lookingUpXOffset * playerCore.GetFacingDirection;
+                endXOffset = lookingUpXOffset * playerCore.CurrentDirection;
                 endYOffset = lookingUpYOffset;
                 endZOffset = lookingUpZOffset;
 
@@ -184,7 +184,7 @@ public class DynamicCameraPlayerGameplay : MonoBehaviour
                 speedYZOffset = lookingUpYZSpeed;
                 break;
             case PlayerStats.AnimatorStateInfo.LOOKINGDOWN:
-                endXOffset = lookingDownXOffset * playerCore.GetFacingDirection;
+                endXOffset = lookingDownXOffset * playerCore.CurrentDirection;
                 endYOffset = lookingDownYOffset;
                 endZOffset = lookingDownZOffset;
 
@@ -192,7 +192,7 @@ public class DynamicCameraPlayerGameplay : MonoBehaviour
                 speedYZOffset = lookingDownYZSpeed;
                 break;
             case PlayerStats.AnimatorStateInfo.JUMPING:
-                endXOffset = jumpXOffset * playerCore.GetFacingDirection;
+                endXOffset = jumpXOffset * playerCore.CurrentDirection;
                 endYOffset = jumpYOffset;
                 endZOffset = jumpZOffset;
 
@@ -200,7 +200,7 @@ public class DynamicCameraPlayerGameplay : MonoBehaviour
                 speedYZOffset = jumpYZSpeed;
                 break;
             case PlayerStats.AnimatorStateInfo.RUNNING:
-                endXOffset = runXOffset * playerCore.GetFacingDirection;
+                endXOffset = runXOffset * playerCore.CurrentDirection;
                 endYOffset = runYOffset;
                 endZOffset = runZOffset;
 
@@ -208,7 +208,7 @@ public class DynamicCameraPlayerGameplay : MonoBehaviour
                 speedYZOffset = runYZSpeed;
                 break;
             case PlayerStats.AnimatorStateInfo.DASHCHARGE:
-                endXOffset = dashChargeXOffset * playerCore.GetFacingDirection;
+                endXOffset = dashChargeXOffset * playerCore.CurrentDirection;
                 endYOffset = dashChargeYOffset;
                 endZOffset = dashChargeZOffset;
 
@@ -216,7 +216,7 @@ public class DynamicCameraPlayerGameplay : MonoBehaviour
                 speedYZOffset = dashChargeYZSpeed;
                 break;
             case PlayerStats.AnimatorStateInfo.DASHBURST:
-                endXOffset = dashBurstXOffset * playerCore.GetFacingDirection;
+                endXOffset = dashBurstXOffset * playerCore.CurrentDirection;
                 endYOffset = dashBurstYOffset;
                 endZOffset = dashBurstZOffset;
 
@@ -224,7 +224,7 @@ public class DynamicCameraPlayerGameplay : MonoBehaviour
                 speedYZOffset = dashBurstYZSpeed;
                 break;
             case PlayerStats.AnimatorStateInfo.SPRINT:
-                endXOffset = sprintXOffset * playerCore.GetFacingDirection;
+                endXOffset = sprintXOffset * playerCore.CurrentDirection;
                 endYOffset = sprintYOffset;
                 endZOffset = sprintZOffset;
 
@@ -232,7 +232,7 @@ public class DynamicCameraPlayerGameplay : MonoBehaviour
                 speedYZOffset = sprintYZSpeed;
                 break;
             case PlayerStats.AnimatorStateInfo.FALLING:
-                endXOffset = fallingXOffset * playerCore.GetFacingDirection;
+                endXOffset = fallingXOffset * playerCore.CurrentDirection;
                 endYOffset = fallingYOffset;
                 endZOffset = fallingZOffset;
 
@@ -240,7 +240,7 @@ public class DynamicCameraPlayerGameplay : MonoBehaviour
                 speedYZOffset = fallingYZSpeed;
                 break;
             case PlayerStats.AnimatorStateInfo.HIGHLAND:
-                endXOffset = landXOffset * playerCore.GetFacingDirection;
+                endXOffset = landXOffset * playerCore.CurrentDirection;
                 endYOffset = landYOffset;
                 endZOffset = landZOffset;
 

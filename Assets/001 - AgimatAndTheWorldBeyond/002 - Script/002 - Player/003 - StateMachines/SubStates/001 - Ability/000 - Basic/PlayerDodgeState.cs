@@ -80,7 +80,7 @@ public class PlayerDodgeState : PlayerNormalAbilityState
             {
                 statemachineController.core.SetVelocityX(
                     movementData.dodgeVelocity *
-                    statemachineController.core.GetFacingDirection,
+                    statemachineController.core.CurrentDirection,
                     statemachineController.core.GetCurrentVelocity.y);
             }
         }

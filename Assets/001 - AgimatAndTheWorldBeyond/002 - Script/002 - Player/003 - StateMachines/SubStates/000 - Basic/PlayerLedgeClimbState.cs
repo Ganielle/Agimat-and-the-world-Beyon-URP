@@ -50,13 +50,13 @@ public class PlayerLedgeClimbState : PlayerStatemachine
         statemachineController.transform.position = detectedPos;
 
 
-        startPostion.Set(cornerPos.x - (statemachineController.core.GetFacingDirection * 
+        startPostion.Set(cornerPos.x - (statemachineController.core.CurrentDirection * 
             movementData.startOffset.x), cornerPos.y - movementData.startOffset.y);
 
 
         statemachineController.transform.position = startPostion;
 
-        stopPosition.Set(statemachineController.core.GetFacingDirection *
+        stopPosition.Set(statemachineController.core.CurrentDirection *
             movementData.stopOffset.x + cornerPos.x, cornerPos.y + movementData.stopOffset.y);
 
         Debug.Log(startPostion);
@@ -96,7 +96,7 @@ public class PlayerLedgeClimbState : PlayerStatemachine
 
             //  To ledge Climb
             if ((GameManager.instance.gameplayController.GetSetMovementNormalizeX ==
-                statemachineController.core.GetFacingDirection ||
+                statemachineController.core.CurrentDirection ||
                 GameManager.instance.gameplayController.movementNormalizeY == 1)
                 && isHanging && !isClimbing &&
                 GameManager.instance.PlayerStats.GetSetCurrentStamina >=
@@ -121,7 +121,7 @@ public class PlayerLedgeClimbState : PlayerStatemachine
             //  To cancel ledge climb with x input
             else if (GameManager.instance.gameplayController.GetSetMovementNormalizeX != 0 &&
                 GameManager.instance.gameplayController.GetSetMovementNormalizeX !=
-                statemachineController.core.GetFacingDirection && isHanging &&
+                statemachineController.core.CurrentDirection && isHanging &&
                 !isClimbing)
             {
                 statemachineController.core.CheckIfShouldFlip(GameManager.instance.gameplayController.GetSetMovementNormalizeX);

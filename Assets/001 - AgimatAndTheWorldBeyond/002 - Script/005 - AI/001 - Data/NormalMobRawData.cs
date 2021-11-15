@@ -20,4 +20,20 @@ public class NormalMobRawData : ScriptableObject
     public float minPatrolTime;
     public float maxPatrolTime;
     public float moveSpeed;
+
+    [Header("ALERT")]
+    public float alertTimeToChase;
+
+    [Header("CHASE")]
+    public float chaseSpeed;
+    public float checkDistanceToPlayer;
+
+    [Header("GROUND")]
+    public float groundCheckRadius = 0.15f;
+
+    [Header("SLOPE MOVEMENT")]
+    public float slopeCheckDistance = 1.9f;
+    public float slopeForce = 2.5f;
+    public float slopeFrontFootCheckDistance = 2.5f;
+
 }

@@ -66,7 +66,7 @@ public class PlayerDashState : PlayerAbilityState
         //  For Dash
         isHolding = true;
 
-        dashIndirection = Vector2.right * statemachineController.core.GetFacingDirection;
+        dashIndirection = Vector2.right * statemachineController.core.CurrentDirection;
 
         startTime = Time.time;
 
@@ -274,15 +274,15 @@ public class PlayerDashState : PlayerAbilityState
             case 180:
                 return 0;
             case 45:
-                return angle * statemachineController.core.GetFacingDirection;
+                return angle * statemachineController.core.CurrentDirection;
             case -45:
-                return angle * statemachineController.core.GetFacingDirection;
+                return angle * statemachineController.core.CurrentDirection;
             case 135:
-                return 45 * statemachineController.core.GetFacingDirection;
+                return 45 * statemachineController.core.CurrentDirection;
             case -135:
-                return -45 * statemachineController.core.GetFacingDirection;
+                return -45 * statemachineController.core.CurrentDirection;
             default:
-                return angle * statemachineController.core.GetFacingDirection;
+                return angle * statemachineController.core.CurrentDirection;
         }
     }
 
