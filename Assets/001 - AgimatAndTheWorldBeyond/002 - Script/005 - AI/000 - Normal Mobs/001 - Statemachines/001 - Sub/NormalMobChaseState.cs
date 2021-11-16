@@ -28,7 +28,8 @@ public class NormalMobChaseState : NormalMobGroundState
                 if (statemachineController.core.groundController.frontFootGroundAngle <= statemachineController.core.groundController.maxSlopeAngle ||
                     statemachineController.core.groundController.frontFootGroundAngle >= statemachineController.core.groundController.minimumSlopeAngle)
                 {
-                    Debug.Log("search state because slope");
+                    statemachineController.core.ChangeEnterTimePatrolState(rawData.minSearchTime,
+                        rawData.maxSearchTime);
                     statemachineChanger.ChangeState(statemachineController.searchState); // CHANGE TO JUMP STATE
                 }
             }
@@ -36,16 +37,14 @@ public class NormalMobChaseState : NormalMobGroundState
             {
                 //  NOT IN FOV BUT NEAR OR INSIDE THE PRESENCE DETECTOR
                 if (statemachineController.core.fovDetection.targetTF != null && statemachineController.core.groundController.CheckIfPlayerIsInMyBack)
-                {
-                    Debug.Log("change direction still chasing");
                     statemachineController.core.ChangeDirection();
-                }
 
                 else if (Vector2.Distance(statemachineController.transform.position, playerLastPos) <= rawData.checkDistanceToPlayer ||
                     statemachineController.core.groundController.frontFootGroundAngle <= statemachineController.core.groundController.maxSlopeAngle ||
                     statemachineController.core.groundController.frontFootGroundAngle >= statemachineController.core.groundController.minimumSlopeAngle)
                 {
-                    Debug.Log("search state because last pos or slope");
+                    statemachineController.core.ChangeEnterTimePatrolState(rawData.minSearchTime,
+                        rawData.maxSearchTime);
                     statemachineChanger.ChangeState(statemachineController.searchState);
                 }
             }

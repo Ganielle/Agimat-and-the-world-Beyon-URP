@@ -22,15 +22,19 @@ AnimationClip:
     - time: 0
       value: {fileID: 21300000, guid: 6bb6735ccf502934e9287c07631a3f9f, type: 3}
     - time: 0.0625
-      value: {fileID: 21300000, guid: 4361ae5aa67a43047b39bec4f97afe95, type: 3}
+      value: {fileID: 21300000, guid: 6c4a18aef0416f24e9ad895bb80aaf8f, type: 3}
     - time: 0.125
-      value: {fileID: 21300000, guid: c58f3802ff01d8b44a3e05ec6734e9cc, type: 3}
+      value: {fileID: 21300000, guid: 5bd12938348059c45a0961b73f7478c3, type: 3}
     - time: 0.1875
-      value: {fileID: 21300000, guid: 151952a423bc6504fb8339db2fe119b5, type: 3}
+      value: {fileID: 21300000, guid: 4361ae5aa67a43047b39bec4f97afe95, type: 3}
     - time: 0.25
-      value: {fileID: 21300000, guid: 9be08c59fb7489d4f8612728f7c06b57, type: 3}
+      value: {fileID: 21300000, guid: c58f3802ff01d8b44a3e05ec6734e9cc, type: 3}
     - time: 0.3125
+      value: {fileID: 21300000, guid: 151952a423bc6504fb8339db2fe119b5, type: 3}
+    - time: 0.375
       value: {fileID: 21300000, guid: 9be08c59fb7489d4f8612728f7c06b57, type: 3}
+    - time: 0.4375
+      value: {fileID: 21300000, guid: f13afa9090b80c04fb12976455215a12, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -51,17 +55,19 @@ AnimationClip:
       isPPtrCurve: 1
     pptrCurveMapping:
     - {fileID: 21300000, guid: 6bb6735ccf502934e9287c07631a3f9f, type: 3}
+    - {fileID: 21300000, guid: 6c4a18aef0416f24e9ad895bb80aaf8f, type: 3}
+    - {fileID: 21300000, guid: 5bd12938348059c45a0961b73f7478c3, type: 3}
     - {fileID: 21300000, guid: 4361ae5aa67a43047b39bec4f97afe95, type: 3}
     - {fileID: 21300000, guid: c58f3802ff01d8b44a3e05ec6734e9cc, type: 3}
     - {fileID: 21300000, guid: 151952a423bc6504fb8339db2fe119b5, type: 3}
     - {fileID: 21300000, guid: 9be08c59fb7489d4f8612728f7c06b57, type: 3}
-    - {fileID: 21300000, guid: 9be08c59fb7489d4f8612728f7c06b57, type: 3}
+    - {fileID: 21300000, guid: f13afa9090b80c04fb12976455215a12, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.375
+    m_StopTime: 0.5
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -88,49 +94,49 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.0625
+  - time: 0.1875
     functionName: AnimationTrigger
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.125
+  - time: 0.25
     functionName: GroundAttackMovementVelocity
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 30
     intParameter: 0
     messageOptions: 0
-  - time: 0.1875
+  - time: 0.3125
     functionName: CanAnimationCancel
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.25
+  - time: 0.375
     functionName: ResetVelocity
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.25
+  - time: 0.375
     functionName: CannotAnimationCancel
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.25
+  - time: 0.375
     functionName: CannotNextAttack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.3125
+  - time: 0.4375
     functionName: AnimationFinishTrigger
     data: 
     objectReferenceParameter: {fileID: 0}

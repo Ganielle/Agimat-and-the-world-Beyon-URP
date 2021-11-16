@@ -61,7 +61,11 @@ public class PlayerMoveState : PlayerGroundState
     {
         if (!isExitingState)
         {
-            if (statemachineController.core.groundPlayerController.canWalkOnSlope)
+            if (statemachineController.isTouchingWall)
+                statemachineChanger.ChangeState(statemachineController.idleState);
+
+
+            else if (statemachineController.core.groundPlayerController.canWalkOnSlope)
             {
                 //  Running break
                 if (GameManager.instance.gameplayController.GetSetMovementNormalizeX != 0f)

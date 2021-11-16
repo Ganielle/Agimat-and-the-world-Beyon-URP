@@ -71,7 +71,7 @@ public class PlayerIdleState : PlayerGroundState
                     statemachineChanger.ChangeState(statemachineController.changeIdleDirectionState);
                 }
 
-                else
+                else if (!statemachineController.isTouchingWall)
                     statemachineChanger.ChangeState(statemachineController.moveState);
             }
 

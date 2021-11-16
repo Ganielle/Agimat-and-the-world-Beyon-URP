@@ -63,6 +63,9 @@ public class PlayerSprintState : PlayerNormalAbilityState
                 !statemachineController.isGrounded)
                 statemachineChanger.ChangeState(statemachineController.inAirState);
 
+            else if (statemachineController.isTouchingWall)
+                statemachineChanger.ChangeState(statemachineController.idleState);
+
             else if (statemachineController.isGrounded && !statemachineController.core.groundPlayerController.canWalkOnSlope &&
                         statemachineController.isFrontFootTouchSlope)
             {

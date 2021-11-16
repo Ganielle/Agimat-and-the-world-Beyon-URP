@@ -59,13 +59,15 @@ public class PlayerChangeIdleDirectionState : PlayerGroundState
 
             else if (canTransitionToOtherAnimation)
             {
-                if (GameManager.instance.gameplayController.GetSetMovementNormalizeX != 0)
+                if (GameManager.instance.gameplayController.GetSetMovementNormalizeX != 0 &&
+                    !statemachineController.isTouchingWall)
                 {
                     statemachineController.core.CheckIfShouldFlip(direction);
                     statemachineChanger.ChangeState(statemachineController.moveState);
                 }
 
-                else if (statemachineController.isGrounded && GameManager.instance.gameplayController.sprintTapCount == 2)
+                else if (statemachineController.isGrounded && GameManager.instance.gameplayController.sprintTapCount == 2
+                    && !statemachineController.isTouchingWall)
                     statemachineChanger.ChangeState(statemachineController.playerSprintState);
 
             }

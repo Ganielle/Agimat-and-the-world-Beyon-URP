@@ -11,6 +11,7 @@ TagManager:
   - GroundGrass
   - GroundWood
   - CinematicCameraChange
+  - rope2D
   layers:
   - Default
   - TransparentFX
@@ -31,8 +32,8 @@ TagManager:
   - GroundUnwalkable
   - PlayerCharacter
   - CharacterCollisionBlocker
-  - 
-  - 
+  - Platform
+  - WaterAlpha
   - 
   - 
   - 
