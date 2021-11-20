@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Cinemachine;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -39,6 +40,9 @@ public class GameManager : MonoBehaviour
     public SceneDataLoadingController sceneDataLoading;
     public EffectManager effectManager;
     public SoundManager soundManager;
+
+    [Header("Input Controller")]
+    public PlayerInput playerInput;
 
     [Header("Camera")]
     public Camera mainCamera;
@@ -98,6 +102,8 @@ public class GameManager : MonoBehaviour
         {
             if (isOnGameplay)
             {
+                playerInput.SwitchCurrentActionMap("Gameplay");
+
                 gameplayStates.CurrentGameplayState = GameplayStates.GameplayState.GAMEPLAY;
 
                 StartCoroutine(LoadData());
@@ -117,7 +123,11 @@ public class GameManager : MonoBehaviour
 
             if (isOnMainMenu)
             {
+                playerInput.SwitchCurrentActionMap("MainMenu");
                 mainMenu.CurrentSSMMState = mainMenuState;
+
+                if (debugScenes)
+                    SceneManager.LoadSceneAsync(firstScene, LoadSceneMode.Additive);
             }
         }
     }

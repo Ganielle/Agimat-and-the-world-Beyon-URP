@@ -35,17 +35,17 @@ public class PlayerAnimatorEventController : MonoBehaviour
 
     public void GroundAttackMovementVelocity(float value) => playerCore.playerRB.AddForce(Vector2.right * value * playerCore.CurrentDirection, ForceMode2D.Impulse);
 
-    public void OnLastComboAttackIndex() => playerCore.attackController.onLastAttackIndex = true;
+    public void OnLastComboAttackIndex() => playerCore.attackController.OnLastAttackIndex = true;
 
-    public void CannotNextAttack() => playerCore.attackController.canNextAttack = false;
+    public void CannotNextAttack() => playerCore.attackController.CanNextAttack = false;
 
-    public void CanChangeDirectionWhenAttacking() => playerCore.attackController.canChangeDirectionWhenAttacking = true;
+    public void CanChangeDirectionWhenAttacking() => playerCore.attackController.CanChangeDirection = true;
 
-    public void CannotChangeDirectionWhenAttacking() => playerCore.attackController.canChangeDirectionWhenAttacking = false;
+    public void CannotChangeDirectionWhenAttacking() => playerCore.attackController.CanChangeDirection = false;
 
-    public void CanAnimationCancel() => playerCore.attackController.canAnimationCancel = true;
+    public void CanAnimationCancel() => playerCore.attackController.AnimationCancel = true;
 
-    public void CannotAnimationCancel() => playerCore.attackController.canAnimationCancel = false;
+    public void CannotAnimationCancel() => playerCore.attackController.AnimationCancel = false;
 
     #endregion
 }

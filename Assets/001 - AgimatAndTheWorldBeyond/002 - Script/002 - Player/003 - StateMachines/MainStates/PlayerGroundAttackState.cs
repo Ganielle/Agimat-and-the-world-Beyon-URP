@@ -20,21 +20,21 @@ public class PlayerGroundAttackState : PlayerStatemachine
     private void AnimationChanger()
     {
         //  CHANGE DIRECTION WHEN ATTACKING
-        if (statemachineController.core.attackController.canChangeDirectionWhenAttacking && 
+        if (statemachineController.core.attackController.CanChangeDirection && 
             GameManager.instance.gameplayController.GetSetMovementNormalizeX != 0 &&
             GameManager.instance.gameplayController.GetSetMovementNormalizeX != statemachineController.core.CurrentDirection)
         {
-            statemachineController.core.attackController.canChangeDirectionWhenAttacking = false;
+            statemachineController.core.attackController.CanChangeDirection = false;
             statemachineController.core.CheckIfShouldFlip(GameManager.instance.gameplayController.GetSetMovementNormalizeX);
         }
 
 
         //  IF ATTACK BUT NOT PRESS THE ATTACK AGAIN OR ON LAST ATTACK COMBO
-        if ((!statemachineController.core.attackController.canTransitionToNextAttack || statemachineController.core.attackController.onLastAttackIndex) 
-            && statemachineController.core.attackController.canExit)
+        if ((!statemachineController.core.attackController.TransitionToNextAttack || statemachineController.core.attackController.OnLastAttackIndex) 
+            && statemachineController.core.attackController.ExitAttack)
         {
 
-            statemachineController.core.attackController.canExit = false;
+            statemachineController.core.attackController.ExitAttack = false;
 
             //  RESET THE PARAMETER
             statemachineController.core.attackController.SetComboIndexParameter("");
@@ -69,24 +69,24 @@ public class PlayerGroundAttackState : PlayerStatemachine
         }
 
         //  ANIMATION CANCEL
-        else if (statemachineController.core.attackController.canAnimationCancel)
+        else if (statemachineController.core.attackController.AnimationCancel)
         {
             if (GameManager.instance.gameplayController.jumpInput &&
                 statemachineController.core.groundPlayerController.canWalkOnSlope)
             {
-                statemachineController.core.attackController.attackIndex = 0;
+                statemachineController.core.attackController.AttackIndex = 0;
 
-                GameManager.instance.PlayerStats.GetSetPlayerAnimator.SetInteger(statemachineController.core.attackController.parameter,
+                GameManager.instance.PlayerStats.GetSetPlayerAnimator.SetInteger(statemachineController.core.attackController.Parameter,
                 0);
 
                 //  RESET THE PARAMETER
                 statemachineController.core.attackController.SetComboIndexParameter("");
 
-                statemachineController.core.attackController.currentAttacking = false;
-                statemachineController.core.attackController.canAnimationCancel = false;
-                statemachineController.core.attackController.canNextAttack = false;
+                statemachineController.core.attackController.CurrentAttacking = false;
+                statemachineController.core.attackController.AnimationCancel = false;
+                statemachineController.core.attackController.CanNextAttack = false;
 
-                statemachineController.core.attackController.lastAttackEnterTime = 0f;
+                statemachineController.core.attackController.LastAttackTime = 0f;
 
                 GameManager.instance.PlayerStats.GetSetPlayerAnimator.SetBool("canAttackTransition", false);
 
@@ -99,19 +99,19 @@ public class PlayerGroundAttackState : PlayerStatemachine
             {
                 Debug.Log("to dodge attack");
 
-                statemachineController.core.attackController.attackIndex = 0;
+                statemachineController.core.attackController.AttackIndex = 0;
 
-                GameManager.instance.PlayerStats.GetSetPlayerAnimator.SetInteger(statemachineController.core.attackController.parameter,
+                GameManager.instance.PlayerStats.GetSetPlayerAnimator.SetInteger(statemachineController.core.attackController.Parameter,
                 0);
 
                 //  RESET THE PARAMETER
                 statemachineController.core.attackController.SetComboIndexParameter("");
 
-                statemachineController.core.attackController.currentAttacking = false;
-                statemachineController.core.attackController.canAnimationCancel = false;
-                statemachineController.core.attackController.canNextAttack = false;
+                statemachineController.core.attackController.CurrentAttacking = false;
+                statemachineController.core.attackController.AnimationCancel = false;
+                statemachineController.core.attackController.CanNextAttack = false;
 
-                statemachineController.core.attackController.lastAttackEnterTime = 0f;
+                statemachineController.core.attackController.LastAttackTime = 0f;
 
                 GameManager.instance.PlayerStats.GetSetPlayerAnimator.SetBool("canAttackTransition", false);
 
@@ -123,19 +123,19 @@ public class PlayerGroundAttackState : PlayerStatemachine
             GameManager.instance.gameplayController.dashInput &&
             !GameManager.instance.gameplayController.switchPlayerLeftInput)
             {
-                statemachineController.core.attackController.attackIndex = 0;
+                statemachineController.core.attackController.AttackIndex = 0;
 
-                GameManager.instance.PlayerStats.GetSetPlayerAnimator.SetInteger(statemachineController.core.attackController.parameter,
+                GameManager.instance.PlayerStats.GetSetPlayerAnimator.SetInteger(statemachineController.core.attackController.Parameter,
                 0);
 
                 //  RESET THE PARAMETER
                 statemachineController.core.attackController.SetComboIndexParameter("");
 
-                statemachineController.core.attackController.currentAttacking = false;
-                statemachineController.core.attackController.canAnimationCancel = false;
-                statemachineController.core.attackController.canNextAttack = false;
+                statemachineController.core.attackController.CurrentAttacking = false;
+                statemachineController.core.attackController.AnimationCancel = false;
+                statemachineController.core.attackController.CanNextAttack = false;
 
-                statemachineController.core.attackController.lastAttackEnterTime = 0f;
+                statemachineController.core.attackController.LastAttackTime = 0f;
 
                 GameManager.instance.PlayerStats.GetSetPlayerAnimator.SetBool("canAttackTransition", false);
 

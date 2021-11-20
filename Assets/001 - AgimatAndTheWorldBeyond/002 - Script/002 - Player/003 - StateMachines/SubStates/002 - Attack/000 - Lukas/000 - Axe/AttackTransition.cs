@@ -17,10 +17,10 @@ public class AttackTransition : PlayerGroundAttackState
     {
         base.AnimationFinishTrigger();
 
-        statemachineController.core.attackController.canExit = true;
+        statemachineController.core.attackController.ExitAttack = true;
 
-        if (statemachineController.core.attackController.onLastAttackIndex)
-            statemachineController.core.attackController.onLastAttackIndex = false;
+        if (statemachineController.core.attackController.OnLastAttackIndex)
+            statemachineController.core.attackController.OnLastAttackIndex = false;
     }
 
 
@@ -31,20 +31,20 @@ public class AttackTransition : PlayerGroundAttackState
 
         if (!isExitingState)
         {
-            if (!statemachineController.core.attackController.onLastAttackIndex)
+            if (!statemachineController.core.attackController.OnLastAttackIndex)
             {
                 if (GameManager.instance.gameplayController.attackInput && 
-                    !statemachineController.core.attackController.onLastAttackIndex)
+                    !statemachineController.core.attackController.OnLastAttackIndex)
                 {
                     GameManager.instance.PlayerStats.GetSetPlayerAnimator.SetBool("canAttackTransition", false);
-                    statemachineController.core.attackController.canExit = false;
+                    statemachineController.core.attackController.ExitAttack = false;
                     GameManager.instance.gameplayController.UseAttackInput();
                     AttackInitiate();
                 }
 
                 //  This is for movement animation cancel
                 else if (GameManager.instance.gameplayController.GetSetMovementNormalizeX != 0)
-                    statemachineController.core.attackController.canExit = true;
+                    statemachineController.core.attackController.ExitAttack = true;
             }
         }
     }

@@ -20,6 +20,7 @@ public class MainMenuCore : MonoBehaviour
 
     [Header("MAINMENU")]
     public Animator mainMenuAnim;
+    public GameObject postProcessing;
     public GameObject mainMenuChildObj;
     public GameObject pressStartPanelObj;
     public GameObject saveAndLoadPanelObj;
@@ -59,6 +60,7 @@ public class MainMenuCore : MonoBehaviour
                 splashScreenPanelObj.SetActive(false);
                 movieScreenPanelObj.SetActive(false);
                 mainMenuPanelObj.SetActive(false);
+                postProcessing.SetActive(false);
 
                 GameManager.instance.mainMenu.CurrentSSMMState = MainMenuStates.SSMMState.SPLASHSCREEN;
 
@@ -69,7 +71,8 @@ public class MainMenuCore : MonoBehaviour
 
                 deactivate = new GameObject[]
                 {
-                    mainMenuPanelObj
+                    mainMenuPanelObj,
+                    postProcessing
                 };
 
                 FadeSSMM(deactivate.ToList(), splashScreenPanelObj, 
@@ -77,6 +80,9 @@ public class MainMenuCore : MonoBehaviour
 
                 return;
             case MainMenuStates.SSMMState.MOVIE:
+
+                videoPlayer.SetDirectAudioVolume(0, 1f);
+
                 StartCoroutine(MovieIntroPlayer());
 
                 FadeSSMM(null, movieScreenPanelObj,
@@ -92,10 +98,10 @@ public class MainMenuCore : MonoBehaviour
 
                 canSkip = false;
 
-                GameManager.instance.mainMenu.CurrentMainMenuState = MainMenuStates.MainMenuState.PRESSSTART;
-
                 FadeSSMM(deactivate.ToList(), mainMenuPanelObj,
                 0f, false, MainMenuStates.SSMMState.NONE);
+
+                postProcessing.SetActive(true);
 
                 return;
         }
@@ -120,7 +126,7 @@ public class MainMenuCore : MonoBehaviour
                     foreach (GameObject go in deactivatedObjects)
                         go.SetActive(false);
 
-                blackFade.ImageFadeTweenAnimation(easeType, speedFade, 0f, 0f, () =>
+                blackFade.ImageFadeTweenAnimation(easeType, speedFade, 0.5f, 0f, () =>
                 {
                     canSkip = true;
                     lastSSMMCoroutine = StartCoroutine(ToNextSSMMState(delayToNextState, nextState));
@@ -142,7 +148,7 @@ public class MainMenuCore : MonoBehaviour
                     foreach (GameObject go in deactivatedObjects)
                         go.SetActive(false);
 
-                whiteFade.ImageFadeTweenAnimation(easeType, speedFade, 0f, 0f, () =>
+                whiteFade.ImageFadeTweenAnimation(easeType, speedFade, 0.5f, 0f, () =>
                 {
                     canSkip = true;
                     lastSSMMCoroutine = StartCoroutine(ToNextSSMMState(delayToNextState, nextState));
@@ -171,10 +177,23 @@ public class MainMenuCore : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         while (videoPlayer.isPlaying) yield return null;
+    }
 
+    IEnumerator MuteVideoPlayer()
+    {
+        GameManager.instance.mainMenu.CurrentSSMMState = MainMenuStates.SSMMState.MAINMENU;
         canSkip = false;
 
-        GameManager.instance.mainMenu.CurrentSSMMState = MainMenuStates.SSMMState.MAINMENU;
+        while (videoPlayer.GetDirectAudioVolume(0) > 0f)
+        {
+            videoPlayer.SetDirectAudioVolume(0, videoPlayer.GetDirectAudioVolume(0) - Time.deltaTime * speedFade);
+
+            yield return null;
+        }
+
+        videoPlayer.Stop();
+
+        GameManager.instance.mainMenu.CurrentMainMenuState = MainMenuStates.MainMenuState.PRESSSTART;
     }
 
     public void InteractionsSSMM()
@@ -214,7 +233,7 @@ public class MainMenuCore : MonoBehaviour
 
                     currentSkipTime = 0f;
 
-                    StopCoroutine("MovieIntroPlayer");
+                    StartCoroutine("MuteVideoPlayer");
 
                     canSkip = false;
                 }

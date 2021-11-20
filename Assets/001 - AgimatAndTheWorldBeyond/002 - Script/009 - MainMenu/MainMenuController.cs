@@ -23,6 +23,7 @@ public class MainMenuController : MonoBehaviour
 
     private void MainMenuStateChange(object sender, EventArgs e)
     {
+        Debug.Log(GameManager.instance.mainMenu.CurrentMainMenuState + "   " + core.MainMenuStateToIndexAnim(GameManager.instance.mainMenu.CurrentMainMenuState));
         core.mainMenuAnim.SetInteger("indexState", core.MainMenuStateToIndexAnim(GameManager.instance.mainMenu.CurrentMainMenuState));
     }
 
@@ -34,5 +35,6 @@ public class MainMenuController : MonoBehaviour
     private void Update()
     {
         core.InteractionsSSMM();
+
     }
 }

@@ -69,7 +69,7 @@ public class PlayerStatemachine
             if (GameManager.instance.PlayerInventory.GetLukasWeapons[GameManager.instance.PlayerInventory.GetSetWeaponLukasSlotIndex].CurrentWeaponType
                 == PlayerWeaponRawData.WeaponType.AXE)
             {
-                statemachineController.core.attackController.attackIndex++;
+                statemachineController.core.attackController.AttackIndex++;
                 statemachineController.core.attackController.SetComboIndexParameter("axeAttackCombo");
                 statemachineController.core.attackController.SetLastFacingDirection(statemachineController.core.CurrentDirection);
                 statemachineChanger.ChangeState(statemachineController.normalAttackState);
@@ -81,7 +81,7 @@ public class PlayerStatemachine
             if (GameManager.instance.PlayerInventory.GetLilyWeapons[GameManager.instance.PlayerInventory.GetSetWeaponLilySlotIndex].CurrentWeaponType ==
                 PlayerWeaponRawData.WeaponType.WHIP)
             {
-                statemachineController.core.attackController.attackIndex++;
+                statemachineController.core.attackController.AttackIndex++;
                 statemachineController.core.attackController.SetComboIndexParameter("whipAttackCombo");
                 statemachineController.core.attackController.SetLastFacingDirection(statemachineController.core.CurrentDirection);
                 statemachineChanger.ChangeState(statemachineController.normalAttackState);

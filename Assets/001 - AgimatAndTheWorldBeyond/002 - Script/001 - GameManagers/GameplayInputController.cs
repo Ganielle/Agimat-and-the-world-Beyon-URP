@@ -118,7 +118,7 @@ public class GameplayInputController : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.instance.gameplayStates.CurrentGameplayState == GameplayStates.GameplayState.GAMEPLAY)
+        if (playerInput.defaultActionMap == "Gameplay")
         {
             CheckJumpInputHoldTime();
             CheckDashInputHoldTime();
