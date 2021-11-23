@@ -9419,7 +9419,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1129014551}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -70.92, y: -21.1, z: 0}
+  m_LocalPosition: {x: -69.52, y: -6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1616810334}
@@ -9602,16 +9602,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCore: {fileID: 1129014556}
   delayAttackTime: 1
-  parameter: 
-  lastAttackEnterTime: 0
+  currentParameter: 
+  attackEnterTimeLast: 0
   attackIndex: 0
   lastFacingDirection: 0
-  currentAttacking: 0
+  isCurrentAttacking: 0
   canNextAttack: 0
   onLastAttackIndex: 0
-  canChangeDirectionWhenAttacking: 0
-  canAnimationCancel: 0
-  canTransitionToNextAttack: 0
+  changeDirectionWhenAttacking: 0
+  animationCancel: 0
+  transitionToNextAttack: 0
   canExit: 0
 --- !u!114 &1129014566
 MonoBehaviour:
@@ -18215,7 +18215,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2133449062}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -63.92, y: -18.1, z: -15}
+  m_LocalPosition: {x: -62.519997, y: -3, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1693515100}
@@ -18436,7 +18436,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 0.63857245, g: 0.7418918, b: 0.7735849, a: 1}
-  m_Intensity: 20.6
+  m_Intensity: 8
   m_Range: 20.11
   m_SpotAngle: 108.152084
   m_InnerSpotAngle: 80.40708

@@ -24,8 +24,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_7A60B76E: 6
-    - Vector1_ACBBFEA9: 2
+    - Vector1_7A60B76E: 9.02
+    - Vector1_ACBBFEA9: 1.8
     - _ColorMask: 15
     - _Stencil: 0
     - _StencilComp: 8
@@ -34,5 +34,5 @@ Material:
     - _StencilWriteMask: 255
     m_Colors:
     - Color_C8626150: {r: 2.4502616, g: 2.4502616, b: 2.4502616, a: 1}
-    - Vector2_288FEC1D: {r: 0.1, g: 0, b: 0, a: 0}
+    - Vector2_288FEC1D: {r: 0.01, g: 0, b: 0, a: 0}
     - _Tint: {r: 11.984314, g: 11.984314, b: 11.984314, a: 1}
