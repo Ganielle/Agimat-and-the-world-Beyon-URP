@@ -1,9 +1,104 @@
 fileFormatVersion: 2
-guid: fecaacd8e7463284abcf4d877cfa4950
+guid: 50eaf63c65e2dbb4c8db5db48872a87c
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cave_1
+    second: {fileID: 2100000, guid: ef0f9dd970cbdd6428f23512c3501837, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cave_2
+    second: {fileID: 2100000, guid: f096a7a03f25e5941843e00193002e03, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cave_3
+    second: {fileID: 2100000, guid: 216683636ef947a46a03bd721cb1a749, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cave_5
+    second: {fileID: 2100000, guid: 4a9e1f9eb4cc8d74283c2fb51a8737ca, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cave_top_1
+    second: {fileID: 2100000, guid: 85babf5ac4fc40b479ee2b6e01be604c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cave_top_2
+    second: {fileID: 2100000, guid: 6c5f722a769df8f49a93040ed87dcd00, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: 3aeb0e865e9131b498a4bd7b624437e7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert12
+    second: {fileID: 2100000, guid: 86d5d06cfdceef84e873cdf849980f96, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pasted__tree_bridge1
+    second: {fileID: 2100000, guid: f66303dffb4447e4d8826f7747eefab6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: rock_platform
+    second: {fileID: 2100000, guid: 55d9836de99b1e140ad01a005e3d3038, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: rock_top_1
+    second: {fileID: 2100000, guid: 8a9faccf829ddb245b086d3f23a5cc80, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: rock_top_2
+    second: {fileID: 2100000, guid: cd4f3ff26e7185b4ba7607f83c70e991, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: rock_top_3
+    second: {fileID: 2100000, guid: d79d2909acacaa34aa434081efc66d4c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: rocks_1
+    second: {fileID: 2100000, guid: 5339379edabaa9748a6661c1b2f1dcf1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: rocks_2
+    second: {fileID: 2100000, guid: c6da6ed3708b6954c896ac64e6378df1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: rocks_3
+    second: {fileID: 2100000, guid: 221b7d06c69a3e142b0f8b88996c7da3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: top_cave_3
+    second: {fileID: 2100000, guid: f051e5a4f66574641b5eb0d4f5ef11e9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: top_cave_5
+    second: {fileID: 2100000, guid: ad6c113156975df4e8d3d0f257e70266, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tree_bridge_2
+    second: {fileID: 2100000, guid: 4cc5ef6b9343ed04e8eb3e0f91fdb914, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -45,7 +140,7 @@ ModelImporter:
     importLights: 0
     fileIdsGeneration: 2
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 1
@@ -81,7 +176,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.889
+    globalScale: 35
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
