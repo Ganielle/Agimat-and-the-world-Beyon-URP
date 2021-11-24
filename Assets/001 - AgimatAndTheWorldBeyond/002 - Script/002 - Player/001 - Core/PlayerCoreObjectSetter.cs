@@ -24,6 +24,8 @@ public class PlayerCoreObjectSetter : MonoBehaviour
 
     private void Awake()
     {
+
+        GameManager.instance.PlayerStats.GetSetPlayerCharacterObj = characterObj;
         GameManager.instance.PlayerStats.GetSetPlayerState = PlayerStats.PlayerState.ALIVE;
         GameManager.instance.PlayerStats.GetSetBattleState = PlayerStats.PlayerBattleState.ADVENTURING;
     }
@@ -31,8 +33,6 @@ public class PlayerCoreObjectSetter : MonoBehaviour
     private void OnEnable()
     {
         AnimatorSetter();
-
-        GameManager.instance.PlayerStats.GetSetPlayerCharacterObj = characterObj;
         GameManager.instance.PlayerStats.onPlayerCharacterChange += PlayerCharacterChange;
     }
 

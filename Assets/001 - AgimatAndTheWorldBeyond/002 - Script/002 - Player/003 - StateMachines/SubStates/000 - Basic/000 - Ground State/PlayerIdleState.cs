@@ -40,6 +40,11 @@ public class PlayerIdleState : PlayerGroundState
     {
         base.PhysicsUpdate();
 
+        //  Slope slide
+        if (statemachineController.isGrounded && !statemachineController.core.groundPlayerController.canWalkOnSlope &&
+            statemachineController.isFrontFootTouchSlope)
+            statemachineChanger.ChangeState(statemachineController.steepSlopeSlide);
+
         if (statemachineController.core.groundPlayerController.canWalkOnSlope)
             statemachineController.core.SetVelocityZero();
     }
@@ -56,12 +61,14 @@ public class PlayerIdleState : PlayerGroundState
         if (!isExitingState)
         {
 
-            //  Slope slide
-            if (statemachineController.isGrounded && !statemachineController.core.groundPlayerController.canWalkOnSlope &&
-                statemachineController.isFrontFootTouchSlope)
-                statemachineChanger.ChangeState(statemachineController.steepSlopeSlide);
+            if (GameManager.instance.gameplayController.jumpInput &&
+                statemachineController.core.groundPlayerController.canWalkOnSlope)
+            {
+                statemachineChanger.ChangeState(statemachineController.jumpState);
+                GameManager.instance.gameplayController.UseJumpInput();
+            }
 
-            if (GameManager.instance.gameplayController.GetSetMovementNormalizeX != 0f)
+            else if (GameManager.instance.gameplayController.GetSetMovementNormalizeX != 0f)
             {
                 if (GameManager.instance.gameplayController.GetSetMovementNormalizeX !=
                     statemachineController.core.CurrentDirection)
@@ -73,13 +80,6 @@ public class PlayerIdleState : PlayerGroundState
 
                 else if (!statemachineController.isTouchingWall)
                     statemachineChanger.ChangeState(statemachineController.moveState);
-            }
-
-            else if (GameManager.instance.gameplayController.jumpInput &&
-                statemachineController.core.groundPlayerController.canWalkOnSlope)
-            {
-                statemachineChanger.ChangeState(statemachineController.jumpState);
-                GameManager.instance.gameplayController.UseJumpInput();
             }
 
 
@@ -116,12 +116,17 @@ public class PlayerIdleState : PlayerGroundState
 
             else if (!statemachineController.isFrontFootTouchGround && !statemachineController.isFrontFootTouchSlope)
                 statemachineChanger.ChangeState(statemachineController.nearLedgeState);
+
+            //  Dash
+            else if (GameManager.instance.gameplayController.dashInput &&
+                statemachineController.playerDashState.CheckIfCanDash())
+                statemachineChanger.ChangeState(statemachineController.playerDashState);
         }
     }
 
     private void TransitionTauntIdleTimer()
     {
-        if (Time.time >= idleEnterTime + movementData.idleToTauntIdleTime)
+        if (Time.time >= idleEnterTime + movementData.idleToTauntIdleTime && !statemachineController.isTouchingWall)
             canTauntIdle = true;
     }
 }

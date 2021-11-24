@@ -24,6 +24,7 @@ public class PlayerRawData : ScriptableObject
     [Header("JUMP STATE")]
     public float jumpStrength = 16f;
     public float movementSpeedOnAir = 5;
+    public float movementSpeedOnAirAfterSprint = 18f;
     public float maxVelocityXOnAir = 10f;
     public float maxJumpHeight = -30f;
     public float fallMultiplier = 2.5f;

@@ -23,6 +23,16 @@ public class PlayerLedgeClimbState : PlayerStatemachine
     public override void AnimationFinishTrigger()
     {
         base.AnimationFinishTrigger();
+
+        lastLedgeClimb = Time.time;
+        isHanging = false;
+
+        if (isClimbing)
+        {
+            statemachineController.transform.position = stopPosition;
+            isClimbing = false;
+        }
+
         GameManager.instance.PlayerStats.GetSetPlayerAnimator.SetBool("ledgeClimb", false);
     }
 
@@ -36,44 +46,26 @@ public class PlayerLedgeClimbState : PlayerStatemachine
     public override void Enter()
     {
         base.Enter();
-
-        cornerPos = statemachineController.core.groundPlayerController.DetermineCornerPosition();
-
         GameManager.instance.PlayerStats.GetSetAnimatorStateInfo = PlayerStats.AnimatorStateInfo.LEDGEHOLD;
-        
-        statemachineController.core.SetVelocityZero();
 
         //  For wall jump State
         oldPosition = statemachineController.transform.position;
 
-        //  Ledge Climb
+        statemachineController.core.SetVelocityZero();
         statemachineController.transform.position = detectedPos;
-
+        cornerPos = statemachineController.core.groundPlayerController.DetermineCornerPosition();
 
         startPostion.Set(cornerPos.x - (statemachineController.core.CurrentDirection * 
             movementData.startOffset.x), cornerPos.y - movementData.startOffset.y);
-
+        stopPosition.Set(cornerPos.x + (statemachineController.core.CurrentDirection *
+            movementData.stopOffset.x), cornerPos.y + movementData.stopOffset.y);
 
         statemachineController.transform.position = startPostion;
-
-        stopPosition.Set(statemachineController.core.CurrentDirection *
-            movementData.stopOffset.x + cornerPos.x, cornerPos.y + movementData.stopOffset.y);
-
-        Debug.Log(startPostion);
     }
 
     public override void Exit()
     {
         base.Exit();
-
-        lastLedgeClimb = Time.time;
-        isHanging = false;
-
-        if (isClimbing)
-        {
-            statemachineController.transform.position = stopPosition;
-            isClimbing = false;
-        }
     }
 
     public override void LogicUpdate()
@@ -98,9 +90,7 @@ public class PlayerLedgeClimbState : PlayerStatemachine
             if ((GameManager.instance.gameplayController.GetSetMovementNormalizeX ==
                 statemachineController.core.CurrentDirection ||
                 GameManager.instance.gameplayController.movementNormalizeY == 1)
-                && isHanging && !isClimbing &&
-                GameManager.instance.PlayerStats.GetSetCurrentStamina >=
-                0f)
+                && isHanging && !isClimbing)
             {
                 isClimbing = true;
                 GameManager.instance.PlayerStats.GetSetAnimatorStateInfo = PlayerStats.AnimatorStateInfo.LEDGECLIMB;
@@ -115,6 +105,7 @@ public class PlayerLedgeClimbState : PlayerStatemachine
                 statemachineController.transform.position = 
                     new Vector2(oldPosition.x, statemachineController.transform.position.y);
 
+                statemachineController.core.CheckIfShouldFlip(statemachineController.core.CurrentDirection * -1);
                 statemachineChanger.ChangeState(statemachineController.wallJumpState);
             }
 

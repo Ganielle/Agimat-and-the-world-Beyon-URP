@@ -22,9 +22,10 @@ MonoBehaviour:
   movementSpeed: 10
   sprintSpeed: 15
   maxVelocityXOnGround: 8
-  jumpStrength: 16
-  movementSpeedOnAir: 5
-  maxVelocityXOnAir: 10
+  jumpStrength: 18
+  movementSpeedOnAir: 10
+  movementSpeedOnAirAfterSprint: 18
+  maxVelocityXOnAir: 20
   maxJumpHeight: -30
   fallMultiplier: 2.5
   lowJumpMultiplier: 2
@@ -40,15 +41,15 @@ MonoBehaviour:
   wallCheckRadius: {x: 0.1, y: 2}
   wallClimbCheckRadius: 0.15
   wallSlideVelocity: 3
-  wallClimbVelocity: 3
+  wallClimbVelocity: 3.5
   wallJumpVelocity: 20
   wallJumpTime: 0.9
   delayToUseDash: 0.25
   delayToCheckForGround: 0.15
   delayToCheckForLedge: 0.2
-  wallJumpAngle: {x: 5, y: 10}
+  wallJumpAngle: {x: -5, y: 10}
   startOffset: {x: 0, y: 1.6}
-  stopOffset: {x: 1, y: 1.8}
+  stopOffset: {x: 1, y: 1.5}
   monkeyBarRarCheckRadius: 0.15
   monkeyBarVelocity: 2.5
   mbStartOffset: {x: 0, y: 1.75}

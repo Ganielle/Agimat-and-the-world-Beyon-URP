@@ -27,16 +27,6 @@ public class PlayerInAirState : PlayerStatemachine
             statemachineController.ledgeClimbState.SetDetectedPosition(statemachineController.transform.position);
     }
 
-    public override void Enter()
-    {
-        base.Enter();
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
-    }
-
     public override void LogicUpdate()
     {
         base.LogicUpdate();
@@ -52,7 +42,6 @@ public class PlayerInAirState : PlayerStatemachine
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-
         HighLowJump();
         MovePlayerWhileInAir();
     }
@@ -147,13 +136,17 @@ public class PlayerInAirState : PlayerStatemachine
 
     private void MovePlayerWhileInAir()
     {
-        if (statemachineController.isGrounded || statemachineController.isTouchingWall || 
-            statemachineController.isFrontFootTouchGround || statemachineController.isTouchingGroundWhileInAir)
+        if (statemachineController.isGrounded || statemachineController.isTouchingGroundWhileInAir)
             return;
 
-        statemachineController.core.SetVelocityX(movementData.movementSpeed *
-            GameManager.instance.gameplayController.GetSetMovementNormalizeX,
-                    statemachineController.core.GetCurrentVelocity.y);
+        if (GameManager.instance.PlayerStats.GetSetAnimatorStateInfo == PlayerStats.AnimatorStateInfo.SPRINT)
+            statemachineController.core.SetVelocityX(movementData.movementSpeedOnAirAfterSprint *
+                GameManager.instance.gameplayController.GetSetMovementNormalizeX,
+                        statemachineController.core.GetCurrentVelocity.y);
+        else
+            statemachineController.core.SetVelocityX(movementData.movementSpeedOnAir *
+                GameManager.instance.gameplayController.GetSetMovementNormalizeX,
+                        statemachineController.core.GetCurrentVelocity.y);
 
         GameManager.instance.PlayerStats.GetSetPlayerAnimator.SetFloat("yVelocity",
             statemachineController.core.GetCurrentVelocity.y);

@@ -12,7 +12,19 @@ public class PlayerDashState : PlayerAbilityState
     private Vector2 dashIndirection;
     private Vector3 lastDirection;
 
-    public PlayerDashState(PlayerStateMachinesController movementController, 
+    Vector2 feetOffset;
+    Vector2 feetPosAfterTick;
+    float maxFloorCheckDist;
+    RaycastHit2D groundCheckAfterTick;
+    float angleOffset;
+    Vector2 wantedFeetPosAfterTick;
+    float floorCheckOffsetHeight;
+    float floorCheckOffsetWidth;
+    RaycastHit2D rampCornerCheck;
+    Vector2 cornerPos;
+    Vector2 wantedVelocity;
+
+    public PlayerDashState(PlayerStateMachinesController movementController,
         PlayerStateMachineChanger stateMachine, PlayerRawData movementData, string animBoolName, bool isBoolAnim) :
         base(movementController, stateMachine, movementData, animBoolName, isBoolAnim)
     {
@@ -118,36 +130,36 @@ public class PlayerDashState : PlayerAbilityState
     {
         if (!isHolding && DashRotation() == 0 && statemachineController.isGrounded)
         {
-            Vector2 feetOffset = new Vector2(0f, statemachineController.core.feetOffsetCollider.bounds.min.y -
+            feetOffset = new Vector2(0f, statemachineController.core.feetOffsetCollider.bounds.min.y -
                 statemachineController.core.playerRB.position.y);
-            Vector2 feetPosAfterTick = (Vector2)statemachineController.transform.position + feetOffset +
+            feetPosAfterTick = (Vector2)statemachineController.transform.position + feetOffset +
                 statemachineController.core.GetCurrentVelocity * Time.deltaTime;
 
-            float maxFloorCheckDist = 1.0f;
+            maxFloorCheckDist = 1.0f;
 
-            RaycastHit2D groundCheckAfterTick = Physics2D.Raycast(feetPosAfterTick + Vector2.up *
-                maxFloorCheckDist, Vector2.down, maxFloorCheckDist * movementData.slopeCheckDistance, 
+            groundCheckAfterTick = Physics2D.Raycast(feetPosAfterTick + Vector2.up *
+                maxFloorCheckDist, Vector2.down, maxFloorCheckDist * movementData.slopeCheckDistance,
                 statemachineController.core.groundPlayerController.whatIsGround);
 
-            float angle = Vector2.Angle(Physics2D.Raycast(feetPosAfterTick + Vector2.up *
+            angleOffset = Vector2.Angle(Physics2D.Raycast(feetPosAfterTick + Vector2.up *
                 maxFloorCheckDist, Vector2.down, maxFloorCheckDist * movementData.slopeCheckDistance,
                 statemachineController.core.groundPlayerController.whatIsGround).normal, -statemachineController.transform.up);
 
 
-            if (groundCheckAfterTick && angle < statemachineController.core.groundPlayerController.minimumSlopeAngle && angle >=
+            if (groundCheckAfterTick && angleOffset < statemachineController.core.groundPlayerController.minimumSlopeAngle && angleOffset >
                 statemachineController.core.groundPlayerController.maxSlopeAngle)
             {
-                Vector2 wantedFeetPosAfterTick = groundCheckAfterTick.point;
+                wantedFeetPosAfterTick = groundCheckAfterTick.point;
 
                 if (wantedFeetPosAfterTick != feetPosAfterTick)
                 {
-                    //statemachineController.core.SetVelocityZero();
+                    statemachineController.core.SetVelocityZero();
 
                     // look for corner of ramp+landing. 
                     // Offsets ensure we don't raycast from inside/above it
-                    float floorCheckOffsetHeight = 0.25f;
-                    float floorCheckOffsetWidth = 0.5f;
-                    RaycastHit2D rampCornerCheck = Physics2D.Raycast(
+                    floorCheckOffsetHeight = 0.15f;
+                    floorCheckOffsetWidth = 0.4f;
+                    rampCornerCheck = Physics2D.Raycast(
                             wantedFeetPosAfterTick
                             - floorCheckOffsetHeight * Vector2.up
                             - floorCheckOffsetWidth * Mathf.Sign(statemachineController.core.GetCurrentVelocity.x) * Vector2.right,
@@ -157,17 +169,17 @@ public class PlayerDashState : PlayerAbilityState
                     if (rampCornerCheck.collider != null)
                     {
                         // put feet at x=corner position
-                        Vector2 cornerPos = new Vector2(rampCornerCheck.point.x,
+                        cornerPos = new Vector2(rampCornerCheck.point.x,
                                 wantedFeetPosAfterTick.y);
 
                         statemachineController.core.playerRB.position = cornerPos
                             - feetOffset;
                         // adjust velocity so that physics will take them from corner 
                         // to landing position
-                        Vector2 wantedVelocity = (wantedFeetPosAfterTick - cornerPos)
+                        wantedVelocity = (wantedFeetPosAfterTick - cornerPos)
                                 / Time.fixedDeltaTime;
 
-                        statemachineController.core.playerRB.velocity = wantedVelocity;
+                        statemachineController.core.SetVelocityX(wantedVelocity.x, wantedVelocity.y);
                     }
                 }
             }
@@ -210,9 +222,6 @@ public class PlayerDashState : PlayerAbilityState
 
     private void DashBurst()
     {
-        Debug.Log(statemachineController.isGrounded + "    " + statemachineController.isFrontFootTouchSlope + "   "
-            + statemachineController.core.groundPlayerController.canWalkOnSlope);
-
         //  ANIMATION STATE INFO
         GameManager.instance.PlayerStats.GetSetAnimatorStateInfo =
             PlayerStats.AnimatorStateInfo.DASHBURST;
@@ -239,8 +248,6 @@ public class PlayerDashState : PlayerAbilityState
             DoneDashingState();
 
             statemachineController.core.SetVelocityZero();
-
-            Debug.Log("can steep slope slide");
 
             statemachineChanger.ChangeState(statemachineController.steepSlopeSlide);
         }
@@ -285,10 +292,6 @@ public class PlayerDashState : PlayerAbilityState
                 return angle * statemachineController.core.CurrentDirection;
         }
     }
-
-    #endregion
-
-    #region DASH EFFECT
 
     #endregion
 }

@@ -30,7 +30,10 @@ public class PlayerWallSlideState : PlayerTouchingWallState
                 statemachineChanger.ChangeState(statemachineController.wallClimbState);
 
             else if (GameManager.instance.gameplayController.jumpInput)
+            {
+                statemachineController.core.CheckIfShouldFlip(statemachineController.core.CurrentDirection * -1);
                 statemachineChanger.ChangeState(statemachineController.wallJumpState);
+            }
 
             else if (GameManager.instance.gameplayController.grabWallInput &&
                 GameManager.instance.gameplayController.movementNormalizeY == 0f)

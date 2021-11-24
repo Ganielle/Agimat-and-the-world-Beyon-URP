@@ -6,35 +6,24 @@ using Cinemachine;
 public class ChangePlayerCameraCollider : MonoBehaviour
 {
     [SerializeField] private string tagMask;
-    [SerializeField] private PolygonCollider2D polygonCollider;
-    [SerializeField] private float damp;
+    [SerializeField] private CinemachineVirtualCamera playerCamera;
+    [SerializeField] private float transitionSpeed;
 
-    Coroutine currentCoroutine;
+    //Coroutine currentCoroutine;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag(tagMask))
         {
-            currentCoroutine = StartCoroutine(ChangeDamp());
-            GameManager.instance.gameplayConfiner.m_BoundingShape2D = polygonCollider;
+            GameManager.instance.mainCameraCMBrain.m_DefaultBlend.m_Time = transitionSpeed;
+
+            playerCamera.gameObject.SetActive(true);
+
+            if (GameManager.instance.currentPlayerCamera != null && 
+                GameManager.instance.currentPlayerCamera != playerCamera)
+                GameManager.instance.currentPlayerCamera.gameObject.SetActive(false);
+
+            GameManager.instance.currentPlayerCamera = playerCamera;
         }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag(tagMask))
-        {
-            GameManager.instance.gameplayConfiner.m_Damping = 0f;
-            StopCoroutine(currentCoroutine);
-        }
-    }
-
-    IEnumerator ChangeDamp()
-    {
-        GameManager.instance.gameplayConfiner.m_Damping = damp;
-
-        yield return new WaitForSeconds(damp);
-
-        GameManager.instance.gameplayConfiner.m_Damping = 0f;
     }
 }

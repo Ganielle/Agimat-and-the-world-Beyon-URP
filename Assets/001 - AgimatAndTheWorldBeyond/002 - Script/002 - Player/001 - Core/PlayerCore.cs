@@ -226,7 +226,7 @@ public class PlayerCore : MonoBehaviour
     public void PlaceAfterImage()
     {
         GameManager.instance.effectManager.afterImagePooler.GetFromPool();
-        lastAfterImagePosition = statemachineController.transform.position;
+        lastAfterImagePosition = GameManager.instance.PlayerStats.GetSetPlayerSR.transform.localPosition;
     }
 
     #endregion

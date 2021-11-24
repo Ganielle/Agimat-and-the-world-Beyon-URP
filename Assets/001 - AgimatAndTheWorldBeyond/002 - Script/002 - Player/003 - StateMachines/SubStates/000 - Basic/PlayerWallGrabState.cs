@@ -74,7 +74,10 @@ public class PlayerWallGrabState : PlayerTouchingWallState
                 statemachineChanger.ChangeState(statemachineController.wallClimbState);
 
             else if (GameManager.instance.gameplayController.jumpInput)
+            {
+                statemachineController.core.CheckIfShouldFlip(statemachineController.core.CurrentDirection * -1);
                 statemachineChanger.ChangeState(statemachineController.wallJumpState);
+            }
 
             else if (GameManager.instance.gameplayController.movementNormalizeY == -1f &&
                 GameManager.instance.gameplayController.grabWallInput && !statemachineController.isGrounded)

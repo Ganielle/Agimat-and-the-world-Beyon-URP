@@ -29,9 +29,14 @@ public class PlayerWallClimbState : PlayerTouchingWallState
     {
         base.LogicUpdate();
 
-        statemachineController.core.SetVelocityY(movementData.wallClimbVelocity);
-
         AnimationChanger();
+    }
+
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
+
+        statemachineController.core.SetVelocityY(movementData.wallClimbVelocity);
     }
 
     private void AnimationChanger()
@@ -42,6 +47,7 @@ public class PlayerWallClimbState : PlayerTouchingWallState
 
         else if (GameManager.instance.gameplayController.jumpInput)
         {
+            statemachineController.core.CheckIfShouldFlip(statemachineController.core.CurrentDirection * -1);
             statemachineChanger.ChangeState(statemachineController.wallJumpState);
         }
 

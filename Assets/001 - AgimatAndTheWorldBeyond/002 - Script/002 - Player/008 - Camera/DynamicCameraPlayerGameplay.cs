@@ -105,7 +105,6 @@ public class DynamicCameraPlayerGameplay : MonoBehaviour
     private void OnEnable()
     {
         compVirtualCamera = VirtualCamera.GetCinemachineComponent<CinemachineTransposer>();
-        GameManager.instance.gameplayConfiner = gameplayConfiner;
 
         ChangeOffsetsCamera();
 
@@ -153,11 +152,6 @@ public class DynamicCameraPlayerGameplay : MonoBehaviour
         xTime = 0.01f;
         yTime = 0.01f;
         zTime = 0.01f;
-
-        if (GameManager.instance.PlayerStats.GetSetAnimatorStateInfo == PlayerStats.AnimatorStateInfo.LEDGEHOLD)
-        {
-            endXOffset = ledgeHoldXOffset * (playerCore.CurrentDirection * -1);
-        }
     }
 
     private void ChangeOffsetsCamera()
@@ -246,13 +240,6 @@ public class DynamicCameraPlayerGameplay : MonoBehaviour
 
                 speedXOffset = landXSpeed;
                 speedYZOffset = landYZSpeed;
-                break;
-            case PlayerStats.AnimatorStateInfo.LEDGEHOLD:
-                endYOffset = ledgeHoldYOffset;
-                endZOffset = ledgeHoldZOffset;
-
-                speedXOffset = ledgeHoldXSpeed;
-                speedYZOffset = ledgeHoldYZSpeed;
                 break;
         }
     }

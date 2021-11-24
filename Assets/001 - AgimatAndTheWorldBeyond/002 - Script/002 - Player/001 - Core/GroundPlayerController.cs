@@ -119,6 +119,7 @@ public class GroundPlayerController : MonoBehaviour
         xHit = Physics2D.Raycast(wallClimbCheck.position, Vector2.right * core.CurrentDirection,
             core.playerRawData.wallClimbCheckRadius, whatIsGround);
         xDist = xHit.distance;
+        core.GetWorkspace.Set((xDist + 0.015f) * core.CurrentDirection, 0f);
         yHit = Physics2D.Raycast((Vector2)ledgeCheck.position + (core.GetWorkspace),
             Vector2.down, ledgeCheck.position.y - wallClimbCheck.position.y, whatIsGround);
         yDist = yHit.distance;

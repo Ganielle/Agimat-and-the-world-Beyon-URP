@@ -34,6 +34,9 @@ public class GameManager : MonoBehaviour
     [ConditionalField("debugMode")] public bool debugScenes;
     [ConditionalField("debugMode")] [SerializeField] private string firstScene;
 
+    [Header("LIGHT")]
+    public Light directionalLight;
+
     [Header("ScriptReferences")]
     public GameplayInputController gameplayController;
     public MainMenuInputController mainMenuController;
@@ -49,7 +52,8 @@ public class GameManager : MonoBehaviour
     public Camera uiCamera;
     public Camera mouseCamera;
     public CinemachineBrain mainCameraCMBrain;
-    [ReadOnly] public CinemachineConfiner gameplayConfiner;
+    [ReadOnly] public CinemachineVirtualCamera lastPlayerCamera;
+    [ReadOnly] public CinemachineVirtualCamera currentPlayerCamera;
 
     private void Awake()
     {

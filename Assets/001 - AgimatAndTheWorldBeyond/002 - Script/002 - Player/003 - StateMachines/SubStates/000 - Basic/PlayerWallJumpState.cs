@@ -23,13 +23,13 @@ public class PlayerWallJumpState : PlayerNormalAbilityState
         base.Enter();
 
         GameManager.instance.PlayerStats.GetSetAnimatorStateInfo = PlayerStats.AnimatorStateInfo.WALLJUMP;
-        
-        statemachineController.core.SetVelocityWallJump(movementData.wallJumpVelocity, movementData.wallJumpAngle,
-            -statemachineController.core.CurrentDirection);
-        statemachineController.core.CheckIfShouldFlip(-statemachineController.core.CurrentDirection);
 
         statemachineController.core.playerSFXController.PlaySFX(statemachineController.core.playerSFXController.footAS,
             statemachineController.core.playerSFXController.wallJumpClip);
+
+
+        statemachineController.core.SetVelocityWallJump(movementData.wallJumpVelocity, movementData.wallJumpAngle,
+            statemachineController.core.CurrentDirection * -1);
     }
 
     public override void LogicUpdate()
@@ -83,8 +83,16 @@ public class PlayerWallJumpState : PlayerNormalAbilityState
                 statemachineChanger.ChangeState(statemachineController.ledgeClimbState);
             }
 
-            else if (statemachineController.isTouchingWall)
+            else if (statemachineController.isTouchingWall && Time.time >= startTime + 0.15f)
+            {
+                Debug.Log("hello");
                 isAbilityDone = true;
+            }
         }
+    }
+
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
     }
 }
