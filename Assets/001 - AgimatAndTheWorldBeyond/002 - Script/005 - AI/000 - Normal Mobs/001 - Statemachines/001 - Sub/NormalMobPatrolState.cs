@@ -47,7 +47,9 @@ public class NormalMobPatrolState : NormalMobGroundState
             }
             else
             {
-                statemachineChanger.ChangeState(statemachineController.alertState);
+                if (Vector2.Distance(statemachineController.transform.position, statemachineController.core.fovDetection.targetTF.transform.position) >
+                    rawData.checkDistanceToPlayer)
+                    statemachineChanger.ChangeState(statemachineController.alertState);
             }
         }
     }

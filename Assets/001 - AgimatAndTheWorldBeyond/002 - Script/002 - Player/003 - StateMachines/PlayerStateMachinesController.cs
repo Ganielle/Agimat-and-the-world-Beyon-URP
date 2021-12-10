@@ -103,7 +103,7 @@ public class PlayerStateMachinesController : MonoBehaviour
         weaponSwitchState = new PlayerWeaponSwitchState(this, statemachineChanger, core.playerRawData,
             GameManager.instance.PlayerStats.GetSetWeaponEquipBoolInPlayerAnim, true);
         normalAttackState = new NormalAttackCombo(this, statemachineChanger, core.playerRawData, "Attack", false);
-        normalAttackTransition = new AttackTransition(this, statemachineChanger, core.playerRawData, "Attack", false);
+        normalAttackTransition = new AttackTransition(this, statemachineChanger, core.playerRawData, "AttackTransition", false);
 
         switchPlayerState.ResetSwitch();
         weaponSwitchState.ResetWeaponSwitch();
@@ -119,13 +119,13 @@ public class PlayerStateMachinesController : MonoBehaviour
 
     private void Update()
     {
-        core.CurrentVelocitySetter();
-
         statemachineChanger.CurrentState.LogicUpdate();
     }
 
     private void FixedUpdate()
     {
+        core.CurrentVelocitySetter();
+
         EnvironmentChecker();
 
         core.groundPlayerController.CalculateSlopeForward();

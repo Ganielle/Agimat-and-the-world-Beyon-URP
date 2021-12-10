@@ -42,7 +42,7 @@
 	}
 
     Subshader {
-        Tags { "RenderType"="Transparent" "Queue"="Transparent" "RenderPipeline" = "LightweightPipeline" }
+        Tags { "RenderType"="Opaque" "Queue"="Transparent" "RenderPipeline" = "LightweightPipeline" }
              
         Pass 
         {

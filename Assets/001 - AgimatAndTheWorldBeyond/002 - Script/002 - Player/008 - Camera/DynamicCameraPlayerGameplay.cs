@@ -9,6 +9,7 @@ public class DynamicCameraPlayerGameplay : MonoBehaviour
     [SerializeField] private CinemachineCameraOffset cinemachineOffsetter;
     [SerializeField] private CinemachineVirtualCamera VirtualCamera;
     [SerializeField] private CinemachineConfiner gameplayConfiner;
+    [SerializeField] private CameraZoomerDebug zoomDebug;
     [SerializeField] private PlayerCore playerCore;
 
 
@@ -120,30 +121,33 @@ public class DynamicCameraPlayerGameplay : MonoBehaviour
 
     private void Update()
     {
-        ChangeOffsetsCamera();
-
-        //  xAxis
-        if (compVirtualCamera.m_FollowOffset.x != endXOffset)
+        if (!zoomDebug.Zooming)
         {
-            xTime += Time.deltaTime / speedXOffset;
-            DynamicCamera(compVirtualCamera.m_FollowOffset.x, endXOffset, xTime,
-                true, false, false);
-        }
+            ChangeOffsetsCamera();
 
-        //  yAxis
-        if (cinemachineOffsetter.m_Offset.y != endYOffset)
-        {
-            yTime += Time.deltaTime / speedYZOffset;
-            DynamicCamera(cinemachineOffsetter.m_Offset.y, endYOffset, yTime,
-                false, true, false);
-        }
+            //  xAxis
+            if (compVirtualCamera.m_FollowOffset.x != endXOffset)
+            {
+                xTime += Time.deltaTime / speedXOffset;
+                DynamicCamera(compVirtualCamera.m_FollowOffset.x, endXOffset, xTime,
+                    true, false, false);
+            }
 
-        // zAxis
-        if (cinemachineOffsetter.m_Offset.z != endZOffset)
-        {
-            zTime += Time.deltaTime / speedYZOffset;
-            DynamicCamera(cinemachineOffsetter.m_Offset.z, endZOffset, zTime,
-                false, false, true);
+            //  yAxis
+            if (cinemachineOffsetter.m_Offset.y != endYOffset)
+            {
+                yTime += Time.deltaTime / speedYZOffset;
+                DynamicCamera(cinemachineOffsetter.m_Offset.y, endYOffset, yTime,
+                    false, true, false);
+            }
+
+            // zAxis
+            if (cinemachineOffsetter.m_Offset.z != endZOffset)
+            {
+                zTime += Time.deltaTime / speedYZOffset;
+                DynamicCamera(cinemachineOffsetter.m_Offset.z, endZOffset, zTime,
+                    false, false, true);
+            }
         }
     }
 

@@ -10,6 +10,7 @@ public class WeaponChangerController : MonoBehaviour
 
     [Header("DEBUGGER")]
     [ReadOnly] public float lastShowWeaponSlotsTime;
+    [ReadOnly] public float lastChangeWeaponTime;
 
     private void OnEnable()
     {
@@ -92,6 +93,7 @@ public class WeaponChangerController : MonoBehaviour
             GameManager.instance.gameplayController.canSwitchWeapon &&
             GameManager.instance.gameplayController.GetWeaponSwitchInput == 2)
         {
+            lastChangeWeaponTime = Time.time + core.playerRawData.weaponSwitchTime;
             core.statemachineController.core.weaponChangerController.ChangeWeapon();
 
             if (core.groundPlayerController.CheckIfTouchGround &&

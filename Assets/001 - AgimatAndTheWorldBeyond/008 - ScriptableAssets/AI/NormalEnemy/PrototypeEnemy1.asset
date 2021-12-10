@@ -24,8 +24,9 @@ MonoBehaviour:
   moveSpeed: 5
   alertTimeToChase: 0.8
   chaseSpeed: 10
-  checkDistanceToPlayer: 2
+  checkDistanceToPlayer: 4
   groundCheckRadius: 0.2
+  attackTimeRefresh: 0.5
   slopeCheckDistance: 2
   slopeForce: 2.5
   slopeFrontFootCheckDistance: 3

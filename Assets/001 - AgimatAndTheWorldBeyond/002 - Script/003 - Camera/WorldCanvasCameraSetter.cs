@@ -8,6 +8,6 @@ public class WorldCanvasCameraSetter : MonoBehaviour
 
     private void OnEnable()
     {
-        canvasWorld.worldCamera = GameManager.instance.uiCamera;
+        canvasWorld.worldCamera = GameManager.instance.mainCamera;
     }
 }

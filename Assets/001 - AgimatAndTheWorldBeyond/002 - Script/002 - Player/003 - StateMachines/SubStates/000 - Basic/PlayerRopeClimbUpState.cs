@@ -60,6 +60,7 @@ public class PlayerRopeClimbUpState : PlayerRopeState
                     !statemachineController.core.ropePlayerController.RopeAboveChecker)
                 {
                     statemachineController.transform.parent = null;
+                    statemachineController.core.MoveObjectToOriginalScene();
                     statemachineChanger.ChangeState(statemachineController.ropeGrabSwing);
                 }
             }
@@ -84,10 +85,8 @@ public class PlayerRopeClimbUpState : PlayerRopeState
         direction = Mathf.Sign(Vector3.Dot(-statemachineController.core.ropePlayerController.RopePosition().right, Vector3.up));
         statemachineController.transform.localRotation = Quaternion.AngleAxis(direction * 90f, Vector3.forward);
 
-        statemachineController.core.playerRB.MovePosition(new Vector2(statemachineController.core.ropePlayerController.RopePosition().GetComponent<Rigidbody2D>().position.x + (-0.25f *
-            statemachineController.core.CurrentDirection), statemachineController.core.playerRB.position.y));
-
-        statemachineController.transform.Translate(Vector2.up * movementData.ropeClimbVelocity * Time.fixedDeltaTime);
+        statemachineController.transform.Translate(Vector2.up * new Vector2(statemachineController.core.ropePlayerController.RopePosition().GetComponent<Rigidbody2D>().position.x 
+            , movementData.ropeClimbVelocity) * Time.fixedDeltaTime);
     }
 
     private void ClimbUpStopForce()

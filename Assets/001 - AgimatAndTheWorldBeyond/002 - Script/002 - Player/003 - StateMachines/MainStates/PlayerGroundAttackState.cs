@@ -30,40 +30,24 @@ public class PlayerGroundAttackState : PlayerStatemachine
 
 
         //  IF ATTACK BUT NOT PRESS THE ATTACK AGAIN OR ON LAST ATTACK COMBO
-        if ((!statemachineController.core.attackController.TransitionToNextAttack || statemachineController.core.attackController.OnLastAttackIndex) 
-            && statemachineController.core.attackController.ExitAttack)
+        if (statemachineController.core.attackController.ExitAttack)
         {
 
             statemachineController.core.attackController.ExitAttack = false;
 
-            //  RESET THE PARAMETER
-            statemachineController.core.attackController.SetComboIndexParameter("");
-
             if (GameManager.instance.gameplayController.GetSetMovementNormalizeX == 0)
-            {
-                Debug.Log("to idle attack");
                 statemachineChanger.ChangeState(statemachineController.idleState);
-            }
 
             else if (GameManager.instance.gameplayController.GetSetMovementNormalizeX != 0)
-            {
-                Debug.Log("to move attack");
                 statemachineChanger.ChangeState(statemachineController.moveState);
-            }
 
             else if (!isAnimationFinished &&
                 GameManager.instance.gameplayController.movementNormalizeY == 1f)
-            {
-                Debug.Log("to looking up attack");
                 statemachineChanger.ChangeState(statemachineController.lookingUpState);
-            }
 
             else if (!isAnimationFinished &&
                 GameManager.instance.gameplayController.movementNormalizeY == -1)
-            {
-                Debug.Log("to looking down attack");
                 statemachineChanger.ChangeState(statemachineController.lookingDownState);
-            }
 
             GameManager.instance.PlayerStats.GetSetPlayerAnimator.SetBool("canAttackTransition", false);
         }

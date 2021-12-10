@@ -58,9 +58,6 @@ public class RopePlayerController : MonoBehaviour
         Collider2D collider = Physics2D.OverlapCircle(ropeCheck.position, playerRawData.ropeCheckRadius,
                whatIsRope);
 
-        if (collider == null)
-            return null;
-
         return collider.transform;
     }
 

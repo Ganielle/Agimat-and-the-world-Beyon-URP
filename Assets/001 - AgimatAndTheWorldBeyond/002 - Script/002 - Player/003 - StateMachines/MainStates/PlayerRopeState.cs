@@ -46,6 +46,7 @@ public class PlayerRopeState : PlayerStatemachine
         //  TODO: RETURNING PLAYER TO POSITION AND ROTATION
 
         statemachineController.transform.parent = null;
+        statemachineController.core.MoveObjectToOriginalScene();
         statemachineController.core.ropePlayerController.ropeRB.bodyType = RigidbodyType2D.Kinematic;
         statemachineController.core.playerRB.bodyType = RigidbodyType2D.Dynamic;
         statemachineController.core.playerRB.freezeRotation = true;

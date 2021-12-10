@@ -32,7 +32,14 @@ public class NormalMobAlertState : NormalMobGroundState
             }
             else
             {
-                if (!statemachineController.core.fovDetection.isInFOV)
+                if (statemachineController.core.fovDetection.isInFOV)
+                {
+                    if (Vector2.Distance(statemachineController.transform.position, statemachineController.core.fovDetection.targetTF.transform.position) <=
+                    rawData.checkDistanceToPlayer)
+                        InitiateAttack();
+                }
+
+                else if (!statemachineController.core.fovDetection.isInFOV)
                 {
                     switch (statemachineController.core.LastPatrolState)
                     {

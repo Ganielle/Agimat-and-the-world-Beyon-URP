@@ -264,12 +264,12 @@ public class PlayerDashState : PlayerAbilityState
         isAbilityDone = true;
         canDash = true;
 
-        lastDashTime = startTime;
+        lastDashTime = startTime + movementData.dashCooldown;
     }
 
     public bool CheckIfCanDash()
     {
-        return canDash && Time.time >= lastDashTime + movementData.dashCooldown;
+        return canDash && Time.time >= lastDashTime;
     }
 
     public void ResetCanDash() => canDash = true;

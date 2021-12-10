@@ -9,7 +9,6 @@ public class PlayerStatemachine
     protected PlayerRawData movementData;
 
     protected float startTime;
-    protected float lastChangeWeaponTime;
     protected float lastLedgeClimb;
 
     protected bool isAnimationFinished;

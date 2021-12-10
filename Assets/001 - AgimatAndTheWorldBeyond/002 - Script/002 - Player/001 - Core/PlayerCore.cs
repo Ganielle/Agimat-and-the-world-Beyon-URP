@@ -3,10 +3,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerCore : MonoBehaviour
 {
     [Header("SETTINGS")]
+    public string characterSceneName;
     public PlayerRawData playerRawData;
     public Rigidbody2D playerRB;
     public Collider2D playerCollider;
@@ -47,11 +49,10 @@ public class PlayerCore : MonoBehaviour
     [ReadOnly] public Vector2 GetCurrentVelocity;
     [ReadOnly] public Vector2 GetWorkspace;
     [ReadOnly] public Vector2 lastAfterImagePosition;
-    [ReadOnly] public int currentDirection;
     public int CurrentDirection
     {
-        get => currentDirection;
-        set => currentDirection = value;
+        get => GameManager.instance.PlayerStats.facingDirection;
+        set => GameManager.instance.PlayerStats.facingDirection = value;
     }
 
     //  PRIVATE VARIABLES
@@ -68,6 +69,8 @@ public class PlayerCore : MonoBehaviour
     {
         playerCollider.offset = new Vector2(playerCollider.offset.x, y);
     }
+
+    public void MoveObjectToOriginalScene() => SceneManager.MoveGameObjectToScene(gameObject, SceneManager.GetSceneByName(characterSceneName));
 
     #region PHYSICS
 
@@ -135,9 +138,6 @@ public class PlayerCore : MonoBehaviour
     {
         Collider2D collider = Physics2D.OverlapCircle(monkeyBarCheck.position, playerRawData.monkeyBarRarCheckRadius,
             whatIsMonkeyBar);
-
-        if (collider == null)
-            return null;
 
         return collider.transform;
     }
@@ -231,13 +231,13 @@ public class PlayerCore : MonoBehaviour
 
     #endregion
 
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
         //  Monkey bar
-        Gizmos.color = Color.white;
+        Gizmos.color = Color.blue;
         Gizmos.DrawSphere(monkeyBarCheck.position, playerRawData.monkeyBarRarCheckRadius);
 
-        Gizmos.color = Color.white;
+        Gizmos.color = Color.blue;
         Gizmos.DrawSphere(monkeyBarFrontCheck.position, playerRawData.monkeyBarRarCheckRadius);
     }
 }

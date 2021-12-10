@@ -14,10 +14,10 @@ public class PlayerMonkeyBarMove : PlayerTouchingMonkeyBarState
     {
         base.AnimationTrigger();
 
-        if (GameManager.instance.PlayerStats.GetSetPlayerSR.sortingOrder == 6)
+        if (GameManager.instance.PlayerStats.GetSetPlayerSR.sortingOrder == 7)
             GameManager.instance.PlayerStats.GetSetPlayerSR.sortingOrder = 3;
         else
-            GameManager.instance.PlayerStats.GetSetPlayerSR.sortingOrder = 6;
+            GameManager.instance.PlayerStats.GetSetPlayerSR.sortingOrder = 7;
     }
 
     public override void Enter()
@@ -37,7 +37,7 @@ public class PlayerMonkeyBarMove : PlayerTouchingMonkeyBarState
         base.Exit();
 
         statemachineController.core.playerRB.bodyType = RigidbodyType2D.Dynamic;
-        GameManager.instance.PlayerStats.GetSetPlayerSR.sortingOrder = 6;
+        GameManager.instance.PlayerStats.GetSetPlayerSR.sortingOrder = 7;
     }
 
     public override void LogicUpdate()

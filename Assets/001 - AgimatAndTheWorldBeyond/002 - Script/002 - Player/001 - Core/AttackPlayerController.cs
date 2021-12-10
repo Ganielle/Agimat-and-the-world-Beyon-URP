@@ -80,17 +80,17 @@ public class AttackPlayerController : MonoBehaviour
     [SerializeField] private float delayAttackTime;
 
     //  BATTLE ATTACK COMBO
-    [ReadOnly] public string currentParameter;
-    [ReadOnly] public float attackEnterTimeLast;
-    [ReadOnly] public int attackIndex;
-    [ReadOnly] public int lastFacingDirection;
-    [ReadOnly] public bool isCurrentAttacking;
-    [ReadOnly] public bool canNextAttack;
-    [ReadOnly] public bool onLastAttackIndex;
-    [ReadOnly] public bool changeDirectionWhenAttacking;
-    [ReadOnly] public bool animationCancel;
-    [ReadOnly] public bool transitionToNextAttack;
-    [ReadOnly] public bool canExit;
+    [ReadOnly] [SerializeField] string currentParameter;
+    [ReadOnly] [SerializeField] float attackEnterTimeLast;
+    [ReadOnly] [SerializeField] int attackIndex;
+    [ReadOnly] [SerializeField] int lastFacingDirection;
+    [ReadOnly] [SerializeField] bool isCurrentAttacking;
+    [ReadOnly] [SerializeField] bool canNextAttack;
+    [ReadOnly] [SerializeField] bool onLastAttackIndex;
+    [ReadOnly] [SerializeField] bool changeDirectionWhenAttacking;
+    [ReadOnly] [SerializeField] bool animationCancel;
+    [ReadOnly] [SerializeField] bool transitionToNextAttack;
+    [ReadOnly] [SerializeField] bool canExit;
 
     private void Update()
     {

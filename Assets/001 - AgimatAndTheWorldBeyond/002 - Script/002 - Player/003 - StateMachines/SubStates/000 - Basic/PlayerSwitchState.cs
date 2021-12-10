@@ -132,7 +132,7 @@ public class PlayerSwitchState : PlayerAbilityState
         holdPosition = false;
         isAbilityDone = true;
         isCurrentlySwitching = false;
-        lastSwitchTime = Time.time;
+        lastSwitchTime = Time.time + movementData.switchCooldown;
         GameManager.instance.PlayerStats.GetSetPlayerAnimator.SetBool("doneSwitching", false);
     }
 
@@ -148,7 +148,7 @@ public class PlayerSwitchState : PlayerAbilityState
 
     public bool CheckIfCanSwitch()
     {
-        if (!canSwitch && Time.time >= lastSwitchTime + movementData.switchCooldown)
+        if (!canSwitch && Time.time >= lastSwitchTime)
             canSwitch = true;
         else
             canSwitch = false;

@@ -8,7 +8,10 @@ public class SwitchPlayerParticleController : MonoBehaviour
 {
     [SerializeField] private LeanTweenType easeType;
     [SerializeField] private List<SpriteRenderer> effectList;
+    [SerializeField] private Renderer distortion;
     [SerializeField] private float speed;
+    [SerializeField] private float speedDistortFadeIn;
+    [SerializeField] private float speedDistortFadeOut;
 
     [SerializeField] private float activeTime = 2.1f;
 
@@ -18,6 +21,8 @@ public class SwitchPlayerParticleController : MonoBehaviour
     [ReadOnly] public bool isCanceled;
     [ReadOnly] [SerializeField] bool firstInstance;
 
+    Coroutine currentFadeDistort;
+
     private void Awake()
     {
         firstInstance = true;
@@ -26,6 +31,7 @@ public class SwitchPlayerParticleController : MonoBehaviour
     private void OnEnable()
     {
         SetSettings();
+        currentFadeDistort = StartCoroutine(StartDistortion());
     }
 
     private void PlayerObjChange(object sender, EventArgs e)
@@ -47,7 +53,7 @@ public class SwitchPlayerParticleController : MonoBehaviour
             transform.rotation = player.rotation;
 
             foreach (SpriteRenderer renderer in effectList)
-                renderer.color = new Color(1f, 1f, 1f, 1f);
+                renderer.material.SetFloat("_AlphaClipThreshold", 0.5f);
 
             timeActivated = Time.time;
         }
@@ -65,21 +71,52 @@ public class SwitchPlayerParticleController : MonoBehaviour
     public IEnumerator StopParticles()
     {
         gameObject.GetComponent<Animator>().enabled = false;
-        
-        foreach(SpriteRenderer renderer in effectList)
-        {
-            LeanTween.value(renderer.gameObject, alpha => renderer.color = alpha,
-                new Color(renderer.color.r, renderer.color.g,
-                renderer.color.b, renderer.color.a),
-                new Color(renderer.color.r, renderer.color.g,
-                renderer.color.b, 0f), speed).setEase(easeType);
 
+        StopCoroutine(currentFadeDistort);
+
+        float time = 0f;
+        float distortamount = distortion.material.GetFloat("_DistortionAmount");
+
+        foreach (SpriteRenderer renderer in effectList)
+        {
+            LeanTween.alpha(renderer.gameObject, 0f, speed).setEase(easeType);
+        }
+
+        while (time < speed)
+        {
+            distortion.material.SetFloat("_DistortionAmount", Mathf.Lerp(distortamount, 0f, time / speed));
+
+            time += Time.deltaTime;
             yield return null;
         }
 
-        yield return new WaitForSeconds(0.6f);
-
         isCanceled = false;
         GameManager.instance.effectManager.switchEffectPooler.AddToPool(gameObject);
+    }
+
+    IEnumerator StartDistortion()
+    {
+        float time = 0f, fadeoutTime = 0f;
+        float distortamount = distortion.material.GetFloat("_DistortionAmount");
+
+        while (time < speedDistortFadeIn)
+        {
+            distortion.material.SetFloat("_DistortionAmount", Mathf.Lerp(distortamount, 0.5f, time / speedDistortFadeIn));
+
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        distortamount = distortion.material.GetFloat("_DistortionAmount");
+
+        while (fadeoutTime < speedDistortFadeOut)
+        {
+            distortion.material.SetFloat("_DistortionAmount", Mathf.Lerp(distortamount, 0f, fadeoutTime / speedDistortFadeOut));
+
+            Debug.Log("hello");
+
+            fadeoutTime += Time.deltaTime;
+            yield return null;
+        }
     }
 }

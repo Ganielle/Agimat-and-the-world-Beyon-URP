@@ -16,6 +16,9 @@ public class NormalMobStatemachineController : MonoBehaviour
     public NormalMobInAirState airState;
     public NormalMobAlertState alertState;
     public NormalMobChaseState chaseState;
+    public NormalMobGroundAttackState attackState;
+    public NormalMobGroundAttackTransition attackTransition;
+    public NormalMobJumpState jumpState;
 
     #endregion
 
@@ -31,6 +34,9 @@ public class NormalMobStatemachineController : MonoBehaviour
         airState = new NormalMobInAirState(this, normalMobStatemachineChanger, core.mobRawData, "inAir");
         alertState = new NormalMobAlertState(this, normalMobStatemachineChanger, core.mobRawData, "alerted");
         chaseState = new NormalMobChaseState(this, normalMobStatemachineChanger, core.mobRawData, "chase");
+        attackState = new NormalMobGroundAttackState(this, normalMobStatemachineChanger, core.mobRawData, "");
+        attackTransition = new NormalMobGroundAttackTransition(this, normalMobStatemachineChanger, core.mobRawData, "canAttackTransition");
+        jumpState = new NormalMobJumpState(this, normalMobStatemachineChanger, core.mobRawData, "jumping");
 
     }
 

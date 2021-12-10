@@ -16,8 +16,6 @@ public class NormalMobChaseState : NormalMobGroundState
     {
         base.LogicUpdate();
 
-        Debug.Log(statemachineController.core.groundController.CheckIfPlayerIsInMyBack);
-
         if (statemachineController.core.fovDetection.targetTF != null)
             playerLastPos = statemachineController.core.fovDetection.targetTF.transform.position;
 
@@ -25,12 +23,23 @@ public class NormalMobChaseState : NormalMobGroundState
         {
             if (statemachineController.core.fovDetection.isInFOV)
             {
+                if (Vector2.Distance(statemachineController.transform.position, statemachineController.core.fovDetection.targetTF.transform.position) <=
+                    rawData.checkDistanceToPlayer)
+                    InitiateAttack();
+
                 if (statemachineController.core.groundController.frontFootGroundAngle <= statemachineController.core.groundController.maxSlopeAngle ||
-                    statemachineController.core.groundController.frontFootGroundAngle >= statemachineController.core.groundController.minimumSlopeAngle)
+                statemachineController.core.groundController.frontFootGroundAngle >= statemachineController.core.groundController.minimumSlopeAngle)
                 {
                     statemachineController.core.ChangeEnterTimePatrolState(rawData.minSearchTime,
                         rawData.maxSearchTime);
-                    statemachineChanger.ChangeState(statemachineController.searchState); // CHANGE TO JUMP STATE
+                    {
+                        statemachineController.core.groundController.targetPlayer = statemachineController.core.fovDetection.targetTF.transform;
+                        statemachineController.core.groundController.heightToPlayer =
+                            Mathf.Abs(statemachineController.core.fovDetection.targetTF.transform.position.y +
+                            (Mathf.Abs(statemachineController.core.groundController.jumpGravity)));
+
+                        statemachineChanger.ChangeState(statemachineController.jumpState);
+                    }
                 }
             }
             else

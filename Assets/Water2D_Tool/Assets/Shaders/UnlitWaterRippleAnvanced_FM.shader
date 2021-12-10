@@ -16,7 +16,7 @@
 		    _BumpDirection ("Bump Direction & Speed", Vector) = (1.0 ,30.0, 20.0, -20.0)
 		    [NoScaleOffset] 
             _BumpMap ("Bump Normals", 2D) = "bump" {}
-            [HDR]_WaterLineColor ("Water Line Color", Color) = (1, 1, 1, 1)
+            _WaterLineColor ("Water Line Color", Color) = (1, 1, 1, 1)
             [NoScaleOffset] _WaterLineTex ("Water Line Texture", 2D) = "white" {}
             _PixelsPerUnit("Pixels Per Unit", Float) = 100
             
@@ -29,7 +29,7 @@
 	}
 	SubShader
 	{
-		Tags { "RenderType"="Transparent" "Queue"="Transparent+10" "RenderPipeline" = "LightweightPipeline" }
+		Tags { "RenderType"="Opaque" "Queue"="Transparent+10" "RenderPipeline" = "LightweightPipeline" }
 
 		Pass
 		{

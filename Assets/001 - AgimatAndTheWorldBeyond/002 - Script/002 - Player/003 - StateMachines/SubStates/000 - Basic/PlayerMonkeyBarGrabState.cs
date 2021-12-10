@@ -13,13 +13,14 @@ public class PlayerMonkeyBarGrabState : PlayerTouchingMonkeyBarState
 
     public override void Enter()
     {
-        base.Enter();
-
         GameManager.instance.PlayerStats.GetSetAnimatorStateInfo = PlayerStats.AnimatorStateInfo.MONKEYBARGRAB;
 
         holdPosition = statemachineController.core.MonkeyBarPosition().position;
+
         HoldPosition(statemachineController.core.transform.position.x,
             holdPosition.y - statemachineController.core.playerRawData.mbStartOffset.y);
+
+        base.Enter();
     }
 
     public override void LogicUpdate()

@@ -34,9 +34,9 @@ Material:
     m_Floats:
     - _ApplyOffset: 0
     - _BottomPos: -2
-    - _BumpWaves: 0.1
+    - _BumpWaves: 0.17
     - _DEPTHFOG: 1
-    - _Distortion: 0.05
+    - _Distortion: 0.17
     - _EdgeBlend: 4
     - _FogDensityCap: 0.8
     - _FogDepth: 3
@@ -47,18 +47,19 @@ Material:
     - _MeshHeight: 3.736259
     - _Metallic: 0
     - _Opacity: 0.6
-    - _PixelsPerUnit: 11.8
+    - _PixelsPerUnit: 100
     - _WaterDepth: 1.52
-    - _WaterHeight: 14.198353
+    - _WaterHeight: 6
     - _WaterLineHeight: 1
-    - _WaterWidth: 52.924744
+    - _WaterWidth: 41.028168
     - _WaveHeightScale: 0.5
     m_Colors:
     - _BaseColor: {r: 0.43106616, g: 0.60046196, b: 0.875, a: 0.829}
     - _BumpDirection: {r: 1, g: 30, b: 20, a: -20}
     - _BumpTiling: {r: 0.04, g: 0.04, b: 0.04, a: 0.08}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _DeepWaterColor: {r: 0.06915272, g: 0.6981132, b: 0.41829976, a: 1}
+    - _DeepWaterColor: {r: 0.23137255, g: 0.44705883, b: 0.8, a: 1}
     - _InvFadeParemeter: {r: 4, g: 0.15, b: 0.5, a: 1}
-    - _ShallowWaterColor: {r: 0.126157, g: 0.990566, b: 0.628862, a: 1}
+    - _ShallowWaterColor: {r: 0.5058824, g: 0.60784316, b: 0.77254903, a: 1}
     - _WaterLineColor: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []

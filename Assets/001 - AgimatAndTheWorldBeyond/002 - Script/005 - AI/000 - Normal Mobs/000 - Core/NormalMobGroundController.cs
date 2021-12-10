@@ -10,6 +10,7 @@ public class NormalMobGroundController : MonoBehaviour
     [Header("GROUND")]
     public float maxSlopeAngle;
     public float minimumSlopeAngle;
+    public float jumpGravity;
 
     [Header("ENVIRONMENT")]
     public LayerMask whatIsGround;
@@ -26,6 +27,14 @@ public class NormalMobGroundController : MonoBehaviour
     [ReadOnly] [SerializeField] float moveDistance;
     [ReadOnly] [SerializeField] float horizontalOnSlope;
     [ReadOnly] [SerializeField] float verticalOnSlope;
+
+    [Header("DEBUGGER JUMP")]
+    [ReadOnly] public Transform targetPlayer;
+    [ReadOnly] public float heightToPlayer;
+    [ReadOnly] public float displacementY;
+    [ReadOnly] public Vector3 displacementX;
+    [ReadOnly] public Vector3 velocityX;
+    [ReadOnly] public Vector3 velocityY;
 
     #region PHYSICS
 
@@ -126,6 +135,18 @@ public class NormalMobGroundController : MonoBehaviour
                     mobCore.SetVelocityY(-verticalOnSlope);
             }
         }
+    }
+
+    public Vector2 CalculateLaunchVelocity()
+    {
+        displacementY = targetPlayer.position.y - mobCore.enemyRB.transform.position.y;
+        displacementX = new Vector2(targetPlayer.position.x - mobCore.enemyRB.transform.position.x, 0f);
+
+        velocityY = Vector2.up * Mathf.Sqrt(-2 * jumpGravity * heightToPlayer);
+        velocityX = displacementX / (Mathf.Sqrt(-2 * heightToPlayer / jumpGravity) + Mathf.Sqrt(
+            2 * (displacementY - heightToPlayer) / jumpGravity));
+
+        return velocityX + velocityY;
     }
 
     #endregion

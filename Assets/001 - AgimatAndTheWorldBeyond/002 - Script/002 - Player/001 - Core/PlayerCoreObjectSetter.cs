@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class PlayerCoreObjectSetter : MonoBehaviour
 {
-    [SerializeField] private bool debugMode;
-
     [SerializeField] private GameObject characterObj;
 
     [Header("Animator")]

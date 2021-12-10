@@ -98,8 +98,7 @@ public class PlayerWeaponSwitchState : PlayerGroundState
 
     public bool CheckIfCanWeaponSwitch()
     {
-        return canSwitch && Time.time >= lastChangeWeaponTime +
-            movementData.weaponSwitchTime;
+        return canSwitch && Time.time >= statemachineController.core.weaponChangerController.lastChangeWeaponTime;
     }
 
     public void ResetWeaponSwitch() => canSwitch = true;

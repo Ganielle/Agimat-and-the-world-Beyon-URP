@@ -45,7 +45,6 @@ public class PlayerLedgeClimbState : PlayerStatemachine
 
     public override void Enter()
     {
-        base.Enter();
         GameManager.instance.PlayerStats.GetSetAnimatorStateInfo = PlayerStats.AnimatorStateInfo.LEDGEHOLD;
 
         //  For wall jump State
@@ -55,12 +54,14 @@ public class PlayerLedgeClimbState : PlayerStatemachine
         statemachineController.transform.position = detectedPos;
         cornerPos = statemachineController.core.groundPlayerController.DetermineCornerPosition();
 
-        startPostion.Set(cornerPos.x - (statemachineController.core.CurrentDirection * 
+        startPostion.Set(cornerPos.x - (statemachineController.core.CurrentDirection *
             movementData.startOffset.x), cornerPos.y - movementData.startOffset.y);
         stopPosition.Set(cornerPos.x + (statemachineController.core.CurrentDirection *
             movementData.stopOffset.x), cornerPos.y + movementData.stopOffset.y);
 
         statemachineController.transform.position = startPostion;
+
+        base.Enter();
     }
 
     public override void Exit()

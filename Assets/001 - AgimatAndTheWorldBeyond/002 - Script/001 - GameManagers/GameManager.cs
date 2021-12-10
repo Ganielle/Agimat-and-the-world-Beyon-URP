@@ -60,20 +60,12 @@ public class GameManager : MonoBehaviour
         //Time.timeScale = 0.2f;
         instance = this;
 
-        SetReferenceScripts();
-
         DebugMode();
     }
 
     private void Update()
     {
         //Debug.Log(PlayerStats.GetSetAnimatorStateInfo);
-    }
-
-    private void SetReferenceScripts()
-    {
-        PlayerStats = new PlayerStats();
-        cameraShaker = new CameraShaker();
     }
 
     #region LOADING DATA SCENES
@@ -106,6 +98,7 @@ public class GameManager : MonoBehaviour
         {
             if (isOnGameplay)
             {
+                playerInput.defaultActionMap = "Gameplay";
                 playerInput.SwitchCurrentActionMap("Gameplay");
 
                 gameplayStates.CurrentGameplayState = GameplayStates.GameplayState.GAMEPLAY;
@@ -127,7 +120,9 @@ public class GameManager : MonoBehaviour
 
             if (isOnMainMenu)
             {
+                playerInput.defaultActionMap = "MainMenu";
                 playerInput.SwitchCurrentActionMap("MainMenu");
+
                 mainMenu.CurrentSSMMState = mainMenuState;
 
                 if (debugScenes)

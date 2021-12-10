@@ -96,9 +96,6 @@ public class NormalAttackCombo : PlayerGroundAttackState
             }
             else if (statemachineController.core.attackController.OnLastAttackIndex)
             {
-
-                statemachineController.core.attackController.AttackIndex = 0;
-
                 GameManager.instance.PlayerStats.GetSetPlayerAnimator.SetInteger(statemachineController.core.attackController.Parameter,
                 0);
 
@@ -109,5 +106,8 @@ public class NormalAttackCombo : PlayerGroundAttackState
                 statemachineChanger.ChangeState(statemachineController.normalAttackTransition);
             }
         }
+
+        if (statemachineController.core.attackController.AttackIndex == 0 && !statemachineController.core.attackController.ExitAttack)
+            statemachineController.core.attackController.ExitAttack = true;
     }
 }

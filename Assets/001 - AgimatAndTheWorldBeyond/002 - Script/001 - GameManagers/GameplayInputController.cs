@@ -72,6 +72,7 @@ public class GameplayInputController : MonoBehaviour
     [ReadOnly] [SerializeField] float sprintTapStartTime;
     [ReadOnly] public int sprintTapCount;
     [ReadOnly] public bool canDoubleTapSprint;
+    [ReadOnly] public bool firstTapSprint;
 
     //  JUMP
     [ReadOnly] public bool jumpInput;
@@ -95,6 +96,8 @@ public class GameplayInputController : MonoBehaviour
 
     //  DASH
     [ReadOnly] public Vector2 rawDashDirectionInput;
+    [ReadOnly] [SerializeField] private Vector2 dashDirection;
+    [ReadOnly] [SerializeField] private Vector2 finalDashDirectionInput;
     [ReadOnly] public Vector2Int dashDirectionInput;
     [ReadOnly] public bool dashInput;
     [ReadOnly] public bool dashInputStop;
@@ -140,14 +143,23 @@ public class GameplayInputController : MonoBehaviour
         if (context.started)
         {
             //  For sprinting
-            if (rawMovementVector.x != 0 && sprintTapCount < 3)
+            if (GetSetMovementNormalizeX != 0 && GameManager.instance.PlayerStats.facingDirection == GetSetMovementNormalizeX &&
+                sprintTapCount < 3)
             {
                 if (sprintTapCount == 0)
+                {
                     sprintTapStartTime = Time.time;
+                }
 
                 canDoubleTapSprint = true;
                 sprintTapCount++;
             }
+
+            //else if (GameManager.instance.PlayerStats.facingDirection != GetSetMovementNormalizeX)
+            //{
+            //    canDoubleTapSprint = false;
+            //    sprintTapCount = 0;
+            //}
         }
 
         else if (context.canceled)
@@ -165,7 +177,7 @@ public class GameplayInputController : MonoBehaviour
     {
         if (canDoubleTapSprint)
         {
-            if (Time.time > sprintTapStartTime + sprintDoubleTapTime &&
+            if (Time.time >= sprintTapStartTime + sprintDoubleTapTime &&
                 sprintTapCount < 2)
             {
                 canDoubleTapSprint = false;
@@ -265,20 +277,26 @@ public class GameplayInputController : MonoBehaviour
         }
     }
 
-    public void OnDashDirection(InputAction.CallbackContext context)
+    public void OnDirectionDash(InputAction.CallbackContext context)
     {
-        rawDashDirectionInput = context.ReadValue<Vector2>();
+        if (GameManager.instance.PlayerStats.GetSetPlayerCharacterObj == null)
+            return;
 
+        rawDashDirectionInput = context.ReadValue<Vector2>();
 
         if (playerInput.currentControlScheme == "Keyboard")
         {
+            dashDirection = new Vector2(rawDashDirectionInput.x, rawDashDirectionInput.y);
 
-            rawDashDirectionInput = GameManager.instance.mouseCamera.ScreenToWorldPoint(
-                new Vector3(rawDashDirectionInput.x, rawDashDirectionInput.y, 0f))
+            finalDashDirectionInput = GameManager.instance.mouseCamera.ScreenToWorldPoint(dashDirection)
                 - GameManager.instance.PlayerStats.GetSetPlayerCharacterObj.transform.position;
-        }
 
-        dashDirectionInput = Vector2Int.RoundToInt(rawDashDirectionInput.normalized);
+            dashDirectionInput = Vector2Int.RoundToInt(finalDashDirectionInput.normalized);
+        }
+        else
+        {
+            dashDirectionInput = Vector2Int.RoundToInt(rawDashDirectionInput.normalized);
+        }
     }
 
     #endregion

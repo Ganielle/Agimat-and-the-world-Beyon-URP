@@ -114,7 +114,7 @@ public class PlayerDodgeState : PlayerNormalAbilityState
                         statemachineChanger.ChangeState(statemachineController.moveState);
                 }
 
-                lastDodgeTime = Time.time;
+                lastDodgeTime = Time.time + movementData.dodgeCooldown;
             }
             else
             {
@@ -133,7 +133,7 @@ public class PlayerDodgeState : PlayerNormalAbilityState
 
     public bool CheckIfCanDodge()
     {
-        return canDodge && Time.time >= lastDodgeTime + movementData.dodgeCooldown;
+        return canDodge && Time.time >= lastDodgeTime;
     }
 
     public void ResetDodge() => canDodge = true;

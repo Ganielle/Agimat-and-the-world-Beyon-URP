@@ -44,6 +44,13 @@ public class PlayerInAirState : PlayerStatemachine
         base.PhysicsUpdate();
         HighLowJump();
         MovePlayerWhileInAir();
+
+        if (!isExitingState)
+        {
+            if (statemachineController.isTouchingMonkeyBar &&
+            GameManager.instance.gameplayController.grabMonkeyBarInput)
+                statemachineChanger.ChangeState(statemachineController.monkeyBarGrab);
+        }
     }
 
     #region AIR STATE FUNCTIONS
@@ -99,11 +106,6 @@ public class PlayerInAirState : PlayerStatemachine
         else if (statemachineController.isTouchingClimbWall && statemachineController.isSameHeightToPlatform &&
             GameManager.instance.gameplayController.grabWallInput)
             statemachineChanger.ChangeState(statemachineController.wallGrabState);
-
-        //  Monkey Bar
-        else if (statemachineController.isTouchingMonkeyBar &&
-            GameManager.instance.gameplayController.grabMonkeyBarInput)
-            statemachineChanger.ChangeState(statemachineController.monkeyBarGrab);
 
         //  Rope
         else if (statemachineController.isTouchingRope &&

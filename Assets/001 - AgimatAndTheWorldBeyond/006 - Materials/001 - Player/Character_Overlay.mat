@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Character_Overlay
-  m_Shader: {fileID: -6465566751694194690, guid: b95b1ce63f4f4f84c9b8856e4c046415,
+  m_Shader: {fileID: -6465566751694194690, guid: d8c4fc7d9f1c93a43876d6ac2ac5cae5,
     type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
@@ -60,6 +60,18 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
     - Vector1_24FB60FF: 1
     - Vector1_252B5229: 0.9
@@ -67,6 +79,9 @@ Material:
     - Vector1_5B17719F: 0.5
     - Vector1_650E3943: 1
     - Vector1_E773AB6C: 0.5
+    - Vector1_a0b000e842034759964ced477a251068: 1
+    - Vector1_dbd307b836614b9b9c61761391023ed8: 0.87
+    - Vector1_df813b6af4684c22bb88854a161cecfc: 0.2
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -92,12 +107,15 @@ Material:
     m_Colors:
     - Color_20C6119A: {r: 0, g: 0.25909472, b: 1, a: 1}
     - Color_B551AA34: {r: 0, g: 0, b: 0, a: 0}
+    - Color_cbe1092035ec48379262f465b29d746d: {r: 0.9433962, g: 0.9433962, b: 0.9433962,
+        a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+  m_BuildTextureStacks: []
 --- !u!114 &8164770235114269593
 MonoBehaviour:
   m_ObjectHideFlags: 11

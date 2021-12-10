@@ -47,6 +47,7 @@ public class NormalMobCore : MonoBehaviour
 
     [Header("Script References")]
     public NormalMobGroundController groundController;
+    public NormalMobAttackController attackController;
 
     [Header("SPRITE")]
     public SpriteRenderer enemySR;

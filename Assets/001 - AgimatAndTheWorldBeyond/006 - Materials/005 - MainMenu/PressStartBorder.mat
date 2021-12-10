@@ -8,7 +8,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: PressStartBorder
-  m_Shader: {fileID: 4800000, guid: c5703c928eb60d047b48d008c2eaafaa, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: dc59088f0de29fd44bafc17528fae4bf,
+    type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -19,14 +20,40 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_59edeb5406db488081898b834172e9c1:
+        m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_b4d906244c7d492c909fddebeba94e53:
+        m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 09e71935cf13ec8489f1cdb0f4df01fb, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Boolean_a4d0d9d634144d7eab4858d366aedef3: 0
+    - Vector1_2C664FFB: 0
+    - Vector1_744734C2: 0
     - Vector1_7A60B76E: 9.02
-    - Vector1_ACBBFEA9: 1.8
+    - Vector1_7C83DD11: 0
+    - Vector1_A8FB1B04: 0
+    - Vector1_ACBBFEA9: 2.66
     - _ColorMask: 15
+    - _DistortionAmount: 0
     - _Stencil: 0
     - _StencilComp: 8
     - _StencilOp: 0
@@ -36,3 +63,4 @@ Material:
     - Color_C8626150: {r: 2.4502616, g: 2.4502616, b: 2.4502616, a: 1}
     - Vector2_288FEC1D: {r: 0.01, g: 0, b: 0, a: 0}
     - _Tint: {r: 11.984314, g: 11.984314, b: 11.984314, a: 1}
+  m_BuildTextureStacks: []

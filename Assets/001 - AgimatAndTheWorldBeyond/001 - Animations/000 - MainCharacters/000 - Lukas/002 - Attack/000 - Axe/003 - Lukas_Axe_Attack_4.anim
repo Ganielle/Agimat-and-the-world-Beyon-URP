@@ -104,7 +104,7 @@ AnimationClip:
     functionName: GroundAttackMovementVelocity
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 30
+    floatParameter: 15
     intParameter: 0
     messageOptions: 0
   - time: 0.5

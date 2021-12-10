@@ -20,17 +20,20 @@ public class PlayerRopeGrabSwingState : PlayerRopeState
         statemachineController.core.playerRB.bodyType = RigidbodyType2D.Dynamic;
         statemachineController.core.playerRB.freezeRotation = false;
 
-        //  TODO: This is for storing the rotation and position from rope start grab
-        parentPlayerOldRot = statemachineController.ropeStartGrab.parentPlayerOldRot;
-        childPlayerOldRot = statemachineController.ropeStartGrab.childPlayerOldRot;
-        ropeOldRot = statemachineController.ropeStartGrab.ropeOldRot;
-        ropeOldPos = statemachineController.ropeStartGrab.ropeOldPos;
-
         //  TODO: This is for connecting hinge joint when is transitioning from climb up/down state
         if (!statemachineController.ropeStartGrab.firstGrab)
             statemachineController.core.ropePlayerController.RopePlayerHingeJointConnector();
         else
+        {
+            //  TODO: This is for storing the rotation and position from rope start grab
+            parentPlayerOldRot = statemachineController.ropeStartGrab.parentPlayerOldRot;
+            childPlayerOldRot = statemachineController.ropeStartGrab.childPlayerOldRot;
+            ropeOldRot = statemachineController.ropeStartGrab.ropeOldRot;
+            ropeOldPos = statemachineController.ropeStartGrab.ropeOldPos;
+
             statemachineController.ropeStartGrab.firstGrab = false; //  TODO: this is for turning off the first grab checker
+        }
+
     }
 
     public override void DoChecks()
@@ -58,8 +61,13 @@ public class PlayerRopeGrabSwingState : PlayerRopeState
 
                 else if (statemachineController.core.ropePlayerController.RopeAboveChecker && 
                     GameManager.instance.gameplayController.movementNormalizeY > 0)
+                {
+                    statemachineController.core.ropePlayerController.playerHingeJoint.enabled = false;
+                    statemachineController.core.ropePlayerController.ropeHingeJoint.enabled = false;
+
                     //  TODO: CLIMB UP
                     statemachineChanger.ChangeState(statemachineController.ropeClimbUp);
+                }
 
                 else if (statemachineController.core.ropePlayerController.RopeBelowChecker &&
                     GameManager.instance.gameplayController.movementNormalizeY < 0)
@@ -84,7 +92,7 @@ public class PlayerRopeGrabSwingState : PlayerRopeState
         if (!GameManager.instance.gameplayController.ropeInput)
             return;
 
-        statemachineController.core.playerRB.AddRelativeForce(new Vector2(GameManager.instance.gameplayController.ropeNormalizeMovementX *
+        statemachineController.core.playerRB.AddRelativeForce(new Vector2(GameManager.instance.gameplayController.GetSetMovementNormalizeX *
         movementData.ropeSwingVelocity, 0f));
     }
 }

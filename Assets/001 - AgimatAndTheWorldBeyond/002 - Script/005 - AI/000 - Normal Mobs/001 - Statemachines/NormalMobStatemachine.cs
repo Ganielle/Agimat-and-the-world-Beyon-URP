@@ -49,4 +49,14 @@ public class NormalMobStatemachine
     public virtual void AnimationTrigger() { }
 
     public virtual void AnimationFinishTrigger() => isAnimationFinished = true;
+
+    public void InitiateAttack()
+    {
+        if (Time.time >= statemachineController.core.attackController.RefreshAttackTimer)
+        {
+            statemachineController.core.attackController.AttackIndex = 1;
+            statemachineController.core.enemyAnim.SetInteger("attackIndex", 1);
+            statemachineChanger.ChangeState(statemachineController.attackState);
+        }
+    }
 }

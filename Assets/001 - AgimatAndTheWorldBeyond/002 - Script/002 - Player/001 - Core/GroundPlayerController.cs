@@ -209,7 +209,7 @@ public class GroundPlayerController : MonoBehaviour
 
     #endregion
 
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
         //  Ground
         Gizmos.color = Color.blue;

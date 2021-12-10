@@ -115,6 +115,13 @@ public class PlayerStats
         set { playerCollider = value; }
     }
 
+    public int facingDirection;
+    public int CurrentFacingDirection
+    {
+        get => facingDirection;
+        set => facingDirection = value;
+    }
+
     #region WEAPONS
 
     string weaponEquipBoolInPlayerAnim;

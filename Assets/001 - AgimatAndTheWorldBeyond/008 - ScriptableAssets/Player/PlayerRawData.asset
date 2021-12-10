@@ -42,7 +42,7 @@ MonoBehaviour:
   wallClimbCheckRadius: 0.15
   wallSlideVelocity: 3
   wallClimbVelocity: 3.5
-  wallJumpVelocity: 20
+  wallJumpVelocity: 25
   wallJumpTime: 0.9
   delayToUseDash: 0.25
   delayToCheckForGround: 0.15
@@ -50,9 +50,9 @@ MonoBehaviour:
   wallJumpAngle: {x: -5, y: 10}
   startOffset: {x: 0, y: 1.6}
   stopOffset: {x: 1, y: 1.5}
-  monkeyBarRarCheckRadius: 0.15
-  monkeyBarVelocity: 2.5
-  mbStartOffset: {x: 0, y: 1.75}
+  monkeyBarRarCheckRadius: 0.25
+  monkeyBarVelocity: 3.5
+  mbStartOffset: {x: 0, y: 1.6}
   monkeyBarJumpVelocity: 20
   delayToCheckForMBAfterJump: 0.25
   ropeCheckRadius: 0.1
@@ -60,16 +60,16 @@ MonoBehaviour:
   ropeClimDownVelocity: 10
   ropeSwingVelocity: 25
   anchorX: 0.2
-  rightAngle: -30
-  leftAngle: -30
+  rightAngle: 0
+  leftAngle: 60
   ropeJumpVelocity: 25
   ropeJumpTime: 0.4
   ropeJumpAngle: {x: 1, y: 2}
   switchTime: 0.85
   switchCooldown: 2
-  weaponSwitchTime: 0.25
+  weaponSwitchTime: 0.3
   dashCooldown: 1.2
-  maxHoldTime: 0.15
+  maxHoldTime: 0.35
   holdTimeScale: 1
   dashTime: 0.15
   dashVelocity: 60
