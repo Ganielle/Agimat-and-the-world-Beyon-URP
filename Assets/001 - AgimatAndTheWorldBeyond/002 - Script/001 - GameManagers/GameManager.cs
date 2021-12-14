@@ -34,6 +34,9 @@ public class GameManager : MonoBehaviour
     [ConditionalField("debugMode")] public bool debugScenes;
     [ConditionalField("debugMode")] [SerializeField] private string firstScene;
 
+    [Header("DASH")]
+    public GameObject dashArrowIndicator;
+
     [Header("LIGHT")]
     public Light directionalLight;
 

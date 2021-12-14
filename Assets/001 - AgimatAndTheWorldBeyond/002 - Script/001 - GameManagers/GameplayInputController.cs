@@ -289,7 +289,7 @@ public class GameplayInputController : MonoBehaviour
             dashDirection = new Vector2(rawDashDirectionInput.x, rawDashDirectionInput.y);
 
             finalDashDirectionInput = GameManager.instance.mouseCamera.ScreenToWorldPoint(dashDirection)
-                - GameManager.instance.PlayerStats.GetSetPlayerCharacterObj.transform.position;
+                - GameManager.instance.dashArrowIndicator.transform.position;
 
             dashDirectionInput = Vector2Int.RoundToInt(finalDashDirectionInput.normalized);
         }
