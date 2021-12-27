@@ -6,15 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/001 - AgimatAndTheWorldBeyond/007 - Scenes/Persistent.unity
+    path: Assets/001 - AgimatAndTheWorldBeyond/010 - Scenes/Persistent.unity
     guid: 8486784aeebd0534ab04b4637758d863
   - enabled: 1
-    path: Assets/001 - AgimatAndTheWorldBeyond/007 - Scenes/MainMenu.unity
+    path: Assets/001 - AgimatAndTheWorldBeyond/010 - Scenes/MainMenu.unity
     guid: 7b45825a469e05546a73c242a2064d7e
   - enabled: 1
-    path: Assets/001 - AgimatAndTheWorldBeyond/007 - Scenes/CharactersScene.unity
+    path: Assets/001 - AgimatAndTheWorldBeyond/010 - Scenes/CharactersScene.unity
     guid: 79203b70606fb634d96103da53985e6b
   - enabled: 1
-    path: Assets/001 - AgimatAndTheWorldBeyond/007 - Scenes/AtyciaEntry.unity
+    path: Assets/001 - AgimatAndTheWorldBeyond/010 - Scenes/Karimlan.unity
     guid: 40e1ee5ffee58d142b32910204538e45
   m_configObjects: {}
